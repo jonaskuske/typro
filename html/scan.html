@@ -9,13 +9,15 @@
     </div>
     <div data-role="content" id="content_scan">
         <div id="camView">
+          <!-- Kamera Feed-->
             <div id="camContainer">
-                <video id="video"></video>
+                <video></video>
             </div>
             <canvas id="img_cache"></canvas>
-               <div id="camFooter">
+            <!-- Bedienelemente-->
+            <div id="camFooter">
                 <div></div>
-                <button id="shutter">Scan</button>
+                <button id="shutter" onClick="takepicture();" >Scan</button>
                 <a href="verlauf.html"> <img id="photo"></a>
             </div>
         </div>
