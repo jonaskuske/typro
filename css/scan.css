@@ -12,11 +12,17 @@
 #camFooter div{
   width: 80px;
 }
-#camFooter {
-  width: 100%;
+#footer_div{
   position: fixed;
+  width: 100%;
   bottom: 0px;
-  margin-top: 30px;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  
+  
+#camFooter {
+  margin-top: 5px;
   padding: 0 20px 0 20px;
   display: flex;
   justify-content: space-between;
