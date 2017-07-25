@@ -12,7 +12,6 @@ $(document).on("pageshow", "#scanpage", function () {
     shutter = document.getElementById("shutter");
     photo = document.getElementById("photo");
     img_cache = document.getElementById("img_cache");
-    alert("rearcam?");
     // retrieve camera stream
     navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment"},
