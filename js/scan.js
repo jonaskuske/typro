@@ -14,7 +14,7 @@ $(document).on("pageshow", "#scanpage", function () {
     img_cache = document.getElementById("img_cache");
     // retrieve camera stream
     navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: { facingMode: "environment"},
         audio: false
         // set HTML video source to stream URL and start playback
     }).then(function (stream) {
