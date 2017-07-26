@@ -33,29 +33,33 @@ function store() {
 // User-abhängiges manipulieren des Panels
 function logCheck() {
 	if (localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) {
-		$("#pUser").text("Hallo, " + boldUser).css("color","white");
+		$("#pUser").text("Hallo, " + boldUser);
 		$("#user").css("background-image", "url('../img/admin.png')");
 	} else if (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) {
-		$("#pUser").text("Hallo, " + lightUser).css("color","white");
+		$("#pUser").text("Hallo, " + lightUser);
         $("#user").css("background-image", "url('../img/test.png')");
 	} else if (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass) {
-		$("#pUser").text("*heavy breathing*").css("color", "red");
+		$("#pUser").text("*heavy breathing*").css("background-color", "black").css("border-radius", "30%");
         $("#user").css("background-image", "url('../img/darth.png')");
 	} else {
-		$("#pUser").text("Einloggen").css("color","white");
+		$("#pUser").text("Einloggen");
         $("#user").css("background-image", "url('../img/placeholder.png')");
+	}
+	if (localStorage.getItem("username") !== starUser && localStorage.getItem("passwort") !== starPass){
+		$("#pUser").css("background-color", "");
+		$("#pUser").css("border-radius", "");
 	}
 }
 // User-abhängiges manipulieren des Panels
 function logCheckStart() {
     if (localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) {
-        $("#pUser").text("Hallo, " + boldUser).css("color","white");
+        $("#pUser").text("Hallo, " + boldUser);
         $("#user").css("background-image", "url('img/admin.png')");
     } else if (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) {
-        $("#pUser").text("Hallo, " + lightUser).css("color","white");
+        $("#pUser").text("Hallo, " + lightUser);
         $("#user").css("background-image", "url('img/test.png')");
     } else if (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass) {
-        $("#pUser").text("*heavy breathing*").css("color", "red");
+        $("#pUser").text("*heavy breathing*").css("background-color", "black").css("border-radius", "30%");
         $("#user").css("background-image", "url('img/darth.png')");
     } else {
         $("#pUser").text("Einloggen").css("color","white");

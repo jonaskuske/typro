@@ -26,7 +26,9 @@ Schrift Panel
     font-size: 30px;
     color: #fff;
 }
-
+#pUser {
+	color: white;
+}
 #user:after{
     display: none;
 }
