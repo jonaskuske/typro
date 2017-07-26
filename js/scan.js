@@ -1,3 +1,4 @@
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
 // Variablen definieren
 var width = 300;
 var height;
