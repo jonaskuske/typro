@@ -45,7 +45,7 @@ function logCheck() {
 		$("#pUser").text("Einloggen");
         $("#user").css("background-image", "url('../img/placeholder.png')");
 	}
-	if (localStorage.getItem("username") !== starUser && localStorage.getItem("passwort") !== starPass){
+	if (localStorage.getItem("username") !== starUser){
 		$("#pUser").css("background-color", "");
 		$("#pUser").css("border-radius", "");
 	}
@@ -62,15 +62,15 @@ function logCheckStart() {
         $("#pUser").text("*heavy breathing*").css("background-color", "black").css("border-radius", "30%");
         $("#user").css("background-image", "url('img/darth.png')");
     } else {
-        $("#pUser").text("Einloggen").css("color","white");
+        $("#pUser").text("Einloggen");
         $("#user").css("background-image", "url('img/placeholder.png')");
     }
-}
+} 
 // Alert: Log-in erfolgreich / nicht erfolgreich
 function logFeedback() {
 	//Erfolgreicher Log-In
-    if ((localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) || (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) || (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass)) {
-        alert("Erfolgreich eingeloggt!");
+    if ((localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) || (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) || (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass)) {  
+		alert("Erfolgreich eingeloggt!");		
 	} else {
         alert("Falsche Username-Passwort-Kombination!");
 	}
