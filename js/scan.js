@@ -21,8 +21,7 @@ $(document).on("pageshow", "#scanpage", function () {
 			video.attr('autoplay', '');
 			video.attr('muted', '');
 			video.attr('playsinline', '');
-		/* video.attr('src', URL.createObjectURL(stream)); */
-		video.get(0).play();
+		/* video.get(0).play(); */
 	})
 	// Promise fehlgeschlagen: Fehlermeldung auszuspielen
 	.catch(function (err) {
