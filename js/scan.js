@@ -12,7 +12,7 @@ $(document).on("pageshow", "#scanpage", function () {
 	photo = $("#photo");
 	img_cache = $("#img_cache");
 	// Kamera-Feed abfragen
-	navigator.getUserMedia({
+	navigator.mediaDevices.getUserMedia({
 		video: {facingMode: "environment"},
 		audio: false
 	// falls Promise erfolgreich: Kamera-Feed abspielen	
