@@ -1,37 +1,45 @@
 @charset "utf-8";
-
-#camView {
-  display: flex;
-  flex-direction: column;
+#content_scan {
+	background-color: grey;
+	display: grid;
+	grid-template-rows: 60% 10%;
+	grid-template-columns: 20px repeat(7, 1fr) 20px;
+	width: 100%;
 }
 #camContainer {
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  }
-#camFooter div{
-  width: 60px;
+	width: 100%;
+	background-color: blue;
+	grid-column: 2/9;
+	grid-row: 1/2;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
 }
 #camFooter {
-  bottom: 0px;
-  margin-top: 20px;
-  padding: 0 20px 0 20px;
-  display: flex;
-  justify-content: space-between;
+	background-color: yellow;
+	grid-row: 2/3;
+	grid-column: 2/9;
+	display: flex;
+	justify-content: space-between;
+}
+#camFooter div {
+	width: 60px;
+	height: 60px;
+	background-color: rosybrown;
 }
 #shutter {
-  width: auto;
-  height: 60px;
-  color: #fff;
-  background-color: #332112;
-  border-radius: 10%;
+	width: 60px;
+	height: 60px;
+	color: #fff;
+	background-color: #332112;
+	border-radius: 50%;
 }
 #photo {
-  width: 60px;
-  height: 60px;
-  background-image:url(../img/placeholder_cam.png);
-  background-size: cover;
+	width: 60px;
+	height: 60px;
+	background-image: url(../img/placeholder_cam.png);
+	background-size: cover;
 }
 #img_cache {
-  display: none;
+	display: none;
 }
