@@ -8,8 +8,9 @@
         <a href="einstellungen.html" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
     </div>
     <div data-role="content" id="content_scan">
+        <div id="camView">
           <!-- Kamera Feed-->
-               <div id="camContainer">
+            <div id="camContainer">
                 <video></video>
             </div>
             <canvas id="img_cache"></canvas>
@@ -19,5 +20,6 @@
                 <button id="shutter" onClick="takepicture();" >Scan</button>
                 <a href="verlauf.html"> <img id="photo"></a>
             </div>
+        </div>
     </div>
 </div>
