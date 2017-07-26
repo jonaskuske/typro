@@ -3,18 +3,18 @@
 /* Einbindung Schrift */
 * {
 	font-family: "Lato";
+	margin: 0;
+	padding: 0;
 }
 /* Header Styling */
 #header h3 {
 	font-size: 25px;
 }
-
 #header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-
 #header a {
 	background-color: transparent;
 	border-color: transparent;
@@ -28,7 +28,6 @@
 	justify-content: center;
 	margin: 20vh 0 0 0;
 }
-
 #content_index a {
 	background-color: #332112;
 	-webkit-border-radius: 50%;
@@ -41,12 +40,10 @@
 	align-items: center;
 	box-shadow: 2px 2px 2px 0 #937057;
 }
-
 #content_index a:active {
 	background-color: #937057;
 	box-shadow: 2px 2px 2px 0 #d6a07a;
 }
-
 #content_index img {
 	height: 80px;
 	width: 80px;
