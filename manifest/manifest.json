@@ -18,6 +18,11 @@
 			"src": "../icons/typro_icon_4x.png",
 			"type": "image/png",
 			"sizes": "192x192"
+		},
+		{
+			"src": "../icons/typro_icon_10x.png",
+			"type": "image/png",
+			"sizes": "512x512"
 		}
 	],
 	"orientation": "portrait",
