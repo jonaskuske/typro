@@ -64,6 +64,12 @@ function takepicture() {
 	}
 }
 // Bei Verlassen der Seite Kamera-Zugriff beenden
-$(document).on("pagehide", "#scanpage", function () {
+function camRelease() {
 	camStream.getVideoTracks()[0].stop();
+}
+$(document).on("pagehide", "#scanpage", camRelease);
+$(document).on('visibilitychange', function() {
+    if(document.visibilityState === 'hidden') {
+        camRelease();
+    }
 });
