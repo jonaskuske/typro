@@ -5,22 +5,22 @@
 	"start_url": "https://jonaskuske.github.io/typro-nightly#home/?utm_source=homescreen",
 	"icons": [
 		{
-			"src": "../icons/typro_icon_1x.png",
+			"src": "/icons/typro_icon_1x.png",
 			"type": "image/png",
 			"sizes": "48x48"
 		},
 		{
-			"src": "../icons/typro_icon_2x.png",
+			"src": "/icons/typro_icon_2x.png",
 			"type": "image/png",
 			"sizes": "96x96"
 		},
 		{
-			"src": "../icons/typro_icon_4x.png",
+			"src": "/icons/typro_icon_4x.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "../icons/typro_icon_10x.png",
+			"src": "/icons/typro_icon_10x.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}
