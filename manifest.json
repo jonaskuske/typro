@@ -10,7 +10,7 @@
 			"sizes": "48x48"
 		},
 		{
-			"src": "/icons/typro_icon_2x.png",
+			"src": "../typro-nightly/icons/typro_icon_2x.png",
 			"type": "image/png",
 			"sizes": "96x96"
 		},
