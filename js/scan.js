@@ -6,8 +6,8 @@ var streaming = false; // zeigt ob stream zum ersten mal geöffnet wird oder nic
 var picArray = []; // Array zum speichern gemachter Fotos
 var camStream; //(globaler) Zugriff auf Kamera-Feed
 //Startup Funktion zum bereitstellen des Kamera-Feeds und des Auslösers
-$(document).on("pageshow", "#scanpage", function () {
-	// Variablen mit korrespondierenden HTML-Elemneten verknüpfen
+function startup() {
+	// Variablen mit korrespondierenden HTML-Elementen verknüpfen
 	video = $("video");
 	photo = $("#photo");
 	img_cache = $("#img_cache");
@@ -41,7 +41,8 @@ $(document).on("pageshow", "#scanpage", function () {
 			streaming = true;
 		}
 	});
-});
+}
+$(document).on("pageshow", "#scanpage", startup);
 // Funktion um Video-Frame in Canvas zu zeichnen und dann in png-Bild zu konvertieren
 function takepicture() {
 	var context = img_cache.get(0).getContext('2d');
@@ -63,13 +64,15 @@ function takepicture() {
 		picArray = [];
 	}
 }
-// Bei Verlassen der Seite Kamera-Zugriff beenden
+// Bei Verlassen der Seite Kamera-Zugriff beenden, bei Wechsel zurück Kamera wieder bereitstellen
 function camRelease() {
 	camStream.getVideoTracks()[0].stop();
 }
 $(document).on("pagehide", "#scanpage", camRelease);
-$(document).on('visibilitychange', function() {
-    if(document.visibilityState === 'hidden') {
-        camRelease();
-    }
+$(document).on('visibilitychange', function () {
+	if (document.visibilityState === 'hidden') {
+		camRelease();
+	} else {
+		startup();
+	}
 });
