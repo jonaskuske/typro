@@ -2,7 +2,7 @@
 	"short_name": "typro",
 	"name": "typro - discover the world of fonts",
 	"description": "The app that helps you identify fonts with ease!",
-	"start_url": "https://jonaskuske.github.io/typro-nightly#home",
+	"start_url": "https://jonaskuske.github.io/typro-nightly#home/?utm_source=homescreen",
 	"icons": [
 		{
 			"src": "../icons/typro_icon_1x.png",
