@@ -35,8 +35,10 @@ function startup() {
 	// Canvasgröße an Video angleichen + streaming = true damit keine Wiederholung bei nächstem Abruf
 	video.get(0).addEventListener('canplay', function () {
 		if (!streaming) {
-			img_cache.attr('width', video.get(0).videoWidth);
-			img_cache.attr('height', video.get(0).videoHeight);
+			width = video.get(0).videoWidth;
+			height = video.get(0).videoHeight;
+			img_cache.attr('width', width);
+			img_cache.attr('height', height);
 			streaming = true;
 		}
 	});
@@ -71,7 +73,6 @@ $(document).on("pagehide", "#scanpage", function () {
 	camRelease();
 	camStream = null;
 });
-
 $(document).on('visibilitychange', function () {
 	if (camStream !== null) {
 		if (document.visibilityState === 'hidden') {
