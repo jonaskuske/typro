@@ -24,7 +24,7 @@ function startup() {
 			video.attr('autoplay', '');
 			video.attr('muted', '');
 			video.attr('playsinline', '');
-		video.get(0).play();
+			video.get(0).play();
 			camStream = stream;
 		})
 		// Promise fehlgeschlagen: Fehlermeldung auszuspielen
@@ -35,10 +35,8 @@ function startup() {
 	// Canvasgröße an Video angleichen + streaming = true damit keine Wiederholung bei nächstem Abruf
 	video.get(0).addEventListener('canplay', function () {
 		if (!streaming) {
-			width = video.get(0).videoWidth;
-			height = video.get(0).videoHeight;
-			img_cache.attr('width', width);
-			img_cache.attr('height', height);
+			img_cache.attr('width', video.get(0).videoWidth);
+			img_cache.attr('height', video.get(0).videoHeight);
 			streaming = true;
 		}
 	});
@@ -69,9 +67,9 @@ function takepicture() {
 function camRelease() {
 	camStream.getVideoTracks()[0].stop();
 }
-$(document).on("pagehide", "#scanpage", function(){
+$(document).on("pagehide", "#scanpage", function () {
 	camRelease();
-	camStream=null;
+	camStream = null;
 });
 
 $(document).on('visibilitychange', function () {
