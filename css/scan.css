@@ -30,7 +30,8 @@
   width: 60px;
   height: 60px;
   background-image:url(../img/placeholder_cam.png);
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
 }
 #img_cache {
   display: none;

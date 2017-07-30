@@ -1,0 +1,1 @@
+// only exists to enable Chrome PWA enhancements like add-to-homescreen prompts
