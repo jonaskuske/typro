@@ -4,7 +4,7 @@ var width, height; // vars für konfiguration der canvas und foto-größe
 var video, img_cache, photo; // vars für Zugriff auf HTML ELemente
 var streaming = false; // zeigt ob stream zum ersten mal geöffnet wird oder nicht
 var picArray = []; // Array zum speichern gemachter Fotos
-var camStream; //(globaler) Zugriff auf Kamera-Feed
+var camStream = null; //(globaler) Zugriff auf Kamera-Feed
 //Startup Funktion zum bereitstellen des Kamera-Feeds und des Auslösers
 function startup() {
 	// Variablen mit korrespondierenden HTML-Elementen verknüpfen
@@ -68,11 +68,17 @@ function takepicture() {
 function camRelease() {
 	camStream.getVideoTracks()[0].stop();
 }
-$(document).on("pagehide", "#scanpage", camRelease);
+$(document).on("pagehide", "#scanpage", function(){
+	camRelease();
+	camStream=null;
+});
+
 $(document).on('visibilitychange', function () {
-	if (document.visibilityState === 'hidden') {
-		camRelease();
-	} else {
-		startup();
+	if (camStream !== null) {
+		if (document.visibilityState === 'hidden') {
+			camRelease();
+		} else {
+			startup();
+		}
 	}
 });
