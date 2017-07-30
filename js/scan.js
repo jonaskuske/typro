@@ -24,6 +24,7 @@ function startup() {
 			video.attr('autoplay', '');
 			video.attr('muted', '');
 			video.attr('playsinline', '');
+		video.get(0).play();
 			camStream = stream;
 		})
 		// Promise fehlgeschlagen: Fehlermeldung auszuspielen
