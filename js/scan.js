@@ -47,11 +47,13 @@ function startup() {
 		// falls Promise erfolgreich: Kamera-Stream mit Feed verknüpfen	
 		}).then(function (stream) {
 			camStream = stream;
+			$("#errorText").html("");
 			video.get(0).srcObject = camStream;
 			video.get(0).play();
 		})
 		// Promise fehlgeschlagen: Fehlermeldung ausspielen
 		.catch(function (err) {
+			feedCtx.clearRect(0, 0, feed.attr('width'), feed.attr('height')); 
 			$("#errorText").html("Kein Zugriff auf Kamera m&ouml;glich.<br>"+err);
 		});
 	// Falls vidSizeDefined = false -> Feed wird zum ersten Mal gestartet: (HTML-)Videogröße anpassen
