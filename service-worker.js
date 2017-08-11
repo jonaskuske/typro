@@ -1,9 +1,9 @@
 'use strict';
 var appcache = 'typro';
 var cacheAtStart = [
+	'/typro-nightly/#home?utm_source=homescreen',
 	'/typro-nightly/',
 	'/typro-nightly/#home',
-	'/typro-nightly/#home?utm_source=homescreen',
 	'/typro-nightly/jquery/jquery-1.11.1.min.js',
 	'/typro-nightly/jquery/jquery.mobile-1.4.5.min.js',
 	'/typro-nightly/jquery/jquery.mobile-1.4.5.min.map',
