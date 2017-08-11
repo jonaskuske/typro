@@ -1,25 +1,22 @@
 <div data-role="page" data-theme="a" id="scanpage">
-    <!--Header-->
-    <div data-role="header" id="header">
-        <!--  Menü-Button -->
+    <div data-role="header" data-position="fixed" id="header">
         <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
         <h3>typro</h3>
-        <!--  Einstellungs-Button -->
         <a href="einstellungen.html" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
     </div>
+    <!--Content-->
     <div data-role="content" id="content_scan">
-        <div id="camView">
           <!-- Kamera Feed-->
-            <div id="camContainer">
-                <video></video>
-            </div>
-            <canvas id="img_cache"></canvas>
+                <video muted autoplay playsinline></video>
+                <canvas id="feed"></canvas>
+                <div id="errorContainer"><p id="errorText"></p></div>
             <!-- Bedienelemente-->
             <div id="camFooter">
-                <div></div>
-                <button id="shutter" onClick="takepicture();" >Scan</button>
-                <a href="verlauf.html"> <img id="photo"></a>
+                <a id="uploadA" href="#"><div id="uploadDiv"></div></a>
+                <button id="shutter" onClick="takepicture();" ></button>
+                <a href="verlauf.html"> <div id="photo"></div></a>
             </div>
+            <!-- verstecktes Input-Element für Foto-Upload-->
+            <input data-role="none" id="imgInput" type="file" accept="image/*" onchange="handleFile(this.files)">
         </div>
-    </div>
 </div>
