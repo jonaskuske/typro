@@ -2,7 +2,7 @@
 	"short_name": "typro",
 	"name": "typro - discover the world of fonts",
 	"description": "The app that helps you identify fonts with ease!",
-	"start_url": "/typro-nightly/#home/?utm_source=homescreen",
+	"start_url": "/typro-nightly/#home?utm_source=homescreen",
 	"icons": [
 		{
 			"src": "../typro-nightly/icons/typro_icon_1x.png",
