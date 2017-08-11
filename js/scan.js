@@ -78,10 +78,12 @@ function scaleContent() {
 }
 // Frame in Canvas zu png konvertieren, anzeigen und speichern
 function takepicture() {
-	newImg = feed.get(0).toDataURL('image/png');
-	photo.css("background-image", "url(" + newImg + ")");
-	photo.css("background-size", "cover");
-	saveImg();
+	if (camStream !== null) {
+		newImg = feed.get(0).toDataURL('image/png');
+		photo.css("background-image", "url(" + newImg + ")");
+		photo.css("background-size", "cover");
+		saveImg();
+	}
 }
 //Kamera-Feed in Content-Bereich einpassen
 function adjustFeedScale() {
@@ -128,7 +130,6 @@ function camRelease() {
 //Bild in lStorage speichern:
 // Falls kein Eintrag in lStorage: Bild -> Array -> String -> lStorage, sonst 'altes' Array abrufen -> aktualisieren -> wieder lStorage
 function saveImg(){
-	console.log("3");
 if (localStorage.getItem('picArray') === null) {
 			picArray.push(newImg);
 			localStorage.setItem('picArray', JSON.stringify(picArray));
@@ -149,9 +150,7 @@ function handleFile(files){
 		$("#imgInput").val("");
 		photo.css("background-image", "url(" + newImg + ")");
 		photo.css("background-size", "cover");
-		console.log("1");
 		saveImg();
-		console.log("2");
   	}, false);
 	if (file) {
 		reader.readAsDataURL(file);
