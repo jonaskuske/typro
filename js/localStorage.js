@@ -1,5 +1,5 @@
 "use strict";
-//Automatisches Löschen von lStorage und sw-Cache verhindern, falls möglich
+//Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
   navigator.storage.persist().then(function(granted) {
     if (granted) {
@@ -17,7 +17,7 @@ var starPass = "darkside";
 
 //Abfrage des eingeloggten Users bei Neuladen
 $(function() {
-	logCheckStart();
+	logCheck/*Start*/();
 });
 
 //Speichern der Login-Daten in LocalStorage
@@ -57,28 +57,33 @@ function logCheck() {
 		$("#pUser").css("border-radius", "");
 	}
 }
-// User-abhängiges manipulieren des Panels
+/*// User-abhängiges manipulieren des Panels
 function logCheckStart() {
     if (localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) {
         $("#pUser").text("Hallo, " + boldUser);
-        $("#user").css("background-image", "url('img/admin.png')");
+        $("#user").css("background-image", "url('../img/admin.png')");
     } else if (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) {
         $("#pUser").text("Hallo, " + lightUser);
-        $("#user").css("background-image", "url('img/test.png')");
+        $("#user").css("background-image", "url('../img/test.png')");
     } else if (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass) {
         $("#pUser").text("*heavy breathing*").css("background-color", "black").css("border-radius", "30%");
-        $("#user").css("background-image", "url('img/darth.png')");
+        $("#user").css("background-image", "url('../img/darth.png')");
     } else {
         $("#pUser").text("Einloggen");
-        $("#user").css("background-image", "url('img/placeholder.png')");
+        $("#user").css("background-image", "url('../img/placeholder.png')");
     }
-} 
+} */
 // Alert: Log-in erfolgreich / nicht erfolgreich
 function logFeedback() {
 	//Erfolgreicher Log-In
     if ((localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) || (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) || (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass)) {  
-		alert("Erfolgreich eingeloggt!");		
+		alert("Erfolgreich eingeloggt!");
+		//$("#loginFeedback").text("Erfolgreich eingeloggt!");		
 	} else {
-        alert("Falsche Username-Passwort-Kombination!");
+		alert("Falsche Nutzer-Passwort-Kombination!");
+		//$("#loginFeedback").text("Falsche Nutzer-Passwort-Kombination!");
 	}
 }
+/*$(document).on("pagehide", "#log-in", function(){
+	$("#loginFeedback").text("");
+})*/
