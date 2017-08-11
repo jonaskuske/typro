@@ -50,7 +50,7 @@ var cacheAtStart = [
 	'/typro-nightly/manifest.json'
 ];
 var cacheLater = [
-	'/typro-nightly//xml/fonts.xml',
+	'/typro-nightly/xml/fonts.xml',
 	'/typro-nightly/img/camBG.png',
 	'/typro-nightly/img/upload.png',
 	'/typro-nightly/img/gallery.png',
