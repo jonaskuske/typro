@@ -1,5 +1,12 @@
 "use strict";
-
+//Automatisches Löschen von lStorage und sw-Cache verhindern, falls möglich
+if (navigator.storage && navigator.storage.persist) {
+  navigator.storage.persist().then(function(granted) {
+    if (granted) {
+      console.log("Speicher wird nicht gelöscht, außer durch Eingreifen des Users.");
+	}
+  });
+}
 //Anlegen von Benutzern
 var boldUser = "admin";
 var lightUser = "test";
