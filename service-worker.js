@@ -32,6 +32,7 @@ var cacheAtStart = [
 	'/typro-nightly/css/panel.css',
 	'/typro-nightly/css/scan.css',
 	'/typro-nightly/css/splash.css',
+	'/typro-nightly/css/verlauf.css',
 	'/typro-nightly/js/einstellungen.js',
 	'/typro-nightly/js/katalog.js',
 	'/typro-nightly/js/localStorage.js',
@@ -49,8 +50,10 @@ var cacheAtStart = [
 	'/typro-nightly/manifest.json'
 ];
 var cacheLater = [
-	'/typro-nightly//xml/fonts.xml',
-	'/typro-nightly/img/placeholder_cam.png',
+	'/typro-nightly/xml/fonts.xml',
+	'/typro-nightly/img/camBG.png',
+	'/typro-nightly/img/upload.png',
+	'/typro-nightly/img/gallery.png',
 	'/typro-nightly/img/HS_logo.png',
 	'/typro-nightly/img/Avenir1.png',
 	'/typro-nightly/img/Avenir2.png',

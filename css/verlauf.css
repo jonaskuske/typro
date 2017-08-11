@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+#content_verlauf {
+    margin: 0;
+    padding: 0;
+}
+#content_verlauf h2{
+    text-align: center;
+}
+#previewContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#previewCollection{
+    width: 100%;
+    height: 100%;
+    max-width: 950px;
+}
+.verlaufBox {
+    display: inline-block;
+    position: relative;
+    width: calc(50% - 10px);
+    margin: 3px 5px 3px 5px;
+}
+.verlaufBox:before {
+	content: "";
+	display: block;
+	padding-top: 100%; 
+}
+.verlaufPic {
+    background-position: center;
+    background-size: cover;
+    position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
