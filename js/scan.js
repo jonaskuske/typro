@@ -1,12 +1,13 @@
 "use strict";
-var video, feed, photo; // für Zugriff auf HTML ELemente
+var video, feed, photo, imgCache; // für Zugriff auf HTML ELemente
 var vidSizeDefined = false; // zeigt ob stream zum ersten mal geöffnet wird oder nicht
 var picArray = []; // Array zum speichern gemachter Fotos
 var camStream = null,
     streamTrack; //(globaler) Zugriff auf Kamera-Feed
 var vidW, vidH, feedW, feedH, renderW, renderH, offsetX = 0,
     offsetY = 0; // zur Berechnung der Feed-Größe
-var feedCtx; //Canvas context für Kamera-Feed
+var feedCtx; //context für gecroppten Canvas des Kamera-Feeds
+var imgCtx; //context für Full-Frame-Canvas der Fotofunktion
 var newImg; //Zwischenspeicher für neues Bild
 
 //Erst Seitengröße anpassen, nach geladener Seite Hauptfunktion starten
@@ -36,6 +37,8 @@ function startup() {
     photo = $("#photo");
     feed = $("#feed");
     feedCtx = feed.get(0).getContext('2d');
+    imgCache = $('#imgCache');
+    imgCtx = imgCache.get(0).getContext('2d');
     //Foto-Import bereitstellen
     $("#uploadA").click(function(e) {
         e.preventDefault;
@@ -66,6 +69,8 @@ function startup() {
             vidH = video.get(0).videoHeight;
             video.attr('width', vidW);
             video.attr('height', vidH);
+            imgCache.attr('width', vidW);
+            imgCache.attr('height', vidH);
             vidSizeDefined = true;
         }
         //Video bereit: abspielen und responsive machen
@@ -83,8 +88,9 @@ function scaleContent() {
 }
 // Bild machen, entweder mittels Foto-API oder durch speichern des aktuellen Canvas
 function legacyCam() {
-    //Frame in Canvas als Bild speichern, in der Vorschau zeigen und in den Offline-Speicher laden
-    newImg = feed.get(0).toDataURL('image/png');
+    //Frame in Canvas zeichnen, als Bild speichern, in den Offline-Speicher laden und in der Vorschau zeigen
+    imgCtx.drawImage(video.get(0), 0, 0, vidW, vidH);
+    newImg = imgCache.get(0).toDataURL('image/png');
     saveImg();
     photo.css("background-image", "url(" + newImg + ")");
     photo.css("background-size", "cover");

@@ -6,17 +6,24 @@
     </div>
     <!--Content-->
     <div data-role="content" id="content_scan">
-          <!-- Kamera Feed-->
-                <video muted autoplay playsinline></video>
-                <canvas id="feed"></canvas>
-                <div id="errorContainer"><p id="errorText"></p></div>
-            <!-- Bedienelemente-->
-            <div id="camFooter">
-                <a id="uploadA" href="#"><div id="uploadDiv"></div></a>
-                <button id="shutter" onClick="takepicture();" ></button>
-                <a href="verlauf.html"> <div id="photo"></div></a>
-            </div>
-            <!-- verstecktes Input-Element für Foto-Upload-->
-            <input data-role="none" id="imgInput" type="file" accept="image/*" onchange="handleFile(this.files)">
+        <!-- Kamera Feed-->
+        <canvas id="feed"></canvas>
+        <div id="errorContainer">
+            <p id="errorText"></p>
         </div>
+        <!-- Bedienelemente-->
+        <div id="camFooter">
+            <a id="uploadA" href="#">
+                <div id="uploadDiv"></div>
+            </a>
+            <button id="shutter" onclick="takepicture()"></button>
+            <a href="verlauf.html">
+                <div id="photo"></div>
+            </a>
+        </div>
+        <!-- verstecktes Elemente: Input-Button für Foto-Upload, Video für Kamera-Feed, Canvas für Fotofunktion-->
+        <input data-role="none" id="imgInput" type="file" accept="image/*" onchange="handleFile(this.files)" class="hidden">
+        <video muted autoplay playsinline class="hidden"></video>
+        <canvas id="imgCache" class="hidden"></canvas>
+    </div>
 </div>
