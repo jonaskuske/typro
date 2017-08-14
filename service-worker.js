@@ -2,7 +2,7 @@
 'use strict';
 var appcache = 'typro'; //Cache-Name
 // Liste mit Objekten, die vor aktiv werden des sw zwingend gechached sein müssen
-var cacheAtStart = [
+var cacheRequired = [
     '/typro-nightly/#home?utm_source=homescreen',
     '/typro-nightly/',
     '/typro-nightly/#home',
@@ -52,7 +52,7 @@ var cacheAtStart = [
     '/typro-nightly/manifest.json'
 ];
 // Liste mit Objekten, die später gecached werden, falls möglich
-var cacheLater = [
+var cacheOptional = [
     '/typro-nightly/xml/fonts.xml',
     '/typro-nightly/img/camBG.png',
     '/typro-nightly/img/upload.png',
