@@ -19,8 +19,22 @@ if (navigator.storage && navigator.storage.persist) {
 }
 // LOCALSTORAGE
 // Abfrage des eingeloggten Users bei Laden der Seite
-$(document).on('pagebeforeshow', '#home', function() {
-    logCheck();
+$(document).on('pagechange', function() {
+    if($.mobile.activePage[0].id === "home"||$.mobile.activePage[0].id === "splash"){
+        accImages = {
+            'placeholder': '../typro-nightly/img/placeholder.png',
+            'admin': '../typro-nightly/img/admin.png',
+            'test': '../typro-nightly/img/test.png',
+            'darth': '../typro-nightly/img/darth.png'
+        }; 
+    } else {   
+        accImages = {
+            'placeholder': '../img/placeholder.png',
+            'admin': '../img/admin.png',
+            'test': '../img/test.png',
+            'darth': '../img/darth.png'
+        };
+    }
 });
 // Speichern der Login-Daten in LocalStorage
 function store() {
@@ -38,21 +52,6 @@ function store() {
 }
 // User-abhängiges manipulieren des Panels
 function logCheck() {
-    if($.mobile.activePage[0].id === "home"||$.mobile.activePage[0].id === "splash"){
-        accImages = {
-            'placeholder': '../typro-nightly/img/placeholder.png',
-            'admin': '../typro-nightly/img/admin.png',
-            'test': '../typro-nightly/img/test.png',
-            'darth': '../typro-nightly/img/darth.png'
-        }; 
-    } else {   
-        accImages = {
-            'placeholder': '../img/placeholder.png',
-            'admin': '../img/admin.png',
-            'test': '../img/test.png',
-            'darth': '../img/darth.png'
-        };
-    }
     if (localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) {
         currentUser = boldUser;
         $("#pUser").text("Hallo, " + currentUser);
