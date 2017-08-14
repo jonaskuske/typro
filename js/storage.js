@@ -34,6 +34,7 @@ $(document).on('pagechange', function() {
             'test': '../img/test.png',
             'darth': '../img/darth.png'
         };
+        logCheck();
     }
 });
 // Speichern der Login-Daten in LocalStorage
