@@ -4,12 +4,6 @@
 $(document).on('click touchstart', '#l_ja', function() {
     localStorage.removeItem('username');
     localStorage.removeItem('passwort');
-    accImages = {
-        'placeholder': '../img/placeholder.png',
-        'admin': '../img/admin.png',
-        'test': '../img/test.png',
-        'darth': '../img/darth.png'
-    };
     logCheck();
 });
 // Kompletten Speicher löschen
@@ -18,12 +12,6 @@ $(document).on('click touchstart', '#b_ja', function() {
     transaction.objectStore('photos').clear();
     transaction.oncomplete = function() {
         localStorage.clear();
-        accImages = {
-        'placeholder': '../img/placeholder.png',
-        'admin': '../img/admin.png',
-        'test': '../img/test.png',
-        'darth': '../img/darth.png'
-    };
         logCheck();
     }
 });
