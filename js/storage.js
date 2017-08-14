@@ -22,7 +22,8 @@ if (navigator.storage && navigator.storage.persist) {
 $(function() {
     accImages = {
         'placeholder': '../typro-nightly/img/placeholder.png',
-        'user': '../typro-nightly/img/'+currentUser+'.png',
+        'admin': '../typro-nightly/img/admin.png',
+        'test': '../typro-nightly/img/test.png',
         'darth': '../typro-nightly/img/darth.png'
     }
     logCheck();
@@ -41,7 +42,8 @@ function store() {
     // Update Account-Switcher
     accImages = {
         'placeholder': '../img/placeholder.png',
-        'user': '../img/'+currentUser+'.png',
+        'admin': '../img/admin.png',
+        'test': '../img/test.png',
         'darth': '../img/darth.png'
     }
     logCheck();
@@ -50,10 +52,12 @@ function store() {
 function logCheck() {
     if (localStorage.getItem("username") === boldUser && localStorage.getItem("passwort") === boldPass) {
         currentUser = boldUser;
-        userWelcome();
+        $("#pUser").text("Hallo, " + currentUser);
+        $("#user").css("background-image", "url("+ accImages.admin + ")");
     } else if (localStorage.getItem("username") === lightUser && localStorage.getItem("passwort") === lightPass) {
         currentUser = lightUser;
-        userWelcome();
+        $("#pUser").text("Hallo, " + currentUser);
+        $("#user").css("background-image", "url(" + accImages.test + ")");
     } else if (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass) {
         currentUser = starUser;
         $("#pUser").text("*heavy breathing*").css("background-color", "black").css("border-radius", "30%");
@@ -67,11 +71,6 @@ function logCheck() {
         $("#pUser").css("background-color", "");
         $("#pUser").css("border-radius", "");
     }
-}
-
-function userWelcome() {
-    $("#pUser").text("Hallo, " + currentUser);
-    $("#user").css("background-image", "url("+ accImages.user + ")");
 }
 // Alert: Log-in erfolgreich / nicht erfolgreich
 function logFeedback() {
