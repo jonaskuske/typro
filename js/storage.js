@@ -25,7 +25,7 @@ $(function() {
         'admin': '../typro-nightly/img/admin.png',
         'test': '../typro-nightly/img/test.png',
         'darth': '../typro-nightly/img/darth.png'
-    }
+    };
     logCheck();
 });
 // Speichern der Login-Daten in LocalStorage
@@ -45,7 +45,7 @@ function store() {
         'admin': '../img/admin.png',
         'test': '../img/test.png',
         'darth': '../img/darth.png'
-    }
+    };
     logCheck();
 }
 // User-abhängiges manipulieren des Panels
