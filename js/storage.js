@@ -26,7 +26,8 @@ $(document).on('pagechange', function() {
             'admin': '../typro-nightly/img/admin.png',
             'test': '../typro-nightly/img/test.png',
             'darth': '../typro-nightly/img/darth.png'
-        }; 
+        };     
+        logCheck();
     } else {   
         accImages = {
             'placeholder': '../img/placeholder.png',
@@ -34,7 +35,6 @@ $(document).on('pagechange', function() {
             'test': '../img/test.png',
             'darth': '../img/darth.png'
         };
-        logCheck();
     }
 });
 // Speichern der Login-Daten in LocalStorage
