@@ -1,7 +1,7 @@
 //Service Worker (sw) für Offline-Funktionalität (Chrome, Firefox, Opera + Edge mit flag)
 'use strict';
 var appcache = 'typro'; //Cache-Name
-//Liste mit Objekten, die vor aktiv werden des sw gechached sein müssen
+// Liste mit Objekten, die vor aktiv werden des sw zwingend gechached sein müssen
 var cacheAtStart = [
     '/typro-nightly/#home?utm_source=homescreen',
     '/typro-nightly/',
@@ -37,7 +37,7 @@ var cacheAtStart = [
     '/typro-nightly/css/verlauf.css',
     '/typro-nightly/js/einstellungen.js',
     '/typro-nightly/js/katalog.js',
-    '/typro-nightly/js/localStorage.js',
+    '/typro-nightly/js/storage.js',
     '/typro-nightly/js/panel.js',
     '/typro-nightly/js/scan.js',
     '/typro-nightly/js/slider.js',
@@ -51,7 +51,7 @@ var cacheAtStart = [
     '/typro-nightly/img/scan.png',
     '/typro-nightly/manifest.json'
 ];
-// Liste mit Objekten, die lazy gecached werden
+// Liste mit Objekten, die später gecached werden, falls möglich
 var cacheLater = [
     '/typro-nightly/xml/fonts.xml',
     '/typro-nightly/img/camBG.png',

@@ -1,7 +1,6 @@
 "use strict";
 var video, feed, photo, imgCache; // für Zugriff auf HTML ELemente
 var vidSizeDefined = false; // zeigt ob stream zum ersten mal geöffnet wird oder nicht
-var picArray = []; // Array zum speichern gemachter Fotos
 var camStream = null,
     streamTrack; //(globaler) Zugriff auf Kamera-Feed
 var vidW, vidH, feedW, feedH, renderW, renderH, offsetX = 0,
@@ -107,10 +106,16 @@ function takepicture() {
             imageCapture.takePhoto()
                 //Promise erfolgreich: blob zu Bild, speichern, vorschauen 
                 .then(function(img) {
-                    newImg = URL.createObjectURL(img);
-                    saveImg();
-                    photo.css("background-image", "url(" + newImg + ")");
-                    photo.css("background-size", "cover");
+                    var reader = new FileReader(img);
+                    reader.addEventListener('load', function() {
+                        newImg = reader.result;
+                        saveImg();
+                        photo.css("background-image", "url(" + newImg + ")");
+                        photo.css("background-size", "cover");
+                    }, false);
+                    if (img) {
+                        reader.readAsDataURL(img);
+                    }
                 })
                 //Promise fehlgeschlagen: Warnen, auf andere Methode zurückfallen, Kamera-Verbindung neu herstellen
                 .catch(function(err) {
@@ -159,32 +164,40 @@ function camRelease() {
         camStream = null;
     }
 }
-//Bild in lStorage speichern:
-// Falls kein Eintrag in lStorage: Bild -> Array -> String -> lStorage, sonst 'altes' Array abrufen -> aktualisieren -> wieder lStorage
+//Bild in IndexedDB speichern:
 function saveImg() {
-    if (localStorage.getItem('picArray') === null) {
-        picArray.push(newImg);
-        localStorage.setItem('picArray', JSON.stringify(picArray));
-        picArray = [];
-    } else {
-        picArray = JSON.parse(localStorage.getItem('picArray'));
-        picArray.push(newImg);
-        localStorage.setItem('picArray', JSON.stringify(picArray));
-        picArray = [];
-    }
+    var store = {
+        'user': currentUser,
+        'photo': newImg,
+        'font': 'placeholder', // preparation to add scan functionality later 
+        'created': new Date().toUTCString()
+    };
+    var transaction = typroDB.transaction('photos', 'readwrite');
+    transaction.objectStore('photos')
+        .add(store)
+        .onerror = function(event) {
+            console.log('Bild konnte nicht gespeichert werden.' + event.target.errorCode)
+        }
+        .onsuccess = function(event) {
+            console.log('Schlüssel:' + event.target.result);
+        };
+    transaction.oncomplete = function() {
+        // Bild in Verlauf anhängen
+        console.log("Bild in IDB.");
+    };
 }
 //Foto-Import
-function handleFile(files) {
-    var file = files[0];
-    var reader = new FileReader();
-    reader.addEventListener("load", function() {
-        newImg = reader.result;
-        $("#imgInput").val("");
-        photo.css("background-image", "url(" + newImg + ")");
-        photo.css("background-size", "cover");
-        saveImg();
-    }, false);
-    if (file) {
+function imgImport(files) {
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+        reader.addEventListener('load', function(e) {
+            newImg = e.target.result;
+            photo.css("background-image", "url(" + newImg + ")");
+            photo.css("background-size", "cover");
+            saveImg();
+        });
         reader.readAsDataURL(file);
     }
+    $("#imgInput").val("");
 }
