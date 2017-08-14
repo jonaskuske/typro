@@ -19,7 +19,7 @@ if (navigator.storage && navigator.storage.persist) {
 }
 // LOCALSTORAGE
 // Abfrage des eingeloggten Users bei Laden der Seite
-$(function() {
+$(document).on('pagebeforeshow', '#home', function() {
     logCheck();
 });
 // Speichern der Login-Daten in LocalStorage
