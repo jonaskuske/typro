@@ -8,6 +8,7 @@ var starUser = "darth vader";
 var starPass = "darkside";
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
+var accImages;
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().then(function(granted) {
@@ -19,6 +20,11 @@ if (navigator.storage && navigator.storage.persist) {
 // LOCALSTORAGE
 // Abfrage des eingeloggten Users bei Laden der Seite
 $(function() {
+    accImages = {
+        'placeholder': '../typro-nightly/img/placeholder.png',
+        'user': '../typro-nightly/img/'+currentUser+'.png',
+        'darth': '../typro-nightly/img/darth.png'
+    }
     logCheck();
 });
 // Speichern der Login-Daten in LocalStorage
@@ -33,6 +39,11 @@ function store() {
         alert("Local Storage nicht verfügbar!");
     }
     // Update Account-Switcher
+    accImages = {
+        'placeholder': '../img/placeholder.png',
+        'user': '../img/'+currentUser+'.png',
+        'darth': '../img/darth.png'
+    }
     logCheck();
 }
 // User-abhängiges manipulieren des Panels
@@ -46,11 +57,11 @@ function logCheck() {
     } else if (localStorage.getItem("username") === starUser && localStorage.getItem("passwort") === starPass) {
         currentUser = starUser;
         $("#pUser").text("*heavy breathing*").css("background-color", "black").css("border-radius", "30%");
-        $("#user").css("background-image", "url('../img/darth.png')");
+        $("#user").css("background-image", "url(" + accImages.darth + ")");
     } else {
         currentUser = 'noLogin';
         $("#pUser").text("Einloggen");
-        $("#user").css("background-image", "url('../img/placeholder.png')");
+        $("#user").css("background-image", "url("+ accImages.placeholder + ")");
     }
     if (localStorage.getItem("username") !== starUser) {
         $("#pUser").css("background-color", "");
@@ -60,7 +71,7 @@ function logCheck() {
 
 function userWelcome() {
     $("#pUser").text("Hallo, " + currentUser);
-    $("#user").css("background-image", "url('../img/" + currentUser + ".png')");
+    $("#user").css("background-image", "url("+ accImages.user + ")");
 }
 // Alert: Log-in erfolgreich / nicht erfolgreich
 function logFeedback() {
