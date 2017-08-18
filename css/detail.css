@@ -1,0 +1,103 @@
+#detailcontent {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#detailHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.detailNavBtn {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+}
+
+.detailBtn {
+    height: 100%;
+    width: 180px;
+    background-color: hsl(27, 48%, 14%);
+    display: inline-block;
+}
+
+#detailBtnKatalog {
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
+    margin-top: 25%;
+    background-size: cover;
+    background-position: center;
+    background-image: url("themes/images/icons-png/katalog.png");
+}
+
+#detailBtnBack {
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
+    margin-top: 25%;
+    background-size: cover;
+    background-position: center;
+    background-image: url("themes/images/icons-png/carat-l-black.png");
+}
+
+.detailBtn:hover {
+    background-color: #4c4540;
+}
+
+.detailBtn p {
+    color: lightgrey;
+    font-size: 0.9em;
+    width: 100%;
+    text-align: center;
+}
+
+#detailImgContainer {
+    display: inline-block;
+    width: 80%;
+    max-width: 550px;
+    text-align: center;
+}
+
+#detailImgBox {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background-color: #332112;
+}
+
+#detailImgBox:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#detailImg {
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#detailDate {
+    text-align: left;
+    font-size: 0.7em;
+    color: lightslategray;
+}
+
+#detailInteraction {
+    width: 100%;
+    height: 70px;
+    text-align: center;
+}
+
+#detailFont {
+    font-size: 1.8em;
+    margin-bottom: 0.4em;
+}
