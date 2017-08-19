@@ -98,9 +98,9 @@
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js')
             .then(function(reg) {
-                console.log("Service worker registered");
+                console.log("Service Worker angemeldet.");
             }).catch(function(err) {
-                console.log("Service worker not registered: ", err)
+                console.log("Service Worker nicht angemeldet: ", err)
             });
     }
 </script>

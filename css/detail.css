@@ -17,11 +17,14 @@
     text-align: center;
 }
 
-.detailBtn {
-    height: 100%;
-    width: 180px;
-    background-color: hsl(27, 48%, 14%);
-    display: inline-block;
+#detailBtnBack {
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
+    margin-top: 25%;
+    background-size: cover;
+    background-position: center;
+    background-image: url("themes/images/icons-png/carat-l-black.png");
 }
 
 #detailBtnKatalog {
@@ -34,14 +37,16 @@
     background-image: url("themes/images/icons-png/katalog.png");
 }
 
-#detailBtnBack {
-    width: 40%;
-    height: 40%;
-    margin-left: 25%;
-    margin-top: 25%;
-    background-size: cover;
-    background-position: center;
-    background-image: url("themes/images/icons-png/carat-l-black.png");
+#detailImgInteraction {
+    width: 100%;
+}
+
+.detailBtn {
+    background-color: hsl(27, 48%, 14%);
+    display: inline-block;
+    padding: 8px 15px;
+    width: 90px;
+    margin: 5px 3px;
 }
 
 .detailBtn:hover {
@@ -50,7 +55,8 @@
 
 .detailBtn p {
     color: lightgrey;
-    font-size: 0.9em;
+    font-size: 14px;
+    margin: 0;
     width: 100%;
     text-align: center;
 }
@@ -66,7 +72,6 @@
     display: inline-block;
     position: relative;
     width: 100%;
-    background-color: #332112;
 }
 
 #detailImgBox:before {
@@ -91,13 +96,8 @@
     color: lightslategray;
 }
 
-#detailInteraction {
-    width: 100%;
-    height: 70px;
-    text-align: center;
-}
-
 #detailFont {
     font-size: 1.8em;
     margin-bottom: 0.4em;
+    margin: 0 0 10px;
 }

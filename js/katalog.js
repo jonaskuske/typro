@@ -2,16 +2,16 @@
 "use strict";
 // Funktion für jedes Listitem auf Katalogseite einzeln / Immer gleiche Funktionsweise
 //Beim Laden v. Katalog: Funktion starten
-$(document).on("pageshow", "#katalog", function () {
+$(document).on("pageshow", "#katalog", function() {
 
-//XML Dokument laden
+    //XML Dokument laden
     $.ajax({
         type: "GET",
         url: "../xml/fonts.xml",
         dataType: "xml",
-        success: function (xml) {
+        success: function(xml) {
 
-            $(document).ready(function () {
+            $(document).ready(function() {
 
                 var arrN = [];
                 var arrH = [];
@@ -19,28 +19,28 @@ $(document).on("pageshow", "#katalog", function () {
                 var arrD = [];
                 var arrJ = [];
 
-                $(xml).find("name").each(function (e, f) {
-                    $(f).find("item").each(function (g, h) {
+                $(xml).find("name").each(function(e, f) {
+                    $(f).find("item").each(function(g, h) {
                         arrN.push($(h).text());
                     });
                 });
-                $(xml).find("headerNo").each(function (e, f) {
-                    $(f).find("item").each(function (g, h) {
+                $(xml).find("headerNo").each(function(e, f) {
+                    $(f).find("item").each(function(g, h) {
                         arrH.push($(h).text());
                     });
                 });
-                $(xml).find("textNo").each(function (e, f) {
-                    $(f).find("item").each(function (g, h) {
+                $(xml).find("textNo").each(function(e, f) {
+                    $(f).find("item").each(function(g, h) {
                         arrT.push($(h).text());
                     });
                 });
-                $(xml).find("designer").each(function (e, f) {
-                    $(f).find("item").each(function (g, h) {
+                $(xml).find("designer").each(function(e, f) {
+                    $(f).find("item").each(function(g, h) {
                         arrD.push($(h).text());
                     });
                 });
-                $(xml).find("jahr").each(function (e, f) {
-                    $(f).find("item").each(function (g, h) {
+                $(xml).find("jahr").each(function(e, f) {
+                    $(f).find("item").each(function(g, h) {
                         arrJ.push($(h).text());
                     });
                 });
@@ -52,4 +52,23 @@ $(document).on("pageshow", "#katalog", function () {
             });
         }
     });
+    checkRef();
 });
+// Prüfen, ob Verlinkung von Scan-Detailseite, falls ja entsprechende Schrift anzeigen
+function checkRef() {
+    if (detailRef) {
+        var selector = "#" + getFirstWord(currentDetail.font);
+        $(selector)[0].scrollIntoView();
+        $(selector).click();
+        detailRef = false;
+    }
+}
+// siehe Funktionsname
+function getFirstWord(str) {
+    var firstSpace = str.indexOf(' ');
+    if (firstSpace === -1) {
+        return str;
+    } else {
+        return str.substr(0, firstSpace);
+    }
+}
