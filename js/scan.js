@@ -169,21 +169,13 @@ function saveImg() {
     var store = {
         'user': currentUser,
         'photo': newImg,
-        'font': 'Garamond Pro', // preparation to add scan functionality later 
+        'font': randomFont(),
         'created': new Date()
     };
     var transaction = typroDB.transaction('photos', 'readwrite');
-    transaction.objectStore('photos')
-        .add(store)
-        .onerror = function(event) {
-            console.log('Bild konnte nicht gespeichert werden.' + event.target.errorCode)
-        }
-        .onsuccess = function(event) {
-            console.log('Schlüssel:' + event.target.result);
-        };
+    transaction.objectStore('photos').add(store);
     transaction.oncomplete = function() {
-        // Bild in Verlauf anhängen
-        console.log("Bild in IDB.");
+        console.log("Gespeichert.");
     };
 }
 //Foto-Import
@@ -200,4 +192,20 @@ function imgImport(files) {
         reader.readAsDataURL(file);
     }
     $("#imgInput").val("");
+}
+
+function randomFont() {
+    var fonts = [
+        'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
+        'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
+        'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
+    ]
+    var randomInt = getRandomInt();
+    return fonts[randomInt];
+}
+
+function getRandomInt() {
+    var min = Math.ceil(0);
+    var max = Math.floor(19);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
