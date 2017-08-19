@@ -128,16 +128,21 @@ self.addEventListener('install', function(event) {
         })
     );
 });
-// Bei Netzwerkanfrage der Seite (fetch): Anfrage beantworten, dann Cache aktualisieren -> erst nach Page-Reload neue Inhalte
+// Bei Netzwerkanfrage der Seite (fetch): Anfrage beantworten
 self.addEventListener('fetch', function(event) {
     event.respondWith(respond(event));
-    event.waitUntil(cacheUpdate(event));
 });
-// Cache öffnen, falls passendes Objekt im Cache vorhanden damit die Anfrage beantworten, anderenfalls auf Netzwerk zurückgreifen
+// Cache öffnen, falls passendes Objekt im Cache vorhanden damit die Anfrage beantworten und Cache aktualisieren,
+// anderenfalls auf Netzwerk zurückgreifen
 function respond(event) {
     return caches.open(appcache).then(function(cache) {
         return cache.match(event.request).then(function(response) {
-            return response || fetch(event.request);
+            if (response) {
+                event.waitUntil(cacheUpdate(event));
+                return response;
+            } else {
+                return fetch(event.request);
+            }
         });
     });
 }
