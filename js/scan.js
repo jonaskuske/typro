@@ -169,8 +169,8 @@ function saveImg() {
     var store = {
         'user': currentUser,
         'photo': newImg,
-        'font': 'placeholder', // preparation to add scan functionality later 
-        'created': new Date().toUTCString()
+        'font': 'Garamond Pro', // preparation to add scan functionality later 
+        'created': new Date()
     };
     var transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos')

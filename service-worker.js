@@ -3,13 +3,14 @@
 var appcache = 'typro'; //Cache-Name
 // Liste mit Objekten, die vor aktiv werden des sw zwingend gechached sein müssen
 var cacheRequired = [
-    '/typro-nightly/#home?utm_source=homescreen',
     '/typro-nightly/',
     '/typro-nightly/#home',
+    '/typro-nightly/#home?utm_source=homescreen',
     '/typro-nightly/jquery/jquery-1.11.1.min.js',
     '/typro-nightly/jquery/jquery.mobile-1.4.5.min.js',
     '/typro-nightly/jquery/jquery.mobile-1.4.5.min.map',
     '/typro-nightly/jquery/jquery.mobile.structure-1.4.5.min.css',
+    '/typro-nightly/html/detail.html',
     '/typro-nightly/html/einstellungen.html',
     '/typro-nightly/html/katalog.html',
     '/typro-nightly/html/kontakt.html',
@@ -35,6 +36,7 @@ var cacheRequired = [
     '/typro-nightly/css/scan.css',
     '/typro-nightly/css/splash.css',
     '/typro-nightly/css/verlauf.css',
+    '/typro-nightly/css/detail.css',
     '/typro-nightly/js/einstellungen.js',
     '/typro-nightly/js/katalog.js',
     '/typro-nightly/js/storage.js',
