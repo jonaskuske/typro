@@ -199,7 +199,7 @@ function randomFont() {
         'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
         'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
         'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
-    ]
+    ];
     var randomInt = getRandomInt();
     return fonts[randomInt];
 }

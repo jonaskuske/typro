@@ -11,7 +11,7 @@ $(document).on("pagebeforeshow", "#verlauf", function() {
         $("#scanUser").text(" von " + currentUser);
     } else {
         $("#scanUser").text("");
-    };
+    }
     // Zugriff auf IndexedDB: Abruf der Bilder des aktuellen Users (mit Cursor) und speichern von Bild und Key in Array
     var transaction = typroDB.transaction('photos');
     var index = transaction.objectStore('photos').index('user');
@@ -24,7 +24,7 @@ $(document).on("pagebeforeshow", "#verlauf", function() {
             });
             cursor.continue();
         }
-    }
+    };
     transaction.oncomplete = function() {
         for (var i = 0; i < picArray.length; i++) {
             // Einträge im Array darstellen (samt Link und onclick-Funktion zur Referenz für die Detailseite)
@@ -65,8 +65,8 @@ function detailDelete() {
 // Speichern des Bildes: Download-Link konfigurieren und triggern
 function detailDownload() {
     $('#detailDownload').attr('href', currentDetail.photo);
-    $('#detailDownload').attr('download', 'typro-image.png');
-    $('#detailDownload')[0].click();
+    $(this).attr('download', 'typro-image.png');
+    $(this)[0].click();
 }
 // Falls User auf Link zum Katalog klickt, vor pagechange die Verknüpfung aktivieren (vgl. checkRef in katalog.js)
 function setRef() {

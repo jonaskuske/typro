@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta lang="DE">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#332112">
     <meta name="msapplication-TileColor" content="#5f5eaa">
@@ -18,7 +19,7 @@
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBkpYG7CNKFyLhQ2-ABY32Vab_qEX3UZdY"></script>
-    <!-- Einbindunf Manifest & Favicon -->
+    <!-- Einbindung Manifest & Favicon -->
     <link rel="manifest" href="/typro-nightly/manifest.json">
     <link rel="shortcut icon" type="image/x-icon" href="/typro-nightly/icons/favicon.ico">
     <link rel="apple-touch-icon" href="/icons/typro_icon_2x.png">
@@ -84,7 +85,7 @@
             </li>
         </ul>
     </div>
-    <!-- Einbindung JavaScripte -->
+    <!-- Einbindung JavaScripts -->
     <script src="js/splash.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/panel.js"></script>
@@ -94,6 +95,7 @@
     <script src="js/scan.js"></script>
     <script src="js/verlauf.js"></script>
 </body>
+<!-- Service Worker -->
 <script>
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js')

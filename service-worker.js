@@ -138,19 +138,10 @@ function respond(event) {
     return caches.open(appcache).then(function(cache) {
         return cache.match(event.request).then(function(response) {
             if (response) {
-                event.waitUntil(cacheUpdate(event));
                 return response;
             } else {
                 return fetch(event.request);
             }
-        });
-    });
-}
-// Cache öffnen, Anfrage ans Netzwerk weiterreichen und Netzwerkantwort in den Cache legen -> Cache aktualisiert
-function cacheUpdate(event) {
-    return caches.open(appcache).then(function(cache) {
-        return fetch(event.request).then(function(response) {
-            return cache.put(event.request, response);
         });
     });
 }

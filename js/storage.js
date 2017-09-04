@@ -90,16 +90,15 @@ $(function() {
     // Check, ob IndexedDB unterstützt/aktiviert
     if (!('indexedDB' in window)) {
         alert('IndexedDB nicht verfügbar!');
-        return;
     } else {
         // Datenbank aufrufen/öffnen, generische Fehlermeldung einstellen
         var openDB = window.indexedDB.open("typroDB", 1);
         openDB.onerror = function(event) {
             console.log('IDB-Fehler.' + event.target.errorCode);
-        }
+        };
         openDB.onsuccess = function(event) {
                 typroDB = event.target.result;
-            }
+            };
             // Falls noch nicht vorhanden, Object Store erstellen
         openDB.onupgradeneeded = function(event) {
             var openDBUpgrade = event.target.result;
