@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* Panel CSS
+Schrift Panel
+ */
+#menu ul li a {
+    font-family: "Lato";
+    font-weight: 400;
+}
+/* Styling Account-Switcher im Panel */
+#user {
+    display: flex;
+    background-color: #fff;
+    background-image: url("../img/placeholder.png");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    justify-content: center;
+    align-items: flex-end;
+    margin:0;
+    padding: 0;
+}
+
+#userDiv {
+    display: block;
+    font-weight: 500;
+    font-size: 30px;
+    color: #fff;
+}
+#pUser {
+	color: white;
+}
+#user:after{
+    display: none;
+}
+/* Styling Logo im Panel */
+#logoLi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+}
+
+#logoDiv img {
+    height: 100px;
+}

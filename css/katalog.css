@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* Katalog CSS */
+/* Einbindung Katalog-Schrift */
+#katalog div ul li a {
+    font-family: "Lato";
+}
+/* Styling Pop-Ups im Katalog */
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#a a, #b a, #c a, #d a, #e a, #f a, #g a, #h a, #i a, #j a, #k a, #l a, #m a, #n a, #o a, #p a, #q a, #r a, #s a, #t a {
+    background-color: #332112;
+    color: #FFFFFF;
+}
+
+#ba img, #bb img, #bc img, #bd img, #be img, #bf img, #bg img, #bh img, #bi img, #bj img, #bk img, #bl img, #bm img, #bn img, #bo img, #bp img, #bq img, #br img, #bs img, #bt img {
+    width: 70vw;
+    order: 2;
+}
+
+#ba a, #bb a, #bc a, #bd a, #be a, #bf a, #bg a, #bh a, #bi a, #bj a, #bk a, #bl a, #bm a, #bn a, #bo a, #bp a, #bq a, #br a, #bs a, #bt a {
+    height: 20vw;
+    width: 8vw;
+}
+
+.ui-icon-carat-l {
+    order: 1;
+}
+
+.ui-icon-carat-r {
+    order: 3;
+}

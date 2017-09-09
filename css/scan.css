@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+#camView {
+  display: flex;
+  flex-direction: column;
+}
+#camContainer {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  }
+#camFooter div{
+  width: 60px;
+}
+#camFooter {
+  bottom: 0;
+  margin-top: 20px;
+  padding: 0 20px 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+#shutter {
+  width: auto;
+  height: 60px;
+  color: #fff;
+  background-color: #332112;
+  border-radius: 10%;
+}
+#photo {
+  width: 60px;
+  height: 60px;
+  background-image:url(../img/placeholder_cam.png);
+  background-size: cover;
+  background-position: center;
+}
+#img_cache {
+  display: none;
+}

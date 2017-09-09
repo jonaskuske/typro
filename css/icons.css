@@ -1,0 +1,18 @@
+.ui-icon-start:after{
+    background-image: url("themes/images/icons-png/start.png");
+}
+.ui-icon-scan:after {
+    background-image: url("themes/images/icons-png/camera-white.png");
+}
+
+.ui-icon-katalog:after {
+    background-image: url("themes/images/icons-png/katalog.png");
+}
+
+.ui-icon-verlauf:after {
+    background-image: url("themes/images/icons-png/verlauf.png");
+}
+
+.ui-icon-einstellungen:after {
+    background-image: url("themes/images/icons-png/einstellungen.png");
+}

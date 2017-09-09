@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<katalog>
+    <name>
+        <item>Avenir</item>
+        <item>Calibri</item>
+        <item>Comic Sans</item>
+        <item>Corbel</item>
+        <item>Didot</item>
+        <item>Franklin Gothic</item>
+        <item>Frutiger</item>
+        <item>Futura</item>
+        <item>Garamond Pro</item>
+        <item>Gill Sans</item>
+        <item>Helvetica</item>
+        <item>Insignia</item>
+        <item>Josefin</item>
+        <item>Kabel</item>
+        <item>Lato</item>
+        <item>Roboto</item>
+        <item>TheSans</item>
+        <item>Times New Roman</item>
+        <item>Univers</item>
+        <item>Verdana</item>
+    </name>
+
+    <designer>
+        <item>Adrian Frutiger</item>
+        <item>Lucas De Groot</item>
+        <item>Vincent Connare</item>
+        <item>Jeremy Tankard</item>
+        <item>François Didot</item>
+        <item>Morris Fuller Benton</item>
+        <item>Adrian Frutiger</item>
+        <item>Paul Renner</item>
+        <item>Robert Slimbach</item>
+        <item>Eric Gill</item>
+        <item>Max Miedinger</item>
+        <item>Neville Brody</item>
+        <item>Santiago Orozco</item>
+        <item>Rudolf Koch</item>
+        <item>Lukasz Dziedzic</item>
+        <item>Christian Robertson</item>
+        <item>Lucas De Groot</item>
+        <item>Stanley Morrison</item>
+        <item>Adrian Frutiger</item>
+        <item>Matthew Carter</item>
+    </designer>
+
+    <jahr>
+        <item>1988</item>
+        <item>2007</item>
+        <item>1994</item>
+        <item>2007</item>
+        <item>1788</item>
+        <item>1979</item>
+        <item>1975</item>
+        <item>1927</item>
+        <item>1989</item>
+        <item>1930</item>
+        <item>1957</item>
+        <item>1986</item>
+        <item>2010</item>
+        <item>1927</item>
+        <item>2010</item>
+        <item>2012</item>
+        <item>1994</item>
+        <item>1931</item>
+        <item>1957</item>
+        <item>1994</item>
+    </jahr>
+
+    <headerNo>
+        <item>.h1_a</item>
+        <item>.h1_b</item>
+        <item>.h1_c</item>
+        <item>.h1_d</item>
+        <item>.h1_e</item>
+        <item>.h1_f</item>
+        <item>.h1_g</item>
+        <item>.h1_h</item>
+        <item>.h1_i</item>
+        <item>.h1_j</item>
+        <item>.h1_k</item>
+        <item>.h1_l</item>
+        <item>.h1_m</item>
+        <item>.h1_n</item>
+        <item>.h1_o</item>
+        <item>.h1_p</item>
+        <item>.h1_q</item>
+        <item>.h1_r</item>
+        <item>.h1_s</item>
+        <item>.h1_t</item>
+    </headerNo>
+
+    <textNo>
+        <item>.text_a</item>
+        <item>.text_b</item>
+        <item>.text_c</item>
+        <item>.text_d</item>
+        <item>.text_e</item>
+        <item>.text_f</item>
+        <item>.text_g</item>
+        <item>.text_h</item>
+        <item>.text_i</item>
+        <item>.text_j</item>
+        <item>.text_k</item>
+        <item>.text_l</item>
+        <item>.text_m</item>
+        <item>.text_n</item>
+        <item>.text_o</item>
+        <item>.text_p</item>
+        <item>.text_q</item>
+        <item>.text_r</item>
+        <item>.text_s</item>
+        <item>.text_t</item>
+    </textNo>
+</katalog>
