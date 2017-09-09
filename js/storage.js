@@ -24,10 +24,10 @@ if (navigator.storage && navigator.storage.persist) {
 $(document).on('pagechange', function () {
     if ($.mobile.activePage[0].id === 'home' || $.mobile.activePage[0].id === 'splash') {
         accImages = {
-            'placeholder': '../typro/img/placeholder.png',
-            'admin': '../typro/img/admin.png',
-            'test': '../typro/img/test.png',
-            'darth': '../typro/img/darth.png'
+            'placeholder': '../typro-nightly/img/placeholder.png',
+            'admin': '../typro-nightly/img/admin.png',
+            'test': '../typro-nightly/img/test.png',
+            'darth': '../typro-nightly/img/darth.png'
         };
     } else {
         accImages = {
