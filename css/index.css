@@ -7,6 +7,7 @@
 /* Header Styling */
 #header h3 {
 	font-size: 25px;
+    cursor: default;
 }
 
 #header {
@@ -50,4 +51,12 @@
 #content_index img {
 	height: 80px;
 	width: 80px;
+}
+
+#kontakt_text {
+    margin: 0 20px 0 20px;
+    text-align: center;
+}
+#legal_content {
+    margin: 0 30px 0 30px;
 }

@@ -3,6 +3,7 @@
     padding: 0;
     width: 100%;
     text-align: center;
+    overflow: hidden;
 }
 
 #detailHeader {
@@ -47,6 +48,12 @@
     padding: 8px 15px;
     width: 90px;
     margin: 5px 3px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
 }
 
 .detailBtn:hover {
@@ -98,6 +105,5 @@
 
 #detailFont {
     font-size: 1.8em;
-    margin-bottom: 0.4em;
     margin: 0 0 10px;
 }

@@ -1,23 +1,25 @@
+/* global typroDB, logCheck, google */
 // JS der Einstellungsseite+Unterseiten
-"use strict";
+'use strict';
 // Löschen der Username und Passwort-Informationen aus dem Localstorage
-$(document).on('click touchstart', '#l_ja', function() {
+$(document).on('click touchstart', '#l_ja', function () {
     localStorage.removeItem('username');
     localStorage.removeItem('passwort');
     logCheck();
 });
 // Kompletten Speicher löschen
-$(document).on('click touchstart', '#b_ja', function() {
+$(document).on('click touchstart', '#b_ja', function () {
     var transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').clear();
-    transaction.oncomplete = function() {
-        localStorage.clear();
+    transaction.oncomplete = function () {
+        localStorage.removeItem('username');
+        localStorage.removeItem('passwort');
         logCheck();
-    }
+    };
 });
 
 // Google Map auf Kontaktseite
-$(document).on("pageinit", "#map-page", function() {
+$(document).on('pageinit', '#map-page', function () {
     var HS = new google.maps.LatLng(53.539973, 8.583219); // Koordinaten HS Bremerhaven
     drawMap(HS);
 
@@ -27,14 +29,14 @@ $(document).on("pageinit", "#map-page", function() {
             center: HS,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        var map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
         // Marker
-        var marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({ // eslint-disable-line no-unused-vars
             position: HS,
             map: map,
-            title: "Hallo!"
+            title: 'Hallo!'
         });
-        google.maps.event.addListenerOnce(map, 'idle', function() { //Sobald Map geladen ist: function
+        google.maps.event.addListenerOnce(map, 'idle', function () { //Sobald Map geladen ist: function
             google.maps.event.trigger(map, 'resize'); //Einmal Map resizen
             map.setCenter(HS); // Und center wieder auf Koordinaten HS setzen
         });
