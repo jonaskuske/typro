@@ -1,60 +1,61 @@
 <!-- Katalog-Seite -->
 <div data-role="page" id="katalog" data-theme="a">
-  <!--Header-->
-  <div data-role="header" id="header"> 
-    <!--Menü-Button--> 
-    <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a> 
-    <!--Titel d. App-->
-    <h3>typro</h3>
-    <!--Einstellungs-Button--> 
-    <a href="einstellungen.html" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
-  <!--Main-->
-  <div data-role="main" id="content_katalog">
-      <!--Liste der Schriften -->
-    <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
-      <li><a href="#a" data-rel="popup">Avenir</a></li>
-		<li><a href="#b" data-rel="popup">Calibri</a></li>
-        <li><a href="#c" data-rel="popup">Comic Sans</a></li>
-        <li><a href="#d" data-rel="popup">Corbel</a></li>
-        <li><a href="#e" data-rel="popup">Didot</a></li>
-        <li><a href="#f" data-rel="popup">Franklin Gothic</a></li>
-        <li><a href="#g" data-rel="popup">Frutiger</a></li>
-        <li><a href="#h" data-rel="popup">Futura</a></li>
-        <li><a href="#i" data-rel="popup">Garamond Pro</a></li>
-        <li><a href="#j" data-rel="popup">Gill Sans</a></li>
-        <li><a href="#k" data-rel="popup">Helvetica</a></li>
-        <li><a href="#l" data-rel="popup">Insignia</a></li>
-        <li><a href="#m" data-rel="popup">Josefin</a></li>
-        <li><a href="#n" data-rel="popup">Kabel</a></li>
-        <li><a href="#o" data-rel="popup">Lato</a></li>
-        <li><a href="#p" data-rel="popup">Roboto</a></li>
-        <li><a href="#q" data-rel="popup">TheSans</a></li>
-        <li><a href="#r" data-rel="popup">Times New Roman</a></li>
-        <li><a href="#s" data-rel="popup">Univers</a></li>
-        <li><a href="#t" data-rel="popup">Verdana</a></li>
-    </ul>
-  </div> 
-  <!--Ab hier: Für jede Schrift einzelnes Pop-up. Daten werden über XML / jQuery geladen (außer Bilder)-->
+    <!--Header-->
+    <div data-role="header" data-position="fixed" id="header">
+        <!--Menü-Button-->
+        <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+        <!--Titel d. App-->
+        <h3>typro</h3>
+        <!--Einstellungs-Button-->
+        <a href="einstellungen.html" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+    </div>
+    <!--Main-->
+    <div data-role="main" id="content_katalog">
+        <!--Liste der Schriften -->
+        <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
+            <li><a href="#a" data-rel="popup" id="Avenir">Avenir</a></li>
+            <li><a href="#b" data-rel="popup" id="Calibri">Calibri</a></li>
+            <li><a href="#c" data-rel="popup" id="Comic">Comic Sans</a></li>
+            <li><a href="#d" data-rel="popup" id="Corbel">Corbel</a></li>
+            <li><a href="#e" data-rel="popup" id="Didot">Didot</a></li>
+            <li><a href="#f" data-rel="popup" id="Franklin">Franklin Gothic</a></li>
+            <li><a href="#g" data-rel="popup" id="Frutiger">Frutiger</a></li>
+            <li><a href="#h" data-rel="popup" id="Futura">Futura</a></li>
+            <li><a href="#i" data-rel="popup" id="Garamond">Garamond Pro</a></li>
+            <li><a href="#j" data-rel="popup" id="Gill">Gill Sans</a></li>
+            <li><a href="#k" data-rel="popup" id="Helvetica">Helvetica</a></li>
+            <li><a href="#l" data-rel="popup" id="Insignia">Insignia</a></li>
+            <li><a href="#m" data-rel="popup" id="Josefin">Josefin</a></li>
+            <li><a href="#n" data-rel="popup" id="Kabel">Kabel</a></li>
+            <li><a href="#o" data-rel="popup" id="Lato">Lato</a></li>
+            <li><a href="#p" data-rel="popup" id="Roboto">Roboto</a></li>
+            <li><a href="#q" data-rel="popup" id="TheSans">TheSans</a></li>
+            <li><a href="#r" data-rel="popup" id="Times">Times New Roman</a></li>
+            <li><a href="#s" data-rel="popup" id="Univers">Univers</a></li>
+            <li><a href="#t" data-rel="popup" id="Verdana">Verdana</a></li>
+        </ul>
+    </div>
+    <!--Ab hier: Für jede Schrift einzelnes Pop-up. Daten werden über XML / jQuery geladen (außer Bilder)-->
 
 
     <div data-role="popup" id="a">
-  	<h1 class="h1_a"></h1>
+        <h1 class="h1_a"></h1>
         <!-- Banner = Bildergalerie mit Buttons -->
-	   <div class="banner" id="ba">
-               <img src="../img/Avenir1.png" class="bilder_a" style="display: block" />
+        <div class="banner" id="ba">
+            <img src="../img/Avenir1.png" class="bilder_a" style="display: block" />
             <img src="../img/Avenir2.png" class="bilder_a" style="display: none" />
             <img src="../img/Avenir3.png" class="bilder_a" style="display: none" />
 
-           <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_a(-1)"></a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_a(-1)"></a>
             <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_a(+1)"></a>
         </div>
         <!-- Eingelesene Infos -->
-    <div class="text_a">
+        <div class="text_a">
 
-    </div>
+        </div>
         <!-- Pop-Up schließen Button -->
-  	    <a href="#" data-role="button" data-rel="back">Schließen</a> 
-</div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
     <div data-role="popup" id="b">
         <h1 class="h1_b"></h1>
@@ -74,320 +75,320 @@
         <a href="#" data-role="button" data-rel="back">Schließen</a>
     </div>
 
-        <div data-role="popup" id="c">
-            <h1 class="h1_c"></h1>
+    <div data-role="popup" id="c">
+        <h1 class="h1_c"></h1>
 
-            <div class="banner" id="bc">
-                <img src="../img/ComicSans1.png" class="bilder_c" style="display: block" />
-            </div>
-
-            <div class="text_c">
-
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+        <div class="banner" id="bc">
+            <img src="../img/ComicSans1.png" class="bilder_c" style="display: block" />
         </div>
 
-        <div data-role="popup" id="d">
-            <h1 class="h1_d"></h1>
+        <div class="text_c">
 
-            <div class="banner" id="bd">
-                <img src="../img/Corbel1.jpg" class="bilder_d" style="display: block" />
-                <img src="../img/Corbel2.jpg" class="bilder_d" style="display: none" />
-                <img src="../img/Corbel3.jpg" class="bilder_d" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_d(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_d(+1)"></a>
-            </div>
+    <div data-role="popup" id="d">
+        <h1 class="h1_d"></h1>
 
-            <div class="text_d">
+        <div class="banner" id="bd">
+            <img src="../img/Corbel1.jpg" class="bilder_d" style="display: block" />
+            <img src="../img/Corbel2.jpg" class="bilder_d" style="display: none" />
+            <img src="../img/Corbel3.jpg" class="bilder_d" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_d(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_d(+1)"></a>
         </div>
 
-        <div data-role="popup" id="e">
-            <h1 class="h1_e"></h1>
+        <div class="text_d">
 
-            <div class="banner" id="be">
-                <img src="../img/Didot1.jpg" class="bilder_e" style="display: block" />
-                <img src="../img/Didot2.jpg" class="bilder_e" style="display: none" />
-                <img src="../img/Didot3.jpg" class="bilder_e" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_e(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_e(+1)"></a>
-            </div>
+    <div data-role="popup" id="e">
+        <h1 class="h1_e"></h1>
 
-            <div class="text_e">
+        <div class="banner" id="be">
+            <img src="../img/Didot1.jpg" class="bilder_e" style="display: block" />
+            <img src="../img/Didot2.jpg" class="bilder_e" style="display: none" />
+            <img src="../img/Didot3.jpg" class="bilder_e" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_e(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_e(+1)"></a>
         </div>
 
-        <div data-role="popup" id="f">
-            <h1 class="h1_f"></h1>
+        <div class="text_e">
 
-            <div class="banner" id="bf">
-                <img src="../img/Franklin1.jpg" class="bilder_f" style="display: block" />
-                <img src="../img/Franklin2.jpg" class="bilder_f" style="display: none" />
-                <img src="../img/Franklin3.jpg" class="bilder_f" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_f(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_f(+1)"></a>
-            </div>
+    <div data-role="popup" id="f">
+        <h1 class="h1_f"></h1>
 
-            <div class="text_f">
+        <div class="banner" id="bf">
+            <img src="../img/Franklin1.jpg" class="bilder_f" style="display: block" />
+            <img src="../img/Franklin2.jpg" class="bilder_f" style="display: none" />
+            <img src="../img/Franklin3.jpg" class="bilder_f" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_f(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_f(+1)"></a>
         </div>
 
-        <div data-role="popup" id="g">
-            <h1 class="h1_g"></h1>
+        <div class="text_f">
 
-            <div class="banner" id="bg">
-                <img src="../img/Frutiger1.jpg" class="bilder_g" style="display: block" />
-                <img src="../img/Frutiger2.jpg" class="bilder_g" style="display: none" />
-                <img src="../img/Frutiger3.jpg" class="bilder_g" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_g(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_g(+1)"></a>
-            </div>
+    <div data-role="popup" id="g">
+        <h1 class="h1_g"></h1>
 
-            <div class="text_g">
+        <div class="banner" id="bg">
+            <img src="../img/Frutiger1.jpg" class="bilder_g" style="display: block" />
+            <img src="../img/Frutiger2.jpg" class="bilder_g" style="display: none" />
+            <img src="../img/Frutiger3.jpg" class="bilder_g" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_g(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_g(+1)"></a>
         </div>
 
-        <div data-role="popup" id="h">
-            <h1 class="h1_h"></h1>
+        <div class="text_g">
 
-            <div class="banner" id="bh">
-                <img src="../img/Futura1.jpg" class="bilder_h" style="display: block" />
-                <img src="../img/Futura2.jpg" class="bilder_h" style="display: none" />
-                <img src="../img/Futura3.jpg" class="bilder_h" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_h(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_h(+1)"></a>
-            </div>
+    <div data-role="popup" id="h">
+        <h1 class="h1_h"></h1>
 
-            <div class="text_h">
+        <div class="banner" id="bh">
+            <img src="../img/Futura1.jpg" class="bilder_h" style="display: block" />
+            <img src="../img/Futura2.jpg" class="bilder_h" style="display: none" />
+            <img src="../img/Futura3.jpg" class="bilder_h" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_h(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_h(+1)"></a>
         </div>
 
-        <div data-role="popup" id="i">
-            <h1 class="h1_i"></h1>
+        <div class="text_h">
 
-            <div class="banner" id="bi">
-                <img src="../img/Garamond1.jpg" class="bilder_i" style="display: block" />
-                <img src="../img/Garamond2.jpg" class="bilder_i" style="display: none" />
-                <img src="../img/Garamond3.jpg" class="bilder_i" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_i(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_i(+1)"></a>
-            </div>
+    <div data-role="popup" id="i">
+        <h1 class="h1_i"></h1>
 
-            <div class="text_i">
+        <div class="banner" id="bi">
+            <img src="../img/Garamond1.jpg" class="bilder_i" style="display: block" />
+            <img src="../img/Garamond2.jpg" class="bilder_i" style="display: none" />
+            <img src="../img/Garamond3.jpg" class="bilder_i" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_i(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_i(+1)"></a>
         </div>
 
-        <div data-role="popup" id="j">
-            <h1 class="h1_j"></h1>
+        <div class="text_i">
 
-            <div class="banner" id="bj">
-                <img src="../img/GillSans1.jpg" class="bilder_j" style="display: block" />
-                <img src="../img/GillSans2.jpg" class="bilder_j" style="display: none" />
-                <img src="../img/GillSans3.jpg" class="bilder_j" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_j(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_j(+1)"></a>
-            </div>
+    <div data-role="popup" id="j">
+        <h1 class="h1_j"></h1>
 
-            <div class="text_j">
+        <div class="banner" id="bj">
+            <img src="../img/GillSans1.jpg" class="bilder_j" style="display: block" />
+            <img src="../img/GillSans2.jpg" class="bilder_j" style="display: none" />
+            <img src="../img/GillSans3.jpg" class="bilder_j" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_j(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_j(+1)"></a>
         </div>
 
-        <div data-role="popup" id="k">
-            <h1 class="h1_k"></h1>
+        <div class="text_j">
 
-            <div class="banner" id="bk">
-                <img src="../img/Helvetica1.jpg" class="bilder_k" style="display: block" />
-                <img src="../img/Helvetica2.jpg" class="bilder_k" style="display: none" />
-                <img src="../img/Helvetica3.jpg" class="bilder_k" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_k(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_k(+1)"></a>
-            </div>
+    <div data-role="popup" id="k">
+        <h1 class="h1_k"></h1>
 
-            <div class="text_k">
+        <div class="banner" id="bk">
+            <img src="../img/Helvetica1.jpg" class="bilder_k" style="display: block" />
+            <img src="../img/Helvetica2.jpg" class="bilder_k" style="display: none" />
+            <img src="../img/Helvetica3.jpg" class="bilder_k" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_k(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_k(+1)"></a>
         </div>
 
-        <div data-role="popup" id="l">
-            <h1 class="h1_l"></h1>
+        <div class="text_k">
 
-            <div class="banner" id="bl">
-                <img src="../img/Insignia1.jpg" class="bilder_l" style="display: block" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-            </div>
+    <div data-role="popup" id="l">
+        <h1 class="h1_l"></h1>
 
-            <div class="text_l">
+        <div class="banner" id="bl">
+            <img src="../img/Insignia1.jpg" class="bilder_l" style="display: block" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
         </div>
 
-        <div data-role="popup" id="m">
-            <h1 class="h1_m"></h1>
+        <div class="text_l">
 
-            <div class="banner" id="bm">
-                <img src="../img/Josefin1.jpg" class="bilder_m" style="display: block" />
-                <img src="../img/Josefin2.jpg" class="bilder_m" style="display: none" />
-                <img src="../img/Josefin3.jpg" class="bilder_m" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_m(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_m(+1)"></a>
-            </div>
+    <div data-role="popup" id="m">
+        <h1 class="h1_m"></h1>
 
-            <div class="text_m">
+        <div class="banner" id="bm">
+            <img src="../img/Josefin1.jpg" class="bilder_m" style="display: block" />
+            <img src="../img/Josefin2.jpg" class="bilder_m" style="display: none" />
+            <img src="../img/Josefin3.jpg" class="bilder_m" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_m(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_m(+1)"></a>
         </div>
 
-        <div data-role="popup" id="n">
-            <h1 class="h1_n"></h1>
+        <div class="text_m">
 
-            <div class="banner" id="bn">
-                <img src="../img/Kabel1.jpg" class="bilder_n" style="display: block" />
-                <img src="../img/Kabel2.jpg" class="bilder_n" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_n(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_n(+1)"></a>
-            </div>
+    <div data-role="popup" id="n">
+        <h1 class="h1_n"></h1>
 
-            <div class="text_n">
+        <div class="banner" id="bn">
+            <img src="../img/Kabel1.jpg" class="bilder_n" style="display: block" />
+            <img src="../img/Kabel2.jpg" class="bilder_n" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_n(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_n(+1)"></a>
         </div>
 
-        <div data-role="popup" id="o">
-            <h1 class="h1_o"></h1>
+        <div class="text_n">
 
-            <div class="banner" id="bo">
-                <img src="../img/Lato1.jpg" class="bilder_o" style="display: block" />
-                <img src="../img/Lato2.jpg" class="bilder_o" style="display: none" />
-                <img src="../img/Lato3.jpg" class="bilder_o" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_o(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_o(+1)"></a>
-            </div>
+    <div data-role="popup" id="o">
+        <h1 class="h1_o"></h1>
 
-            <div class="text_o">
+        <div class="banner" id="bo">
+            <img src="../img/Lato1.jpg" class="bilder_o" style="display: block" />
+            <img src="../img/Lato2.jpg" class="bilder_o" style="display: none" />
+            <img src="../img/Lato3.jpg" class="bilder_o" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_o(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_o(+1)"></a>
         </div>
 
-        <div data-role="popup" id="p">
-            <h1 class="h1_p"></h1>
+        <div class="text_o">
 
-            <div class="banner" id="bp">
-                <img src="../img/Roboto1.jpg" class="bilder_p" style="display: block" />
-                <img src="../img/Roboto2.jpg" class="bilder_p" style="display: none" />
-                <img src="../img/Roboto3.jpg" class="bilder_p" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_p(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_p(+1)"></a>
-            </div>
+    <div data-role="popup" id="p">
+        <h1 class="h1_p"></h1>
 
-            <div class="text_p">
+        <div class="banner" id="bp">
+            <img src="../img/Roboto1.jpg" class="bilder_p" style="display: block" />
+            <img src="../img/Roboto2.jpg" class="bilder_p" style="display: none" />
+            <img src="../img/Roboto3.jpg" class="bilder_p" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_p(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_p(+1)"></a>
         </div>
 
-        <div data-role="popup" id="q">
-            <h1 class="h1_q"></h1>
+        <div class="text_p">
 
-            <div class="banner" id="bq">
-                <img src="../img/TheSans1.jpg" class="bilder_q" style="display: block" />
-                <img src="../img/TheSans2.jpg" class="bilder_q" style="display: none" />
-                <img src="../img/TheSans3.jpg" class="bilder_q" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
+
+    <div data-role="popup" id="q">
+        <h1 class="h1_q"></h1>
+
+        <div class="banner" id="bq">
+            <img src="../img/TheSans1.jpg" class="bilder_q" style="display: block" />
+            <img src="../img/TheSans2.jpg" class="bilder_q" style="display: none" />
+            <img src="../img/TheSans3.jpg" class="bilder_q" style="display: none" />
 
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_q(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_q(+1)"></a>
-            </div>
-
-            <div class="text_q">
-
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_q(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_q(+1)"></a>
         </div>
 
-        <div data-role="popup" id="r">
-            <h1 class="h1_r"></h1>
+        <div class="text_q">
 
-            <div class="banner" id="br">
-                <img src="../img/TimesNewRoman1.jpg" class="bilder_r" style="display: block" />
-                <img src="../img/TimesNewRoman2.jpg" class="bilder_r" style="display: none" />
-                <img src="../img/TimesNewRoman3.jpg" class="bilder_r" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_r(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_r(+1)"></a>
-            </div>
+    <div data-role="popup" id="r">
+        <h1 class="h1_r"></h1>
 
-            <div class="text_r">
+        <div class="banner" id="br">
+            <img src="../img/TimesNewRoman1.jpg" class="bilder_r" style="display: block" />
+            <img src="../img/TimesNewRoman2.jpg" class="bilder_r" style="display: none" />
+            <img src="../img/TimesNewRoman3.jpg" class="bilder_r" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_r(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_r(+1)"></a>
         </div>
 
-        <div data-role="popup" id="s">
-            <h1 class="h1_s"></h1>
+        <div class="text_r">
 
-            <div class="banner" id="bs">
-                <img src="../img/Univers1.jpg" class="bilder_s" style="display: block" />
-                <img src="../img/Univers2.jpg" class="bilder_s" style="display: none" />
-                <img src="../img/Univers3.jpg" class="bilder_s" style="display: none" />
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_s(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_s(+1)"></a>
-            </div>
+    <div data-role="popup" id="s">
+        <h1 class="h1_s"></h1>
 
-            <div class="text_s">
+        <div class="banner" id="bs">
+            <img src="../img/Univers1.jpg" class="bilder_s" style="display: block" />
+            <img src="../img/Univers2.jpg" class="bilder_s" style="display: none" />
+            <img src="../img/Univers3.jpg" class="bilder_s" style="display: none" />
 
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_s(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_s(+1)"></a>
         </div>
 
-        <div data-role="popup" id="t">
-            <h1 class="h1_t"></h1>
+        <div class="text_s">
 
-            <div class="banner" id="bt">
-                <img src="../img/Verdana1.jpg" class="bilder_t" style="display: block" />
-                <img src="../img/Verdana2.jpg" class="bilder_t" style="display: none" />
-                <img src="../img/Verdana3.jpg" class="bilder_t" style="display: none" />
-
-                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_t(-1)"></a>
-                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_t(+1)"></a>
-            </div>
-
-            <div class="text_t">
-
-            </div>
-            <a href="#" data-role="button" data-rel="back">Schließen</a>
         </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
+
+    <div data-role="popup" id="t">
+        <h1 class="h1_t"></h1>
+
+        <div class="banner" id="bt">
+            <img src="../img/Verdana1.jpg" class="bilder_t" style="display: block" />
+            <img src="../img/Verdana2.jpg" class="bilder_t" style="display: none" />
+            <img src="../img/Verdana3.jpg" class="bilder_t" style="display: none" />
+
+            <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush_t(-1)"></a>
+            <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush_t(+1)"></a>
+        </div>
+
+        <div class="text_t">
+
+        </div>
+        <a href="#" data-role="button" data-rel="back">Schließen</a>
+    </div>
 
 
 </div>

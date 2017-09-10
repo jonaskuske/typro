@@ -1,0 +1,109 @@
+#detailcontent {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+#detailHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.detailNavBtn {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+}
+
+#detailBtnBack {
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
+    margin-top: 25%;
+    background-size: cover;
+    background-position: center;
+    background-image: url("themes/images/icons-png/carat-l-black.png");
+}
+
+#detailBtnKatalog {
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
+    margin-top: 25%;
+    background-size: cover;
+    background-position: center;
+    background-image: url("themes/images/icons-png/katalog.png");
+}
+
+#detailImgInteraction {
+    width: 100%;
+}
+
+.detailBtn {
+    background-color: hsl(27, 48%, 14%);
+    display: inline-block;
+    padding: 8px 15px;
+    width: 90px;
+    margin: 5px 3px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.detailBtn:hover {
+    background-color: #4c4540;
+}
+
+.detailBtn p {
+    color: lightgrey;
+    font-size: 14px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#detailImgContainer {
+    display: inline-block;
+    width: 80%;
+    max-width: 550px;
+    text-align: center;
+}
+
+#detailImgBox {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+#detailImgBox:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#detailImg {
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#detailDate {
+    text-align: left;
+    font-size: 0.7em;
+    color: lightslategray;
+}
+
+#detailFont {
+    font-size: 1.8em;
+    margin: 0 0 10px;
+}

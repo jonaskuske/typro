@@ -23,7 +23,7 @@ function slideBild_a(n) {
 }
 //Erstmalige Ausführung der Funktion
 $("window").load(function () {
-   slideBild_a(bildIndex);
+    slideBild_a(bildIndex);
 });
 
 
