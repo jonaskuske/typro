@@ -6,10 +6,6 @@ var boldUser = 'admin', lightUser = 'test', starUser = 'darth vader';
 var boldPass = 'futura', lightPass = 'comicsans', starPass = 'darkside';
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
-var placeholder = '/img/placeholder.png';
-var admin = '/img/admin.png';
-var test = '/img/test.png';
-var darth = '/img/darth.png';
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().then(function (granted) {
@@ -40,19 +36,19 @@ function logCheck() {
     if (localStorage.getItem('username') === boldUser && localStorage.getItem('passwort') === boldPass) {
         currentUser = boldUser;
         $('#pUser').text('Hallo, ' + currentUser);
-        $('#user').css('background-image', 'url(' + admin + ')');
+        $('#user').css('background-image', 'url(' + '/img/admin.png' + ')');
     } else if (localStorage.getItem('username') === lightUser && localStorage.getItem('passwort') === lightPass) {
         currentUser = lightUser;
         $('#pUser').text('Hallo, ' + currentUser);
-        $('#user').css('background-image', 'url(' + test + ')');
+        $('#user').css('background-image', 'url(' + '/img/test.png' + ')');
     } else if (localStorage.getItem('username') === starUser && localStorage.getItem('passwort') === starPass) {
         currentUser = starUser;
         $('#pUser').text('*heavy breathing*').css('background-color', 'black').css('border-radius', '30%');
-        $('#user').css('background-image', 'url(' + darth + ')');
+        $('#user').css('background-image', 'url(' + '/img/darth.png' + ')');
     } else {
         currentUser = 'noLogin';
         $('#pUser').text('Einloggen');
-        $('#user').css('background-image', 'url(' + placeholder + ')');
+        $('#user').css('background-image', 'url(' + '/img/placeholder.png' + ')');
     }
     if (localStorage.getItem('username') !== starUser) {
         $('#pUser').css('background-color', '');
