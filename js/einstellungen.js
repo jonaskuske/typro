@@ -9,7 +9,7 @@ $(document).on('click touchstart', '#l_ja', function () {
 });
 // Kompletten Speicher löschen
 $(document).on('click touchstart', '#b_ja', function () {
-    var transaction = typroDB.transaction('photos', 'readwrite');
+    const transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').clear();
     transaction.oncomplete = function () {
         localStorage.removeItem('username');

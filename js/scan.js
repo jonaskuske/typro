@@ -106,11 +106,11 @@ function takepicture() {
             legacyCam();
         } else {
             //ImageCapture-API aufrufen (Chrome 60+, Firefox hinter flag), liefert blob
-            var imageCapture = new ImageCapture(streamTrack);
+            const imageCapture = new ImageCapture(streamTrack);
             imageCapture.takePhoto()
                 //Promise erfolgreich: blob zu Bild, speichern, vorschauen 
                 .then(function (img) {
-                    var reader = new FileReader(img);
+                    const reader = new FileReader(img);
                     reader.addEventListener('load', function () {
                         newImg = reader.result;
                         saveImg();
@@ -173,13 +173,13 @@ function camRelease() {
 }
 //Bild in IndexedDB speichern:
 function saveImg() {
-    var store = {
+    let store = {
         'user': currentUser,
         'photo': newImg,
         'font': randomFont(),
         'created': new Date()
     };
-    var transaction = typroDB.transaction('photos', 'readwrite');
+    let transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').add(store);
     transaction.oncomplete = function () {
         // Bild gespeichert.
@@ -187,9 +187,9 @@ function saveImg() {
 }
 //Foto-Import
 function imgImport(files) {
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var reader = new FileReader();
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        const reader = new FileReader();
         reader.addEventListener('load', function (e) {
             newImg = e.target.result;
             photo.css('background-image', 'url(' + newImg + ')');
@@ -202,17 +202,17 @@ function imgImport(files) {
 }
 
 function randomFont() {
-    var fonts = [
+    let fonts = [
         'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
         'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
         'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
     ];
-    var randomInt = getRandomInt();
+    let randomInt = getRandomInt();
     return fonts[randomInt];
 }
 
 function getRandomInt() {
-    var min = Math.ceil(0);
-    var max = Math.floor(19);
+    let min = Math.ceil(0);
+    let max = Math.floor(19);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

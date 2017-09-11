@@ -2,12 +2,8 @@
 /* exported typroDB, logFeedback, store */
 'use strict';
 // Anlegen von Benutzern
-var boldUser = 'admin';
-var lightUser = 'test';
-var boldPass = 'futura';
-var lightPass = 'comicsans';
-var starUser = 'darth vader';
-var starPass = 'darkside';
+var boldUser = 'admin', lightUser = 'test', starUser = 'darth vader';
+var boldPass = 'futura', lightPass = 'comicsans', starPass = 'darkside';
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
 var accImages;
@@ -41,8 +37,8 @@ $(document).on('pagechange', function () {
 });
 // Speichern der Login-Daten in LocalStorage
 function store() {
-    var user = $('#username').val();
-    var pass = $('#passwort').val();
+    let user = $('#username').val();
+    let pass = $('#passwort').val();
     //Prüfen, ob Webstorage verfügbar ist
     if (typeof (Storage) !== 'undefined') {
         localStorage.setItem('username', user);
@@ -94,7 +90,7 @@ $(function () {
         console.warn('IndexedDB nicht verfügbar!');
     } else {
         // Datenbank aufrufen/öffnen, generische Fehlermeldung einstellen
-        var openDB = window.indexedDB.open('typroDB', 1);
+        const openDB = window.indexedDB.open('typroDB', 1);
         openDB.onerror = function (event) {
             console.warn('IDB-Fehler.' + event.target.errorCode);
         };
@@ -103,9 +99,9 @@ $(function () {
         };
         // Falls noch nicht vorhanden, Object Store erstellen
         openDB.onupgradeneeded = function (event) {
-            var openDBUpgrade = event.target.result;
+            const openDBUpgrade = event.target.result;
             if (!openDBUpgrade.objectStoreNames.contains('photos')) {
-                var photos = openDBUpgrade.createObjectStore('photos', { keyPath: 'entry', autoIncrement: true });
+                const photos = openDBUpgrade.createObjectStore('photos', { keyPath: 'entry', autoIncrement: true });
                 photos.createIndex('user', 'user', { unique: false });
             }
             typroDB = event.target.result;
