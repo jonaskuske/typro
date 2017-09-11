@@ -27,6 +27,7 @@ const cacheRequired = [
     '/typro-nightly/css/themes/images/icons-png/katalog.png',
     '/typro-nightly/css/themes/images/icons-png/verlauf.png',
     '/typro-nightly/css/themes/images/icons-png/einstellungen.png',
+    '/typro-nightly/css/themes/images/icons-png/carat-l-black.png',
     '/typro-nightly/css/index.css',
     '/typro-nightly/css/einstellungen.css',
     '/typro-nightly/css/icons.css',

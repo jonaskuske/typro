@@ -128,7 +128,7 @@ function takepicture() {
                     disableAPI = true;
                     localStorage.setItem('disableAPI', 'true');
                     console.warn('Verwendung von ImageCapture API fehlgeschlagen (' + err + '): ab jetzt Fallback zu Canvas-Methode.');
-                    console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in anderen API-Demos auf.');
+                    console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in offiziellen API-Demos auf.');
                 });
         }
     }

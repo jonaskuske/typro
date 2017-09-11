@@ -7,7 +7,7 @@ $(function () {
 //Panel per Swipe öffnen
 $(function () {
     //Bei Swipe auf allen Pages wird Panel geöffnet
-    $(document).on('swiperight', '#home, #scanpage, #katalog, #log-in, #verlauf, #einstellungen, #map-page, #legal', function (e) {
+    $(document).on('swiperight', '#home, #scanpage, #katalog, #log-in, #verlauf, #einstellungen, #map-page, #legal, #detail', function (e) {
         if (e.type === 'swiperight') {
             $('#menu').panel('open');
         }
