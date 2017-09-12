@@ -6,19 +6,12 @@ var boldUser = 'admin', lightUser = 'test', starUser = 'darth vader';
 var boldPass = 'futura', lightPass = 'comicsans', starPass = 'darkside';
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
-const accImgTop = {
+const accImages = {
     'placeholder': '/typro-nightly/img/placeholder.png',
     'admin': '/typro-nightly/img/admin.png',
     'test': '/typro-nightly/img/test.png',
     'darth': '/typro-nightly/img/darth.png'
 };
-const accImgSub = {
-    'placeholder': '../img/placeholder.png',
-    'admin': '../img/admin.png',
-    'test': '../img/test.png',
-    'darth': '../img/darth.png'
-};
-var accImgLink = accImgTop; // um Links zu Panel-Bildern an aktuelle Seite anzupassen
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().then(function (granted) {
@@ -28,13 +21,15 @@ if (navigator.storage && navigator.storage.persist) {
     });
 }
 // Abhängig von aktueller Seite/HTML-Datei Links zu Account-Bildern anpassen
-$('#menu').on('panelbeforeopen', function () {
+/*$('#menu').on('panelbeforeopen', function () {
+    debugger;
     if ($.mobile.activePage[0].id === 'home' || $.mobile.activePage[0].id === 'splash') {
         accImgLink = accImgTop;
     } else {
+        debugger;
         accImgLink = accImgSub;
     }
-});
+});*/
 // LOCALSTORAGE
 // Im Local Storage hinterlegte Nutzerdaten abrufen und prüfen
 function checkLogStorage() {
@@ -44,7 +39,7 @@ function checkLogStorage() {
 }
 // Abfrage des eingeloggten Users bei Laden der Seite
 $(checkLogStorage());
-// Abfrage der neuen Login-Daten, leeren des Inout-Feldes, Weiergabe an logCheck
+// Abfrage der neuen Login-Daten, leeren des Input-Feldes, Weitergabe an logCheck
 function store() {
     let uEntered = $('#username').val();
     let pwEntered = $('#passwort').val();
@@ -58,24 +53,24 @@ function logCheck(u, pw, initiator) {
         if (saveUser(u, pw)) {
             currentUser = boldUser;
             $('#pUser').text('Hallo, ' + currentUser);
-            $('#user').css('background-image', 'url(' + accImgLink.admin + ')');
+            $('#user').css('background-image', 'url(' + accImages.admin + ')');
         }
     } else if (u === lightUser && pw === lightPass) {
         if (saveUser(u, pw)) {
             currentUser = lightUser;
             $('#pUser').text('Hallo, ' + currentUser);
-            $('#user').css('background-image', 'url(' + accImgLink.test + ')');
+            $('#user').css('background-image', 'url(' + accImages.test + ')');
         }
     } else if (u === starUser && pw === starPass) {
         if (saveUser(u, pw)) {
             currentUser = starUser;
             $('#pUser').text('*heavy breathing*').css('background-color', 'black').css('border-radius', '30%');
-            $('#user').css('background-image', 'url(' + accImgLink.darth + ')');
+            $('#user').css('background-image', 'url(' + accImages.darth + ')');
         }
     } else if (u === null || pw === null) {
         currentUser = 'noLogin';
         $('#pUser').text('Einloggen');
-        $('#user').css('background-image', 'url(' + accImgLink.placeholder + ')');
+        $('#user').css('background-image', 'url(' + accImages.placeholder + ')');
     } else {
         logFeedback(u, 'failed');
         return;
