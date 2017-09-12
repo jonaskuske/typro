@@ -173,10 +173,17 @@ function camRelease() {
 }
 //Bild in IndexedDB speichern:
 function saveImg() {
+    const fonts = [
+        'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
+        'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
+        'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
+    ];
+    let fontPicker = getRandomInt();
     let store = {
         'user': currentUser,
         'photo': newImg,
-        'font': randomFont(),
+        'font': fonts[fontPicker],
+        'id': 'font' + (fontPicker + 1),
         'created': new Date()
     };
     let transaction = typroDB.transaction('photos', 'readwrite');
@@ -200,17 +207,7 @@ function imgImport(files) {
     }
     $('#imgInput').val('');
 }
-
-function randomFont() {
-    let fonts = [
-        'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
-        'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
-        'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
-    ];
-    let randomInt = getRandomInt();
-    return fonts[randomInt];
-}
-
+// Zufalls-Integer um in saveImg() zufälligen Font zu speichern
 function getRandomInt() {
     let min = Math.ceil(0);
     let max = Math.floor(19);
