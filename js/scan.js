@@ -128,7 +128,7 @@ function takepicture() {
                     disableAPI = true;
                     localStorage.setItem('disableAPI', 'true');
                     console.warn('Verwendung von ImageCapture API fehlgeschlagen (' + err + '): ab jetzt Fallback zu Canvas-Methode.');
-                    console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in anderen API-Demos auf.');
+                    console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in offiziellen API-Demos auf.');
                 });
         }
     }
@@ -173,10 +173,17 @@ function camRelease() {
 }
 //Bild in IndexedDB speichern:
 function saveImg() {
+    const fonts = [
+        'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
+        'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
+        'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
+    ];
+    let fontPicker = getRandomInt();
     var store = {
         'user': currentUser,
         'photo': newImg,
-        'font': randomFont(),
+        'font': fonts[fontPicker],
+        'id': 'font' + (fontPicker + 1),
         'created': new Date()
     };
     var transaction = typroDB.transaction('photos', 'readwrite');
@@ -200,17 +207,7 @@ function imgImport(files) {
     }
     $('#imgInput').val('');
 }
-
-function randomFont() {
-    var fonts = [
-        'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
-        'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
-        'Kabel', 'Lato', 'Roboto', 'TheSans', 'Times New Roman', 'Univers', 'Verdana'
-    ];
-    var randomInt = getRandomInt();
-    return fonts[randomInt];
-}
-
+// Zufalls-Integer um in saveImg() zufälligen Font zu speichern
 function getRandomInt() {
     var min = Math.ceil(0);
     var max = Math.floor(19);

@@ -1,75 +1,53 @@
 /* global currentDetail, detailRef:true */
-// Katalog Javascript (XML)
+/* exported openPopup */
 'use strict';
-// Funktion für jedes Listitem auf Katalogseite einzeln / Immer gleiche Funktionsweise
-//Beim Laden v. Katalog: Funktion starten
-$(document).on('pageshow', '#katalog', function () {
-
-    //XML Dokument laden
+//Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
+function openPopup(selection) {
     $.ajax({
         type: 'GET',
         url: '../xml/fonts.xml',
         dataType: 'xml',
         success: function (xml) {
-
-            $(document).ready(function () {
-
-                var arrN = [];
-                var arrH = [];
-                var arrT = [];
-                var arrD = [];
-                var arrJ = [];
-
-                $(xml).find('name').each(function (e, f) {
-                    $(f).find('item').each(function (g, h) {
-                        arrN.push($(h).text());
+            let name, designer, jahr;
+            let images = [];
+            $(xml).find(selection).each(function (a, font) {
+                $(font).find('name').each(function (b, N) {
+                    name = $(N).text();
+                });
+                $(font).find('designer').each(function (c, D) {
+                    designer = $(D).text();
+                });
+                $(font).find('jahr').each(function (d, J) {
+                    jahr = $(J).text();
+                });
+                $(font).find('images').each(function (e, I) {
+                    $(I).find('img').each(function (f, img) {
+                        images.push($(img).text());
                     });
                 });
-                $(xml).find('headerNo').each(function (e, f) {
-                    $(f).find('item').each(function (g, h) {
-                        arrH.push($(h).text());
-                    });
-                });
-                $(xml).find('textNo').each(function (e, f) {
-                    $(f).find('item').each(function (g, h) {
-                        arrT.push($(h).text());
-                    });
-                });
-                $(xml).find('designer').each(function (e, f) {
-                    $(f).find('item').each(function (g, h) {
-                        arrD.push($(h).text());
-                    });
-                });
-                $(xml).find('jahr').each(function (e, f) {
-                    $(f).find('item').each(function (g, h) {
-                        arrJ.push($(h).text());
-                    });
-                });
-
-                for (var i = 0; i < arrN.length; i++) {
-                    $(arrH[i]).append(arrN[i]);
-                    $(arrT[i]).append('<p><b>Designer:</b> ' + arrD[i] + '</p><p><b>Jahr: </b>' + arrJ[i] + '</p>');
-                }
             });
+            $('.bilder').remove();
+            $('.h1_popup').html(name);
+            $('#designer').html(designer);
+            $('#jahr').html(jahr);
+            if (images.length === 1) { $('.sliderButton').addClass('disabled'); } else { $('.sliderButton').removeClass('disabled'); }
+            for (let i = 0; i < images.length; i++) {
+                let displayType;
+                if (i === 0) { displayType = 'block'; } else { displayType = 'none'; }
+                $('#banner_popup').append('<img src="' + images[i] + '" class="bilder" style="display: ' + displayType + '"/>');
+            }
+        },
+        error: function (err) {
+            console.warn('Ajax/XML Error:' + err);
         }
     });
-    checkRef();
-});
+}
 // Prüfen, ob Verlinkung von Scan-Detailseite, falls ja entsprechende Schrift anzeigen
 function checkRef() {
     if (detailRef) {
-        var selector = '#' + getFirstWord(currentDetail.font);
-        $(selector)[0].scrollIntoView();
-        $(selector).click();
+        $(currentDetail.id)[0].scrollIntoView();
+        $(currentDetail.id).click();
         detailRef = false;
     }
 }
-// siehe Funktionsname
-function getFirstWord(str) {
-    var firstSpace = str.indexOf(' ');
-    if (firstSpace === -1) {
-        return str;
-    } else {
-        return str.substr(0, firstSpace);
-    }
-}
+$(checkRef());

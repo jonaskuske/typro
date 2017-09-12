@@ -1,8 +1,8 @@
 //Service Worker (sw) für Offline-Funktionalität (Chrome, Firefox, Opera und Edge mit flag)
 'use strict';
-var appcache = 'typro'; //Cache-Name
+const appcache = 'typro'; //Cache-Name
 // Liste mit Objekten, die vor aktiv werden des sw zwingend gechached sein müssen
-var cacheRequired = [
+const cacheRequired = [
     '/',
     '/#home',
     '/#home?utm_source=homescreen',
@@ -27,6 +27,7 @@ var cacheRequired = [
     '/css/themes/images/icons-png/katalog.png',
     '/css/themes/images/icons-png/verlauf.png',
     '/css/themes/images/icons-png/einstellungen.png',
+    '/css/themes/images/icons-png/carat-l-black.png',
     '/css/index.css',
     '/css/einstellungen.css',
     '/css/icons.css',
@@ -54,7 +55,7 @@ var cacheRequired = [
     '/manifest.json'
 ];
 // Liste mit Objekten, die auch noch nach Installation gecached werden können
-var cacheOptional = [
+const cacheOptional = [
     '/xml/fonts.xml',
     '/img/camBG.png',
     '/img/upload.png',
