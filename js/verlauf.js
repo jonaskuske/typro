@@ -30,7 +30,7 @@ $(document).on('pagebeforeshow', '#verlauf', function () {
     transaction.oncomplete = function () {
         for (var i = 0; i < picArray.length; i++) {
             // Einträge im Array darstellen (samt Link und onclick-Funktion zur Referenz für die Detailseite)
-            $('#previewCollection').append('<a href="detail.html" onclick="currentEntry=' + picArray[i].entry + ';"><div class="verlaufBox"><div class="verlaufPic" style="background-image: url(' + picArray[i].photo + ');"></div></div></a>');
+            $('#previewCollection').append('<a href="#detail" onclick="currentEntry=' + picArray[i].entry + ';"><div class="verlaufBox"><div class="verlaufPic" style="background-image: url(' + picArray[i].photo + ');"></div></div></a>');
         }
         picArray = [];
     };

@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <!--Startseite-->
+    <!--START-->
     <div data-role="page" id="home" data-theme="a">
         <!--Header-->
         <div data-role="header" data-position="fixed" id="header">
@@ -54,21 +54,289 @@
             <!--Titel d. App-->
             <h3>typro</h3>
             <!--Einstellungs-Button-->
-            <a href="html/einstellungen.html" aria-label="Settings" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+            <a href="#einstellungen" aria-label="Settings" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
         <!--Main-->
         <div data-role="main" id="content_index" class="ui-content">
             <!--Scan Button-->
-            <a href="html/scan.html"> <img src="img/scan.png" alt="Scan"> </a>
+            <a href="#scan"> <img src="img/scan.png" alt="Scan"> </a>
         </div>
     </div>
+    <!--SCAN-->
+    <div data-role="page" data-theme="a" id="scanpage">
+        <div data-role="header" data-position="fixed" id="header">
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <h3>typro</h3>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
+        <!--Content-->
+        <div data-role="content" id="content_scan">
+            <!-- Kamera Feed-->
+            <canvas id="feed"></canvas>
+            <div id="errorContainer">
+                <p id="errorText"></p>
+            </div>
+            <!-- Bedienelemente-->
+            <div id="camFooter">
+                <a id="uploadA" href="#">
+                    <div id="uploadDiv"></div>
+                </a>
+                <button id="shutter" onclick="takepicture()"></button>
+                <a href="#verlauf">
+                    <div id="photo"></div>
+                </a>
+            </div>
+            <!-- versteckte Elemente: Input-Button für Foto-Upload, Video für Kamera-Feed, Canvas für Fotofunktion-->
+            <input data-role="none" id="imgInput" type="file" accept="image/*" multiple onchange="imgImport(this.files)" class="hidden">
+            <video muted autoplay playsinline class="hidden"></video>
+            <canvas id="imgCache" class="hidden"></canvas>
+        </div>
+    </div>
+    <!--VERLAUF-->
+    <div data-role="page" data-theme="a" id="verlauf">
+        <div data-role="header" data-position="fixed" id="header">
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <!--Title d. App-->
+            <h3>typro</h3>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
+        <!-- Content-->
+        <div data-role="content" id="content_verlauf">
+            <h2>Scanverlauf<span id="scanUser"></span></h2>
+            <div id="previewContainer">
+                <div id="previewCollection"></div>
+            </div>
+        </div>
+    </div>
+    <!--DETAIL-->
+    <div data-role="page" data-theme="a" id="detail">
+        <div data-role="header" data-position="fixed" id="header">
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <h3>typro</h3>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
+        <!--Content-->
+        <div data-role="content" id="detailcontent">
+            <div id="detailHeader">
+                <a class="detailNavBtn" id="detailBack" href="#verlauf">
+                    <div id="detailBtnBack"></div>
+                </a>
+                <h3>Details</h3>
+                <a data-role="none" class="detailNavBtn" id="detailKatalog" href="#katalog">
+                    <div id="detailBtnKatalog"></div>
+                </a>
+            </div>
+            <div id="detailImgContainer">
+                <p id="detailFont"></p>
+                <div id="detailImgBox">
+                    <div id="detailImg"></div>
+                </div>
+                <p id="detailDate"></p>
+                <div id="detailImgInteraction">
+                    <div id="downloadBtn" class="detailBtn" onclick="imgDownload(currentDetail.photo);">
+                        <p>Bild speichern</p>
+                    </div>
+                    <div id="deleteBtn" class="detailBtn" onclick="imgDelete();">
+                        <p>Bild l&ouml;schen</p>
+                    </div>
+                </div>
+            </div>
+            <a id="detailDownload" class="hidden"></a>
+        </div>
+    </div>
+    <!--KATALOG-->
+    <!-- Katalog-Seite -->
+    <div data-role="page" id="katalog" data-theme="a">
+        <!--Header-->
+        <div data-role="header" data-position="fixed" id="header">
+            <!--Menü-Button-->
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <!--Titel d. App-->
+            <h3>typro</h3>
+            <!--Einstellungs-Button-->
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
+        <!--Main-->
+        <div data-role="main" id="content_katalog">
+            <!--Liste der Schriften -->
+            <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font1" onclick="openPopup('font1');">Avenir</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font2" onclick="openPopup('font2');">Calibri</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font3" onclick="openPopup('font3');">Comic Sans</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font4" onclick="openPopup('font4');">Corbel</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font5" onclick="openPopup('font5');">Didot</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font6" onclick="openPopup('font6');">Franklin Gothic</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font7" onclick="openPopup('font7');">Frutiger</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font8" onclick="openPopup('font8');">Futura</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font9" onclick="openPopup('font9');">Garamond Pro</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font10" onclick="openPopup('font10');">Gill Sans</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font11" onclick="openPopup('font11');">Helvetica</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font12" onclick="openPopup('font12');">Insignia</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font13" onclick="openPopup('font13');">Josefin</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font14" onclick="openPopup('font14');">Kabel</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font15" onclick="openPopup('font15');">Lato</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font16" onclick="openPopup('font16');">Roboto</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font17" onclick="openPopup('font17');">TheSans</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font18" onclick="openPopup('font18');">Times New Roman</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font19" onclick="openPopup('font19');">Univers</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font20" onclick="openPopup('font20');">Verdana</a></li>
+            </ul>
+        </div>
+        <!--Ab hier: Für jede Schrift einzelnes Pop-up. Daten werden über XML / jQuery geladen (außer Bilder)-->
 
+
+        <div data-role="popup" id="font_popup">
+            <h1 class="h1_popup">Font</h1>
+            <!-- Banner = Bildergalerie mit Buttons -->
+            <div class="banner" id="banner_popup">
+                <img src="../img/Avenir1.png" class="bilder" style="display: block" />
+                <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton disabled" onclick="buttonPush(-1)"></a>
+                <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush(+1)"></a>
+            </div>
+            <!-- Eingelesene Infos -->
+            <div class="text_popup">
+                <p><b>Designer:</b> <span id="designer">Designer</span></p>
+                <p><b>Jahr: </b><span id="jahr">Jahr</span></p>
+            </div>
+            <!-- Pop-Up schließen Button -->
+            <a href="#" data-role="button" data-rel="back">Schließen</a>
+        </div>
+    </div>
+    <!--LOGIN-->
+    <!--Log In Seite-->
+    <div data-role="page" id="log-in" data-theme="a">
+        <!--Header-->
+        <div data-role="header" data-position="fixed" id="header">
+            <!--Menü-Button-->
+            <a href="#menu" id="menu_log-in" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <!--Titel d. App-->
+            <h3>typro</h3>
+            <!--Einstellungs-Button-->
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
+        <!--Main-->
+        <div data-role="main" id="main_log-in">
+            <!--Log In Form-->
+            <form class="ui-content" name="myForm">
+                <div>
+                    Username:
+                    <input type="text" name="username" id="username" placeholder="Username"> Passwort:
+                    <input type="password" name="passwort" id="passwort" placeholder="Passwort">
+                </div>
+                <!-- Submit Button -->
+                <input type="submit" data-inline="true" value="Log In" onclick="store(); logFeedback()">
+            </form>
+            <p id="loginFeedback"></p>
+
+        </div>
+    </div>
+    <!--EINSTELLUNGEN-->
+    <!-- Einstellungs-Seite -->
+    <div data-role="page" id="einstellungen" data-theme="a">
+        <!--Header-->
+        <div data-role="header" data-position="fixed" id="header">
+            <!--Menü-Button-->
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <!--Titel d. App-->
+            <h3>typro</h3>
+            <!--Einstellungs-Button-->
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
+        <!--Main-->
+        <div data-role="main" id="content_einstellungen">
+            <!-- Untermenü -->
+            <ul data-role="listview">
+                <li><a href="#logout" data-rel="popup">Log-out</a></li>
+                <li><a href="#reset" data-rel="popup">Zurücksetzen</a></li>
+                <li><a href="#kontakt" data-rel="external">Kontakt / Über uns</a></li>
+                <li><a href="#legal" data-rel="external">Wichtige Informationen</a></li>
+            </ul>
+        </div>
+        <!-- Pop Up: Log-out -->
+        <div data-role="popup" id="logout">
+            <h2>Log-out</h2>
+            <p>Wirklich ausloggen?</p>
+            <a href="#" data-role="button" id="l_ja" data-rel="back">Ja</a>
+            <a href="#" data-role="button" data-rel="back">Nein</a>
+        </div>
+        <!-- Pop Up: Zurücksetzen -->
+        <div data-role="popup" id="reset">
+            <h2>Zurücksetzen</h2>
+            <p>Die App wirklich zurücksetzen?</p>
+            <a href="#" data-role="button" id="b_ja" data-rel="back">Ja</a>
+            <a href="#" data-role="button" data-rel="back">Nein</a>
+        </div>
+
+    </div>
+    <!--KONTAKT-->
+    <!-- Kontakt-Seite -->
+    <div data-role="page" id="map-page">
+        <!--Header-->
+        <div data-role="header" data-position="fixed" id="header">
+            <!--Menü-Button-->
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <!--Titel d. App-->
+            <h3>typro</h3>
+            <!--Einstellungs-Button-->
+            <a href="../html/#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
+        <!-- Infotext -->
+        <div data-role="main" id="kontakt_text">
+            <h3>Das Team</h3>
+            <p>Max M. Schneider (34507)</p>
+            <p>Jonas Kuske (34728)</p>
+            <p>Rieke Helmers (34505)</p>
+            <br>
+            <p>Digitale Medienproduktion, 2. Semester</p>
+            <br>
+            <p>Semesterarbeit Programmieren</p>
+            <p>Hochschule Bremerhaven</p>
+            <!-- Einbindung Google Map -->
+            <div id="map_canvas"></div>
+        </div>
+        <div role="main" class="ui-content" id="map-canvas">
+        </div>
+    </div>
+    <!--LEGAL-->
+    <!-- Wichtige Informationen-Seite -->
+    <div data-role="page" id="legal">
+        <!--Header-->
+        <div data-role="header" data-position="fixed" id="header">
+            <!--Menü-Button-->
+            <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+            <!--Titel d. App-->
+            <h3>typro</h3>
+            <!--Einstellungs-Button-->
+            <a href="../html/#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
+        <div data-role="main" id="legal_content">
+            <!-- Info-Text -->
+            <h3>Wichtige Informationen</h3>
+            <p>Diese Anwendung wurde, im Rahmen einer Semesterarbeit, von folgenden Studenten der Hochschule Bremerhaven (Studiengang
+                Digitale Medienproduktion) erstellt:</p>
+            <p>Max M. Schneider</p>
+            <p>Jonas Kuske</p>
+            <p>Rieke Helmers</p>
+            <br>
+            <p><b>Hochschule Bremerhaven</b></p>
+            <p>An der Karlstadt 8</p>
+            <p>27568 Bremerhaven</p>
+            <p>Fach: Grundlagen der Medieninformatik 1 - Programmieren</p>
+            <p>Dozent: Alfred Schmidt, Tutor: Julian Timo Verbarg</p>
+            <!-- Logo der HS -->
+            <img src="../img/HS_logo.png" />
+            <!-- Infos zu Bildern -->
+            <p><i>Das Logo der HS Bremerhaven stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
+                href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg" target="_blank">Wikipedia</a>.</i></p>
+            <p><i>Das "Darth Vader Profilbild" stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
+                href="https://thenounproject.com/term/darth-vader/65913/" target="_blank">The Noun Project</a>.</i></p>
+        </div>
+
+    </div>
     <!--Panel-->
     <div data-role="panel" id="menu" data-display="overlay" data-position="left" data-theme="a">
         <ul data-role="listview">
             <!-- Account-Switcher-->
             <li data-icon="none">
-                <a href="html/logIn.html" id="user">
+                <a href="#login" id="user">
                     <div id="userDiv">
                         <p id="pUser">Einloggen</p>
                     </div>
@@ -76,10 +344,10 @@
             </li>
             <!--Menü-Punkte-->
             <li data-icon="start"><a href="#home">Start</a></li>
-            <li data-icon="scan"><a href="html/scan.html">Scan</a></li>
-            <li data-icon="katalog"><a href="html/katalog.html">Katalog</a></li>
-            <li data-icon="verlauf"><a href="html/verlauf.html">Verlauf</a></li>
-            <li data-icon="einstellungen"><a href="html/einstellungen.html">Einstellungen</a></li>
+            <li data-icon="scan"><a href="#scan">Scan</a></li>
+            <li data-icon="katalog"><a href="#katalog">Katalog</a></li>
+            <li data-icon="verlauf"><a href="#verlauf">Verlauf</a></li>
+            <li data-icon="einstellungen"><a href="#einstellungen">Einstellungen</a></li>
             <li data-icon="none" id="logoLi">
                 <div id="logoDiv"><img src="img/TP_Logo.png"></div>
             </li>
