@@ -16,13 +16,13 @@ if (navigator.storage && navigator.storage.persist) {
 }
 // LOCALSTORAGE
 // Abfrage des eingeloggten Users bei Laden der Seite
-$(logCheck());
+$(logCheck);
 // Speichern der Login-Daten in LocalStorage
 function store() {
     var user = $('#username').val();
     var pass = $('#passwort').val();
     //Prüfen, ob Webstorage verfügbar ist
-    if (typeof (Storage) !== 'undefined') {
+    if (window.localStorage) {
         localStorage.setItem('username', user);
         localStorage.setItem('passwort', pass);
     } else {
@@ -54,6 +54,7 @@ function logCheck() {
         $('#pUser').css('background-color', '');
         $('#pUser').css('border-radius', '');
     }
+    logFeedback;
 }
 // Alert: Log-in erfolgreich / nicht erfolgreich
 function logFeedback() {
