@@ -2,7 +2,7 @@
 /* exported openPopup */
 'use strict';
 var selection;
-var configured = false;
+var configured;
 //Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
 $(document).on('click', '.fontPopup', function (evt) {
     if (!configured) {
@@ -38,15 +38,15 @@ $(document).on('click', '.fontPopup', function (evt) {
                 for (let i = 0; i < images.length; i++) {
                     let displayType;
                     if (i === 0) { displayType = 'block'; } else { displayType = 'none'; }
-                    $('#banner_popup').append('<img src="' + images[i] + '" class="bilder" style="display: ' + displayType + '"/>');
+                    $('#banner_popup').prepend('<img src="' + images[i] + '" class="bilder" style="display: ' + displayType + '"/>');
                 }
+                configured = true;
+                $('#' + selection).click();
             },
             error: function (err) {
                 console.warn('Ajax/XML Error:' + err);
             }
         });
-        configured = true;
-        $('#' + selection).click();
     } else {
         configured = false;
     }
@@ -59,4 +59,6 @@ function checkRef() {
         detailRef = false;
     }
 }
-$(document).on('pageshow', '#katalog', checkRef);
+$(document).on('pageshow', '#katalog', function () {
+    checkRef();
+});

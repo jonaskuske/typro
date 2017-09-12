@@ -1,26 +1,30 @@
 <!--Log In Seite-->
 <div data-role="page" id="log-in" data-theme="a">
-  <!--Header-->
-  <div data-role="header" data-position="fixed" id="header">
-    <!--Menü-Button-->
-    <a href="#menu" id="menu_log-in" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-    <!--Titel d. App-->
-    <h3>typro</h3>
-    <!--Einstellungs-Button-->
-    <a href="einstellungen.html" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
-  <!--Main-->
-  <div data-role="main" id="main_log-in">
-    <!--Log In Form-->
-    <form class="ui-content" name="myForm">
-      <div>
-        Username:
-        <input type="text" name="username" id="username" placeholder="Username"> Passwort:
-        <input type="password" name="passwort" id="passwort" placeholder="Passwort">
-      </div>
-      <!-- Submit Button -->
-      <input type="submit" data-inline="true" value="Log In" onclick="store(); logFeedback()">
-    </form>
-    <p id="loginFeedback"></p>
-
-  </div>
+    <!--Header-->
+    <div data-role="header" data-position="fixed" id="header">
+        <!--Menü-Button-->
+        <a href="#menu" id="menu_log-in" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+        <!--Titel d. App-->
+        <h3>typro</h3>
+        <!--Einstellungs-Button-->
+        <a href="einstellungen.html" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+    </div>
+    <!--Main-->
+    <div data-role="main" id="main_log-in">
+        <!--Log In Form-->
+        <div class="logWrapper">
+            <form class="ui-content" name="myForm">
+                <div>
+                    Username:
+                    <input type="text" name="username" id="username" placeholder="Username"> Passwort:
+                    <input type="password" name="passwort" id="passwort" placeholder="Passwort">
+                </div>
+                <!-- Submit Button -->
+                <input type="button" data-inline="true" value="Log In" onclick="store();">
+            </form>
+        </div>
+        <div class="logWrapper">
+            <p id="loginFeedback"></p>
+        </div>
+    </div>
 </div>

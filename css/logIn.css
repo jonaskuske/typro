@@ -1,6 +1,9 @@
 @charset "utf-8";
-#main_log-in{
+.logWrapper {
 	display: flex;
 	justify-content: center;
 	text-align: center;
+}
+.logFeed {
+    text-align: center;
 }

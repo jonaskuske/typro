@@ -1,23 +1,23 @@
-/* global typroDB, logCheck, google */
+/* global typroDB, google, checkLogStorage */
 // JS der Einstellungsseite+Unterseiten
 'use strict';
 // Löschen der Username und Passwort-Informationen aus dem Localstorage
 $(document).on('click touchstart', '#l_ja', function () {
-    localStorage.removeItem('username');
-    localStorage.removeItem('passwort');
-    logCheck();
+    logout();
 });
 // Kompletten Speicher löschen
 $(document).on('click touchstart', '#b_ja', function () {
-    const transaction = typroDB.transaction('photos', 'readwrite');
+    var transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').clear();
     transaction.oncomplete = function () {
-        localStorage.removeItem('username');
-        localStorage.removeItem('passwort');
-        logCheck();
+        logout();
     };
 });
-
+function logout() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('passwort');
+    checkLogStorage();
+}
 // Google Map auf Kontaktseite
 $(document).on('pageinit', '#map-page', function () {
     var HS = new google.maps.LatLng(53.539973, 8.583219); // Koordinaten HS Bremerhaven
