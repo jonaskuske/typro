@@ -6,7 +6,6 @@ var boldUser = 'admin', lightUser = 'test', starUser = 'darth vader';
 var boldPass = 'futura', lightPass = 'comicsans', starPass = 'darkside';
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
-var accImgLink; // um Links zu Panel-Bildern an aktuelle Seite anzupassen
 const accImgTop = {
     'placeholder': '/typro-nightly/img/placeholder.png',
     'admin': '/typro-nightly/img/admin.png',
@@ -19,6 +18,7 @@ const accImgSub = {
     'test': '../img/test.png',
     'darth': '../img/darth.png'
 };
+var accImgLink = accImgTop; // um Links zu Panel-Bildern an aktuelle Seite anzupassen
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().then(function (granted) {
@@ -27,6 +27,14 @@ if (navigator.storage && navigator.storage.persist) {
         }
     });
 }
+// Abhängig von aktueller Seite/HTML-Datei Links zu Account-Bildern anpassen
+$('#menu').on('panelbeforeopen', function () {
+    if ($.mobile.activePage[0].id === 'home' || $.mobile.activePage[0].id === 'splash') {
+        accImgLink = accImgTop;
+    } else {
+        accImgLink = accImgSub;
+    }
+});
 // LOCALSTORAGE
 // Im Local Storage hinterlegte Nutzerdaten abrufen und prüfen
 function checkLogStorage() {
@@ -34,15 +42,8 @@ function checkLogStorage() {
     let pwStored = localStorage.getItem('passwort');
     logCheck(uStored, pwStored);
 }
-// Abfrage des eingeloggten Users bei Laden der Seite + anpassen der Bild-Links abhängig davon, welche HTML-Datei aufgerufen wird
-$(document).on('pagechange', function () {
-    if ($.mobile.activePage[0].id === 'home' || $.mobile.activePage[0].id === 'splash') {
-        accImgLink = accImgTop;
-    } else {
-        accImgLink = accImgSub;
-    }
-    checkLogStorage();
-});
+// Abfrage des eingeloggten Users bei Laden der Seite
+$(checkLogStorage());
 // Abfrage der neuen Login-Daten, leeren des Inout-Feldes, Weiergabe an logCheck
 function store() {
     let uEntered = $('#username').val();
