@@ -45,9 +45,9 @@ function openPopup(selection) {
 // Prüfen, ob Verlinkung von Scan-Detailseite, falls ja entsprechende Schrift anzeigen
 function checkRef() {
     if (detailRef) {
-        $(currentDetail.id)[0].scrollIntoView();
-        $(currentDetail.id).click();
+        $('#' + currentDetail.id)[0].scrollIntoView();
+        $('#' + currentDetail.id).click();
         detailRef = false;
     }
 }
-$(checkRef());
+$(document).on('pageshow', '#katalog', checkRef);
