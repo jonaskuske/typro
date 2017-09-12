@@ -20,16 +20,6 @@ if (navigator.storage && navigator.storage.persist) {
         }
     });
 }
-// Abhängig von aktueller Seite/HTML-Datei Links zu Account-Bildern anpassen
-/*$('#menu').on('panelbeforeopen', function () {
-    debugger;
-    if ($.mobile.activePage[0].id === 'home' || $.mobile.activePage[0].id === 'splash') {
-        accImgLink = accImgTop;
-    } else {
-        debugger;
-        accImgLink = accImgSub;
-    }
-});*/
 // LOCALSTORAGE
 // Im Local Storage hinterlegte Nutzerdaten abrufen und prüfen
 function checkLogStorage() {
