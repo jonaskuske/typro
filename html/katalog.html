@@ -13,36 +13,33 @@
     <div data-role="main" id="content_katalog">
         <!--Liste der Schriften -->
         <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font1" onclick="openPopup('font1');">Avenir</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font2" onclick="openPopup('font2');">Calibri</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font3" onclick="openPopup('font3');">Comic Sans</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font4" onclick="openPopup('font4');">Corbel</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font5" onclick="openPopup('font5');">Didot</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font6" onclick="openPopup('font6');">Franklin Gothic</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font7" onclick="openPopup('font7');">Frutiger</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font8" onclick="openPopup('font8');">Futura</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font9" onclick="openPopup('font9');">Garamond Pro</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font10" onclick="openPopup('font10');">Gill Sans</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font11" onclick="openPopup('font11');">Helvetica</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font12" onclick="openPopup('font12');">Insignia</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font13" onclick="openPopup('font13');">Josefin</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font14" onclick="openPopup('font14');">Kabel</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font15" onclick="openPopup('font15');">Lato</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font16" onclick="openPopup('font16');">Roboto</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font17" onclick="openPopup('font17');">TheSans</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font18" onclick="openPopup('font18');">Times New Roman</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font19" onclick="openPopup('font19');">Univers</a></li>
-            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font20" onclick="openPopup('font20');">Verdana</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font1" onclick="selection = 'font1';">Avenir</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font2" onclick="selection = 'font2';">Calibri</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font3" onclick="selection = 'font3';">Comic Sans</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font4" onclick="selection = 'font4';">Corbel</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font5" onclick="selection = 'font5';">Didot</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font6" onclick="selection = 'font6';">Franklin Gothic</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font7" onclick="selection = 'font7';">Frutiger</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font8" onclick="selection = 'font8';">Futura</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font9" onclick="selection = 'font9';">Garamond Pro</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font10" onclick="selection = 'font10';">Gill Sans</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font11" onclick="selection = 'font11';">Helvetica</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font12" onclick="selection = 'font12';">Insignia</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font13" onclick="selection = 'font13';">Josefin</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font14" onclick="selection = 'font14';">Kabel</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font15" onclick="selection = 'font15';">Lato</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font16" onclick="selection = 'font16';">Roboto</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font17" onclick="selection = 'font17';">TheSans</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font18" onclick="selection = 'font18';">Times New Roman</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font19" onclick="selection = 'font19';">Univers</a></li>
+            <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font20" onclick="selection = 'font20';">Verdana</a></li>
         </ul>
     </div>
-    <!--Ab hier: Für jede Schrift einzelnes Pop-up. Daten werden über XML / jQuery geladen (außer Bilder)-->
-
-
     <div data-role="popup" id="font_popup">
         <h1 class="h1_popup">Font</h1>
         <!-- Banner = Bildergalerie mit Buttons -->
         <div class="banner" id="banner_popup">
-            <img src="../img/Avenir1.png" class="bilder" style="display: block" />
+            <img src="../img/Franklin1.jpg" class="bilder" style="display: 'block'" />
             <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton disabled" onclick="buttonPush(-1)"></a>
             <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush(+1)"></a>
         </div>
