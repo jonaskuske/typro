@@ -1,17 +1,14 @@
 //Für eslint:
-/* exported typroDB, store */
+/* exported typroDB, logCheckInput, currentUser, logout */
 'use strict';
 // Anlegen von Benutzern
-var boldUser = 'admin', lightUser = 'test', starUser = 'darth vader';
-var boldPass = 'futura', lightPass = 'comicsans', starPass = 'darkside';
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
-const accImages = {
-    'placeholder': '/typro-nightly/img/placeholder.png',
-    'admin': '/typro-nightly/img/admin.png',
-    'test': '/typro-nightly/img/test.png',
-    'darth': '/typro-nightly/img/darth.png'
-};
+const allUsers = [
+    { 'username': 'admin', 'passwort': 'futura', 'img': '/typro-nightly/img/admin.png' },
+    { 'username': 'test', 'passwort': 'comicsans', 'img': '/typro-nightly/img/test.png' },
+    { 'username': 'darth vader', 'passwort': 'darkside', 'img': '/typro-nightly/img/darth.png', 'css': { 'background-color': 'black', 'border-radius': '30%' } }
+];
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().then(function (granted) {
@@ -21,72 +18,62 @@ if (navigator.storage && navigator.storage.persist) {
     });
 }
 // LOCALSTORAGE
-// Im Local Storage hinterlegte Nutzerdaten abrufen und prüfen
-function checkLogStorage() {
-    let uStored = localStorage.getItem('username');
-    let pwStored = localStorage.getItem('passwort');
-    logCheck(uStored, pwStored);
-}
 // Abfrage des eingeloggten Users bei Laden der Seite
-$(checkLogStorage());
-// Abfrage der neuen Login-Daten, leeren des Input-Feldes, Weitergabe an logCheck
-function store() {
-    let uEntered = $('#username').val();
-    let pwEntered = $('#passwort').val();
-    $('#username').val('');
-    $('#passwort').val('');
-    logCheck(uEntered, pwEntered, 'user');
-}
-// Login-Daten überprüfen, Panel + currentUser anpassen
-function logCheck(u, pw, initiator) {
-    if (u === boldUser && pw === boldPass) {
-        if (saveUser(u, pw)) {
-            currentUser = boldUser;
-            $('#pUser').text('Hallo, ' + currentUser);
-            $('#user').css('background-image', 'url(' + accImages.admin + ')');
-        }
-    } else if (u === lightUser && pw === lightPass) {
-        if (saveUser(u, pw)) {
-            currentUser = lightUser;
-            $('#pUser').text('Hallo, ' + currentUser);
-            $('#user').css('background-image', 'url(' + accImages.test + ')');
-        }
-    } else if (u === starUser && pw === starPass) {
-        if (saveUser(u, pw)) {
-            currentUser = starUser;
-            $('#pUser').text('*heavy breathing*').css('background-color', 'black').css('border-radius', '30%');
-            $('#user').css('background-image', 'url(' + accImages.darth + ')');
-        }
-    } else if (u === null || pw === null) {
-        currentUser = 'noLogin';
-        $('#pUser').text('Einloggen');
-        $('#user').css('background-image', 'url(' + accImages.placeholder + ')');
+$(logCheck('auto'));
+// Im Nutzerdaten abfragen, überprüfen und reagieren
+function logCheck(mode) {
+    let userEntry, passwortEntry;
+    if (mode !== 'auto') {
+        userEntry = $('#username').val();
+        passwortEntry = $('#passwort').val();
     } else {
-        logFeedback(u, 'failed');
-        return;
+        userEntry = localStorage.getItem('username');
+        passwortEntry = localStorage.getItem('passwort');
     }
-    if (initiator === 'user') { logFeedback(u); }
+    // iteriert über Nutzer-Array und prüft, ob eingegebene Daten zu einem Nutzer passen
+    let loginSuccess = function () {
+        for (let i = 0; i < allUsers.length; i++) {
+            if ((userEntry === allUsers[i].username && passwortEntry === allUsers[i].passwort) && storeUser(userEntry, passwortEntry)) {
+                login(i, mode);
+                return true;
+            }
+        }
+    };
+    if (!loginSuccess()) { if (mode !== 'auto') { loginFeedback('nosuccess'); } else { logout(); } }
 }
-// Login-Daten in lStorage speichern
-function saveUser(u, pw) {
+function login(user, mode) {
+    currentUser = allUsers[user].username;
+    $('#pUser').text('Hallo, ' + currentUser);
+    $('#user').css('background-image', 'url(' + allUsers[user].img + ')');
+    if (allUsers[user].hasOwnProperty('css')) { $('#pUser').css(allUsers[user].css); } else {
+        $('#pUser').css('background-color', '').css('border-radius', '');
+    }
+    if (mode !== 'auto') { loginFeedback('success'); }
+}
+function logout() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('passwort');
+    currentUser = 'noLogin';
+    $('#pUser').text('Einloggen');
+    $('#user').css('background-image', 'url(' + '/typro-nightly/img/placeholder.png' + ')');
+    $('#pUser').css('background-color', '').css('border-radius', '');
+}
+// Login-Daten in Local Storage speichern
+function storeUser(user, passwort) {
     //Prüfen, ob Webstorage verfügbar ist
     if (window.localStorage) {
-        localStorage.setItem('username', u);
-        localStorage.setItem('passwort', pw);
+        localStorage.setItem('username', user);
+        localStorage.setItem('passwort', passwort);
         return true;
     } else {
         console.warn('Login nicht möglich, Local Storage nicht verfügbar!');
     }
 }
 // Ausgabe: Log-in erfolgreich / nicht erfolgreich
-function logFeedback(u, check) {
-    if (check !== 'failed') {
-        $('#loginFeedback').html('Erfolgreich eingeloggt: ' + u);
+function loginFeedback(state) {
+    if (state === 'success') {
+        $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
         setTimeout(function () { $('#loginFeedback').empty(); }, 1500);
-        if (u !== starUser) {
-            $('#pUser').css('background-color', '');
-            $('#pUser').css('border-radius', '');
-        }
     } else {
         $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
         setTimeout(function () { $('#loginFeedback').empty(); }, 1500);

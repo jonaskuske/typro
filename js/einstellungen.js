@@ -1,4 +1,4 @@
-/* global typroDB, google, checkLogStorage */
+/* global typroDB, google, logout */
 // JS der Einstellungsseite+Unterseiten
 'use strict';
 // Löschen der Username und Passwort-Informationen aus dem Localstorage
@@ -13,11 +13,6 @@ $(document).on('click touchstart', '#b_ja', function () {
         logout();
     };
 });
-function logout() {
-    localStorage.removeItem('username');
-    localStorage.removeItem('passwort');
-    checkLogStorage();
-}
 // Google Map auf Kontaktseite
 $(document).on('pageinit', '#map-page', function () {
     var HS = new google.maps.LatLng(53.539973, 8.583219); // Koordinaten HS Bremerhaven
