@@ -61,6 +61,8 @@ function logCheck(u, pw, initiator) {
         currentUser = 'noLogin';
         $('#pUser').text('Einloggen');
         $('#user').css('background-image', 'url(' + accImages.placeholder + ')');
+        $('#pUser').css('background-color', '');
+        $('#pUser').css('border-radius', '');
     } else {
         logFeedback(u, 'failed');
         return;

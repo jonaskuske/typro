@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta lang="DE">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#332112">
     <meta name="msapplication-TileColor" content="#5f5eaa">
@@ -37,14 +36,13 @@
 </head>
 
 <body>
-    <!--Splash Page-->
+    <!--SPLASH-->
     <div data-role="page" id="splash">
         <div id="logo"> <img src="img/TP_Logo.png">
             <h1>typro</h1>
             <div id="loader"></div>
         </div>
     </div>
-
     <!--START-->
     <div data-role="page" id="home" data-theme="a">
         <!--Header-->
@@ -145,7 +143,6 @@
         </div>
     </div>
     <!--KATALOG-->
-    <!-- Katalog-Seite -->
     <div data-role="page" id="katalog" data-theme="a">
         <!--Header-->
         <div data-role="header" data-position="fixed" id="header">
@@ -160,36 +157,32 @@
         <div data-role="main" id="content_katalog">
             <!--Liste der Schriften -->
             <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font1" onclick="openPopup('font1');">Avenir</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font2" onclick="openPopup('font2');">Calibri</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font3" onclick="openPopup('font3');">Comic Sans</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font4" onclick="openPopup('font4');">Corbel</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font5" onclick="openPopup('font5');">Didot</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font6" onclick="openPopup('font6');">Franklin Gothic</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font7" onclick="openPopup('font7');">Frutiger</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font8" onclick="openPopup('font8');">Futura</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font9" onclick="openPopup('font9');">Garamond Pro</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font10" onclick="openPopup('font10');">Gill Sans</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font11" onclick="openPopup('font11');">Helvetica</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font12" onclick="openPopup('font12');">Insignia</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font13" onclick="openPopup('font13');">Josefin</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font14" onclick="openPopup('font14');">Kabel</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font15" onclick="openPopup('font15');">Lato</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font16" onclick="openPopup('font16');">Roboto</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font17" onclick="openPopup('font17');">TheSans</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font18" onclick="openPopup('font18');">Times New Roman</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font19" onclick="openPopup('font19');">Univers</a></li>
-                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font20" onclick="openPopup('font20');">Verdana</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font1" onclick="selection = 'font1';">Avenir</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font2" onclick="selection = 'font2';">Calibri</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font3" onclick="selection = 'font3';">Comic Sans</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font4" onclick="selection = 'font4';">Corbel</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font5" onclick="selection = 'font5';">Didot</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font6" onclick="selection = 'font6';">Franklin Gothic</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font7" onclick="selection = 'font7';">Frutiger</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font8" onclick="selection = 'font8';">Futura</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font9" onclick="selection = 'font9';">Garamond Pro</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font10" onclick="selection = 'font10';">Gill Sans</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font11" onclick="selection = 'font11';">Helvetica</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font12" onclick="selection = 'font12';">Insignia</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font13" onclick="selection = 'font13';">Josefin</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font14" onclick="selection = 'font14';">Kabel</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font15" onclick="selection = 'font15';">Lato</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font16" onclick="selection = 'font16';">Roboto</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font17" onclick="selection = 'font17';">TheSans</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font18" onclick="selection = 'font18';">Times New Roman</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font19" onclick="selection = 'font19';">Univers</a></li>
+                <li><a href="#font_popup" data-rel="popup" class="fontPopup" id="font20" onclick="selection = 'font20';">Verdana</a></li>
             </ul>
         </div>
-        <!--Ab hier: Für jede Schrift einzelnes Pop-up. Daten werden über XML / jQuery geladen (außer Bilder)-->
-
-
         <div data-role="popup" id="font_popup">
             <h1 class="h1_popup">Font</h1>
             <!-- Banner = Bildergalerie mit Buttons -->
             <div class="banner" id="banner_popup">
-                <img src="../img/Avenir1.png" class="bilder" style="display: block" />
                 <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton disabled" onclick="buttonPush(-1)"></a>
                 <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush(+1)"></a>
             </div>
@@ -203,7 +196,6 @@
         </div>
     </div>
     <!--LOGIN-->
-    <!--Log In Seite-->
     <div data-role="page" id="log-in" data-theme="a">
         <!--Header-->
         <div data-role="header" data-position="fixed" id="header">
@@ -212,7 +204,8 @@
             <!--Titel d. App-->
             <h3>typro</h3>
             <!--Einstellungs-Button-->
-            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
         <!--Main-->
         <div data-role="main" id="main_log-in">
             <!--Log In Form-->
@@ -233,7 +226,6 @@
         </div>
     </div>
     <!--EINSTELLUNGEN-->
-    <!-- Einstellungs-Seite -->
     <div data-role="page" id="einstellungen" data-theme="a">
         <!--Header-->
         <div data-role="header" data-position="fixed" id="header">
@@ -270,7 +262,6 @@
 
     </div>
     <!--KONTAKT-->
-    <!-- Kontakt-Seite -->
     <div data-role="page" id="map-page">
         <!--Header-->
         <div data-role="header" data-position="fixed" id="header">
@@ -279,7 +270,7 @@
             <!--Titel d. App-->
             <h3>typro</h3>
             <!--Einstellungs-Button-->
-            <a href="../html/#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
         <!-- Infotext -->
         <div data-role="main" id="kontakt_text">
@@ -299,7 +290,6 @@
         </div>
     </div>
     <!--LEGAL-->
-    <!-- Wichtige Informationen-Seite -->
     <div data-role="page" id="legal">
         <!--Header-->
         <div data-role="header" data-position="fixed" id="header">
@@ -308,7 +298,7 @@
             <!--Titel d. App-->
             <h3>typro</h3>
             <!--Einstellungs-Button-->
-            <a href="../html/#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
         <div data-role="main" id="legal_content">
             <!-- Info-Text -->
@@ -325,7 +315,7 @@
             <p>Fach: Grundlagen der Medieninformatik 1 - Programmieren</p>
             <p>Dozent: Alfred Schmidt, Tutor: Julian Timo Verbarg</p>
             <!-- Logo der HS -->
-            <img src="../img/HS_logo.png" />
+            <img src="/img/HS_logo.png" />
             <!-- Infos zu Bildern -->
             <p><i>Das Logo der HS Bremerhaven stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
                 href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg" target="_blank">Wikipedia</a>.</i></p>
@@ -334,7 +324,7 @@
         </div>
 
     </div>
-    <!--Panel-->
+    <!--PANEL-->
     <div data-role="panel" id="menu" data-display="overlay" data-position="left" data-theme="a">
         <ul data-role="listview">
             <!-- Account-Switcher-->
@@ -352,7 +342,7 @@
             <li data-icon="verlauf"><a href="#verlauf">Verlauf</a></li>
             <li data-icon="einstellungen"><a href="#einstellungen">Einstellungen</a></li>
             <li data-icon="none" id="logoLi">
-                <div id="logoDiv"><img src="img/TP_Logo.png"></div>
+                <div id="logoDiv"><img src="/img/TP_Logo.png"></div>
             </li>
         </ul>
     </div>

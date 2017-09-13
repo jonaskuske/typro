@@ -8,5 +8,7 @@ $(function () {
 });
 // Dauer Anzeige Splash Page
 setTimeout(function () {
-    $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
+    if ($.mobile.activePage[0].id === 'splash') {
+        $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
+    }
 }, 2000);
