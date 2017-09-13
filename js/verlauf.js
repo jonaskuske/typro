@@ -9,6 +9,7 @@ var detailRef = false;
 //VERLAUFSEITE
 // Falls eingeloggter User: Angabe im Titel
 $(document).on('pagebeforeshow', '#verlauf', function () {
+    $('#previewCollection').empty();
     if (currentUser !== 'noLogin') {
         $('#scanUser').text(' von ' + currentUser);
     } else {
@@ -38,7 +39,6 @@ $(document).on('pagebeforeshow', '#verlauf', function () {
 // DETAILSEITE
 // Bei Anzeigen der Seite alle Infos des im Verlauf ausgewählten Bildes aus IndexedDB abrufen
 $(document).on('pagebeforeshow', '#detail', function () {
-    setRef();
     var transaction = typroDB.transaction('photos');
     transaction.objectStore('photos')
         .get(currentEntry)
@@ -71,7 +71,7 @@ function imgDownload(pic) {
     dl.remove();
 }
 // Falls User auf Link zum Katalog klickt, vor pagechange die Verknüpfung aktivieren (vgl. checkRef in katalog.js)
-function setRef() {
+$(function setRef() {
     $('#detailKatalog').on('click', function (e) {
         if (!detailRef) {
             e.preventDefault();
@@ -79,4 +79,4 @@ function setRef() {
             $('#detailKatalog').click();
         }
     });
-}
+});

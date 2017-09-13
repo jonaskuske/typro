@@ -1,11 +1,17 @@
 //Für eslint:
-/* exported typroDB, logFeedback, store */
+/* exported typroDB, store */
 'use strict';
 // Anlegen von Benutzern
 var boldUser = 'admin', lightUser = 'test', starUser = 'darth vader';
 var boldPass = 'futura', lightPass = 'comicsans', starPass = 'darkside';
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
+const accImages = {
+    'placeholder': '/img/placeholder.png',
+    'admin': '/img/admin.png',
+    'test': '/img/test.png',
+    'darth': '/img/darth.png'
+};
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().then(function (granted) {
@@ -15,54 +21,75 @@ if (navigator.storage && navigator.storage.persist) {
     });
 }
 // LOCALSTORAGE
-// Abfrage des eingeloggten Users bei Laden der Seite
-$(logCheck);
-// Speichern der Login-Daten in LocalStorage
-function store() {
-    var user = $('#username').val();
-    var pass = $('#passwort').val();
-    //Prüfen, ob Webstorage verfügbar ist
-    if (window.localStorage) {
-        localStorage.setItem('username', user);
-        localStorage.setItem('passwort', pass);
-    } else {
-        console.warn('Local Storage nicht verfügbar!');
-    }
-    // Update Account-Switcher
-    logCheck();
+// Im Local Storage hinterlegte Nutzerdaten abrufen und prüfen
+function checkLogStorage() {
+    let uStored = localStorage.getItem('username');
+    let pwStored = localStorage.getItem('passwort');
+    logCheck(uStored, pwStored);
 }
-// User-abhängiges manipulieren des Panels
-function logCheck() {
-    if (localStorage.getItem('username') === boldUser && localStorage.getItem('passwort') === boldPass) {
-        currentUser = boldUser;
-        $('#pUser').text('Hallo, ' + currentUser);
-        $('#user').css('background-image', 'url(' + '/img/admin.png' + ')');
-    } else if (localStorage.getItem('username') === lightUser && localStorage.getItem('passwort') === lightPass) {
-        currentUser = lightUser;
-        $('#pUser').text('Hallo, ' + currentUser);
-        $('#user').css('background-image', 'url(' + '/img/test.png' + ')');
-    } else if (localStorage.getItem('username') === starUser && localStorage.getItem('passwort') === starPass) {
-        currentUser = starUser;
-        $('#pUser').text('*heavy breathing*').css('background-color', 'black').css('border-radius', '30%');
-        $('#user').css('background-image', 'url(' + '/img/darth.png' + ')');
-    } else {
+// Abfrage des eingeloggten Users bei Laden der Seite
+$(checkLogStorage());
+// Abfrage der neuen Login-Daten, leeren des Input-Feldes, Weitergabe an logCheck
+function store() {
+    let uEntered = $('#username').val();
+    let pwEntered = $('#passwort').val();
+    $('#username').val('');
+    $('#passwort').val('');
+    logCheck(uEntered, pwEntered, 'user');
+}
+// Login-Daten überprüfen, Panel + currentUser anpassen
+function logCheck(u, pw, initiator) {
+    if (u === boldUser && pw === boldPass) {
+        if (saveUser(u, pw)) {
+            currentUser = boldUser;
+            $('#pUser').text('Hallo, ' + currentUser);
+            $('#user').css('background-image', 'url(' + accImages.admin + ')');
+        }
+    } else if (u === lightUser && pw === lightPass) {
+        if (saveUser(u, pw)) {
+            currentUser = lightUser;
+            $('#pUser').text('Hallo, ' + currentUser);
+            $('#user').css('background-image', 'url(' + accImages.test + ')');
+        }
+    } else if (u === starUser && pw === starPass) {
+        if (saveUser(u, pw)) {
+            currentUser = starUser;
+            $('#pUser').text('*heavy breathing*').css('background-color', 'black').css('border-radius', '30%');
+            $('#user').css('background-image', 'url(' + accImages.darth + ')');
+        }
+    } else if (u === null || pw === null) {
         currentUser = 'noLogin';
         $('#pUser').text('Einloggen');
-        $('#user').css('background-image', 'url(' + '/img/placeholder.png' + ')');
-    }
-    if (localStorage.getItem('username') !== starUser) {
-        $('#pUser').css('background-color', '');
-        $('#pUser').css('border-radius', '');
-    }
-    logFeedback;
-}
-// Alert: Log-in erfolgreich / nicht erfolgreich
-function logFeedback() {
-    if ((localStorage.getItem('username') === boldUser && localStorage.getItem('passwort') === boldPass) || (localStorage.getItem('username') === lightUser && localStorage.getItem('passwort') === lightPass) || (localStorage.getItem('username') === starUser && localStorage.getItem('passwort') === starPass)) {
-        // erfolgreicher login, alert entfernt
+        $('#user').css('background-image', 'url(' + accImages.placeholder + ')');
     } else {
-        // login fehlgeschlagen
-        alert('Falsche Nutzer-Passwort-Kombination!');    // eslint-disable-line no-alert
+        logFeedback(u, 'failed');
+        return;
+    }
+    if (initiator === 'user') { logFeedback(u); }
+}
+// Login-Daten in lStorage speichern
+function saveUser(u, pw) {
+    //Prüfen, ob Webstorage verfügbar ist
+    if (window.localStorage) {
+        localStorage.setItem('username', u);
+        localStorage.setItem('passwort', pw);
+        return true;
+    } else {
+        console.warn('Login nicht möglich, Local Storage nicht verfügbar!');
+    }
+}
+// Ausgabe: Log-in erfolgreich / nicht erfolgreich
+function logFeedback(u, check) {
+    if (check !== 'failed') {
+        $('#loginFeedback').html('Erfolgreich eingeloggt: ' + u);
+        setTimeout(function () { $('#loginFeedback').empty(); }, 1500);
+        if (u !== starUser) {
+            $('#pUser').css('background-color', '');
+            $('#pUser').css('border-radius', '');
+        }
+    } else {
+        $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
+        setTimeout(function () { $('#loginFeedback').empty(); }, 1500);
     }
 }
 // INDEXEDDB
@@ -73,7 +100,7 @@ $(function () {
         console.warn('IndexedDB nicht verfügbar!');
     } else {
         // Datenbank aufrufen/öffnen, generische Fehlermeldung einstellen
-        var openDB = window.indexedDB.open('typroDB', 1);
+        const openDB = window.indexedDB.open('typroDB', 1);
         openDB.onerror = function (event) {
             console.warn('IDB-Fehler.' + event.target.errorCode);
         };
@@ -82,9 +109,9 @@ $(function () {
         };
         // Falls noch nicht vorhanden, Object Store erstellen
         openDB.onupgradeneeded = function (event) {
-            var openDBUpgrade = event.target.result;
+            const openDBUpgrade = event.target.result;
             if (!openDBUpgrade.objectStoreNames.contains('photos')) {
-                var photos = openDBUpgrade.createObjectStore('photos', { keyPath: 'entry', autoIncrement: true });
+                const photos = openDBUpgrade.createObjectStore('photos', { keyPath: 'entry', autoIncrement: true });
                 photos.createIndex('user', 'user', { unique: false });
             }
             typroDB = event.target.result;
