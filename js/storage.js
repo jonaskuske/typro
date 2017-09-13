@@ -56,7 +56,7 @@ function logout() {
     localStorage.removeItem('passwort');
     currentUser = 'noLogin';
     $('#pUser').text('Einloggen');
-    $('#user').css('background-image', 'url(' + '/typro-nightly/img/placeholder.png' + ')');
+    $('#user').css('background-image', 'url(' + '/img/placeholder.png' + ')');
     $('#pUser').css('background-color', '').css('border-radius', '');
 }
 // Login-Daten in Local Storage speichern
