@@ -52,6 +52,7 @@ const cacheOptional = [
     '/img/camBG.png',
     '/img/upload.png',
     '/img/gallery.png',
+    '/img/jonas.jpg',
     '/img/HS_logo.png',
     '/img/Avenir1.png',
     '/img/Avenir2.png',
