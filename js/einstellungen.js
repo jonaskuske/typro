@@ -2,19 +2,19 @@
 // JS der Einstellungsseite+Unterseiten
 'use strict';
 // Löschen der Username und Passwort-Informationen aus dem Localstorage
-$(document).on('click touchstart', '#l_ja', function () {
+$(document).on('click touchstart', '#l_ja', () => {
     logout();
 });
 // Kompletten Speicher löschen
-$(document).on('click touchstart', '#b_ja', function () {
+$(document).on('click touchstart', '#b_ja', () => {
     var transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').clear();
-    transaction.oncomplete = function () {
+    transaction.oncomplete = () => {
         logout();
     };
 });
 // Google Map auf Kontaktseite
-$(document).on('pageinit', '#map-page', function () {
+$(document).on('pageinit', '#map-page', () => {
     var HS = new google.maps.LatLng(53.539973, 8.583219); // Koordinaten HS Bremerhaven
     drawMap(HS);
 
@@ -31,7 +31,7 @@ $(document).on('pageinit', '#map-page', function () {
             map: map,
             title: 'Hallo!'
         });
-        google.maps.event.addListenerOnce(map, 'idle', function () { //Sobald Map geladen ist: function
+        google.maps.event.addListenerOnce(map, 'idle', () => { //Sobald Map geladen ist: function
             google.maps.event.trigger(map, 'resize'); //Einmal Map resizen
             map.setCenter(HS); // Und center wieder auf Koordinaten HS setzen
         });

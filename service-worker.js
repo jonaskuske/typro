@@ -113,30 +113,30 @@ const cacheOptional = [
 ];
 // Bei Installieren des sw warten bis Cache angelegt(geöffnet) und cacheRequired returned, sodass das .then promise aufgelöst wird
 // Falls cacheRequired nicht vollständig gechached wurde, schlägt das promise fehl, sw wird dann NICHT installiert
-self.addEventListener('install', function (event) {
+self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(appcache)
-            .then(function (cache) {
+            .then(cache => {
                 cache.addAll(cacheOptional);
                 return cache.addAll(cacheRequired);
             })
     );
 });
 // Bei Netzwerkanfrage der Seite (fetch): Anfrage beantworten
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', event => {
     event.respondWith(respond(event));
 });
 // Cache öffnen, falls passendes Objekt im Cache vorhanden damit die Anfrage beantworten und Cache aktualisieren (-> bei nächstem Pageload/Fetch wird neue Version ausgespielt),
 // anderenfalls auf Netzwerk zurückgreifen
 function respond(event) {
-    return caches.open(appcache).then(function (cache) {
-        return cache.match(event.request).then(function (response) {
+    return caches.open(appcache).then(cache => {
+        return cache.match(event.request).then(response => {
             if (response) {
                 if (navigator.onLine) {
                     fetch(event.request)
-                        .then(function (netresponse) {
+                        .then(netresponse => {
                             caches.open(appcache)
-                                .then(function (cache) {
+                                .then(cache => {
                                     cache.put(event.request, netresponse);
                                 });
                         });

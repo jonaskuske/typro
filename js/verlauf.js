@@ -8,7 +8,7 @@ var currentDetail;
 var detailRef = false;
 //VERLAUFSEITE
 // Falls eingeloggter User: Angabe im Titel
-$(document).on('pagebeforeshow', '#verlauf', function () {
+$(document).on('pagebeforeshow', '#verlauf', () => {
     $('#previewCollection').empty();
     if (currentUser !== 'noLogin') {
         $('#scanUser').text(' von ' + currentUser);
@@ -18,7 +18,7 @@ $(document).on('pagebeforeshow', '#verlauf', function () {
     // Zugriff auf IndexedDB: Abruf der Bilder des aktuellen Users (mit Index+Cursor) und speichern von Bild und Key in Array
     const transaction = typroDB.transaction('photos');
     const index = transaction.objectStore('photos').index('user');
-    index.openCursor(IDBKeyRange.only(currentUser)).onsuccess = function (event) {
+    index.openCursor(IDBKeyRange.only(currentUser)).onsuccess = event => {
         let cursor = event.target.result;
         if (cursor) {
             picArray.push({
@@ -28,7 +28,7 @@ $(document).on('pagebeforeshow', '#verlauf', function () {
             cursor.continue();
         }
     };
-    transaction.oncomplete = function () {
+    transaction.oncomplete = () => {
         for (let i = 0; i < picArray.length; i++) {
             // Einträge im Array darstellen (samt Link und onclick-Funktion zur Referenz für die Detailseite)
             $('#previewCollection').append('<a href="#detail" onclick="currentEntry=' + picArray[i].entry + ';"><div class="verlaufBox"><div class="verlaufPic" style="background-image: url(' + picArray[i].photo + ');"></div></div></a>');
@@ -38,14 +38,14 @@ $(document).on('pagebeforeshow', '#verlauf', function () {
 });
 // DETAILSEITE
 // Bei Anzeigen der Seite alle Infos des im Verlauf ausgewählten Bildes aus IndexedDB abrufen
-$(document).on('pagebeforeshow', '#detail', function () {
+$(document).on('pagebeforeshow', '#detail', () => {
     const transaction = typroDB.transaction('photos');
     transaction.objectStore('photos')
         .get(currentEntry)
-        .onsuccess = function (event) {
+        .onsuccess = event => {
             currentDetail = event.target.result;
         };
-    transaction.oncomplete = function () {
+    transaction.oncomplete = () => {
         // Config der Detailseite basierend auf abgerufenen Bild-Infos
         let time = currentDetail.created;
         $('#detailImg').css('background-image', 'url(' + currentDetail.photo + ')');
@@ -57,7 +57,7 @@ $(document).on('pagebeforeshow', '#detail', function () {
 function imgDelete() {
     const transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').delete(currentDetail.entry);
-    transaction.oncomplete = function () {
+    transaction.oncomplete = () => {
         $('#detailImg').css('background-image', '');
         $('#detailFont').text('');
         $('#detailDate').text('');
@@ -71,8 +71,8 @@ function imgDownload(pic) {
     dl.remove();
 }
 // Falls User auf Link zum Katalog klickt, vor pagechange die Verknüpfung aktivieren (vgl. checkRef in katalog.js)
-$(document).on('pageinit', '#detail', function () {
-    $('#detailKatalog').on('click', function (e) {
+$(document).on('pageinit', '#detail', () => {
+    $('#detailKatalog').on('click', e => {
         if (!detailRef) {
             e.preventDefault();
             detailRef = true;

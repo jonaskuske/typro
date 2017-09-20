@@ -4,28 +4,28 @@
 var selection;
 var configured;
 //Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
-$(document).on('click', '.fontPopup', function (evt) {
+$(document).on('click', '.fontPopup', evt => {
     if (!configured) {
         evt.preventDefault();
         $.ajax({
             type: 'GET',
             url: '../xml/fonts.xml',
             dataType: 'xml',
-            success: function (xml) {
+            success: xml => {
                 let name, designer, jahr;
                 let images = [];
-                $(xml).find(selection).each(function (a, font) {
-                    $(font).find('name').each(function (b, N) {
+                $(xml).find(selection).each((a, font) => {
+                    $(font).find('name').each((b, N) => {
                         name = $(N).text();
                     });
-                    $(font).find('designer').each(function (c, D) {
+                    $(font).find('designer').each((c, D) => {
                         designer = $(D).text();
                     });
-                    $(font).find('jahr').each(function (d, J) {
+                    $(font).find('jahr').each((d, J) => {
                         jahr = $(J).text();
                     });
-                    $(font).find('images').each(function (e, I) {
-                        $(I).find('img').each(function (f, img) {
+                    $(font).find('images').each((e, I) => {
+                        $(I).find('img').each((f, img) => {
                             images.push($(img).text());
                         });
                     });
@@ -43,7 +43,7 @@ $(document).on('click', '.fontPopup', function (evt) {
                 configured = true;
                 $('#' + selection).click();
             },
-            error: function (err) {
+            error: err => {
                 console.warn('Ajax/XML Error:' + err);
             }
         });
@@ -59,6 +59,6 @@ function checkRef() {
         detailRef = false;
     }
 }
-$(document).on('pageshow', '#katalog', function () {
+$(document).on('pageshow', '#katalog', () => {
     checkRef();
 });

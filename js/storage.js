@@ -12,7 +12,7 @@ const allUsers = [
 ];
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
-    navigator.storage.persist().then(function (granted) {
+    navigator.storage.persist().then(granted => {
         if (granted) {
             //Speicher wird nicht gelöscht, außer durch Eingreifen des Users
         }
@@ -32,7 +32,7 @@ function logCheck(mode) {
         passwortEntry = localStorage.getItem('passwort');
     }
     // iteriert über Nutzer-Array und prüft, ob eingegebene Daten zu einem Nutzer passen
-    let loginSuccess = function () {
+    let loginSuccess = () => {
         for (let i = 0; i < allUsers.length; i++) {
             if ((userEntry === allUsers[i].username && passwortEntry === allUsers[i].passwort) && storeUser(userEntry, passwortEntry)) {
                 login(i, mode);
@@ -74,14 +74,14 @@ function storeUser(user, passwort) {
 function loginFeedback(state) {
     if (state === 'success') {
         $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
-        setTimeout(function () { $('#loginFeedback').empty(); }, 1500);
+        setTimeout(() => { $('#loginFeedback').empty(); }, 1500);
     } else {
         $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
-        setTimeout(function () { $('#loginFeedback').empty(); }, 1500);
+        setTimeout(() => { $('#loginFeedback').empty(); }, 1500);
     }
 }
 // INDEXEDDB
-$(function () {
+$(() => {
     'use strict';
     // Check, ob IndexedDB unterstützt/aktiviert
     if (!('indexedDB' in window)) {
@@ -89,14 +89,14 @@ $(function () {
     } else {
         // Datenbank aufrufen/öffnen, generische Fehlermeldung einstellen
         const openDB = window.indexedDB.open('typroDB', 1);
-        openDB.onerror = function (event) {
+        openDB.onerror = event => {
             console.warn('IDB-Fehler.' + event.target.errorCode);
         };
-        openDB.onsuccess = function (event) {
+        openDB.onsuccess = event => {
             typroDB = event.target.result;
         };
         // Falls noch nicht vorhanden, Object Store erstellen
-        openDB.onupgradeneeded = function (event) {
+        openDB.onupgradeneeded = event => {
             const openDBUpgrade = event.target.result;
             if (!openDBUpgrade.objectStoreNames.contains('photos')) {
                 const photos = openDBUpgrade.createObjectStore('photos', { keyPath: 'entry', autoIncrement: true });

@@ -23,6 +23,6 @@ function slideBild(n) {
     x[bildIndex - 1].style.display = 'block';
 }
 //Erstmalige Ausführung der Funktion
-$('window').load(function () {
+$('window').load(() => {
     slideBild(bildIndex);
 });

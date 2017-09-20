@@ -12,18 +12,18 @@ var imgCtx; //context für Full-Frame-Canvas der Fotofunktion
 var newImg; //Zwischenspeicher für neues Bild
 var disableAPI = false; // Steuert, ob ImageCapture oder Canvas für Fotos verwendet wird
 //Erst Seitengröße anpassen, nach geladener Seite Hauptfunktion starten
-$(document).on('pagebeforeshow', '#scanpage', function () {
+$(document).on('pagebeforeshow', '#scanpage', () => {
     scaleContent();
     $(window).on('resize', scaleContent);
 });
-$(document).on('pageshow', '#scanpage', function () {
+$(document).on('pageshow', '#scanpage', () => {
     startup();
 });
 //Zugriff auf Kamera steuern
-$(document).on('pagehide', '#scanpage', function () {
+$(document).on('pagehide', '#scanpage', () => {
     camRelease();
 });
-$(document).on('visibilitychange', function () {
+$(document).on('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
         camRelease();
     } else if ($.mobile.activePage[0].id === 'scanpage') {
@@ -31,7 +31,7 @@ $(document).on('visibilitychange', function () {
     }
 });
 // Zustand von disableAPI abfragen
-$(function () {
+$(() => {
     if (localStorage.getItem('disableAPI') === 'true') {
         disableAPI = true;
     }
@@ -47,7 +47,7 @@ function startup() {
     imgCache = $('#imgCache');
     imgCtx = imgCache.get(0).getContext('2d');
     //Foto-Import bereitstellen
-    $('#uploadA').click(function (e) {
+    $('#uploadA').click(e => {
         e.preventDefault();
         $('#imgInput:hidden').trigger('click');
     });
@@ -57,7 +57,7 @@ function startup() {
         video: { facingMode: 'environment' },
         audio: false
         // falls Promise erfolgreich: Kamera-Stream mit Feed verknüpfen	
-    }).then(function (stream) {
+    }).then(stream => {
         camStream = stream;
         streamTrack = camStream.getVideoTracks()[0];
         $('#errorText').html('');
@@ -65,12 +65,12 @@ function startup() {
         video.get(0).play();
     })
         // Promise fehlgeschlagen: Fehlermeldung ausspielen
-        .catch(function (err) {
+        .catch(err => {
             feedCtx.clearRect(0, 0, feed.attr('width'), feed.attr('height'));
             $('#errorText').html('Kein Zugriff auf Kamera m&ouml;glich.<br>' + err);
         });
     // Vor Videostart (HTML-)Videogröße anpassen
-    video.on('loadedmetadata', function () {
+    video.on('loadedmetadata', () => {
         vidW = video.get(0).videoWidth;
         vidH = video.get(0).videoHeight;
         video.attr('width', vidW);
@@ -78,7 +78,7 @@ function startup() {
         imgCache.attr('width', vidW);
         imgCache.attr('height', vidH);
         //Video bereit: abspielen und responsive machen
-    }).on('canplay', function () {
+    }).on('canplay', () => {
         adjustFeedScale();
         refreshFrame();
         $(window).on('resize', adjustFeedScale);
@@ -109,9 +109,9 @@ function takepicture() {
             const imageCapture = new ImageCapture(streamTrack);
             imageCapture.takePhoto()
                 //Promise erfolgreich: blob zu Bild, speichern, vorschauen 
-                .then(function (img) {
+                .then(img => {
                     const reader = new FileReader(img);
-                    reader.addEventListener('load', function () {
+                    reader.addEventListener('load', () => {
                         newImg = reader.result;
                         saveImg();
                         photo.css('background-image', 'url(' + newImg + ')');
@@ -122,7 +122,7 @@ function takepicture() {
                     }
                 })
                 //Promise fehlgeschlagen: ab jetzt immer auf andere Methode zurückfallen, Kamera-Verbindung neu herstellen
-                .catch(function (err) {
+                .catch(err => {
                     legacyCam();
                     startup();
                     disableAPI = true;
@@ -188,7 +188,7 @@ function saveImg() {
     };
     let transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').add(store);
-    transaction.oncomplete = function () {
+    transaction.oncomplete = () => {
         // Bild gespeichert.
     };
 }
@@ -197,7 +197,7 @@ function imgImport(files) {
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
         const reader = new FileReader();
-        reader.addEventListener('load', function (e) {
+        reader.addEventListener('load', e => {
             newImg = e.target.result;
             photo.css('background-image', 'url(' + newImg + ')');
             photo.css('background-size', 'cover');
