@@ -14,7 +14,14 @@ var disableAPI = false; // Steuert, ob ImageCapture oder Canvas für Fotos verwe
 //Erst Seitengröße anpassen, nach geladener Seite Hauptfunktion starten
 $(document).on('pagebeforeshow', '#scanpage', () => {
     scaleContent();
-    $(window).on('resize', scaleContent);
+    $(window).on('resize', () => {
+        let scale = true;
+        if (scale){
+            scaleContent;
+            scale = false;
+            setTimeout(scale = true , 1000/2);
+        }
+    });
 });
 $(document).on('pageshow', '#scanpage', () => {
     startup();
@@ -56,7 +63,7 @@ function startup() {
     navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' },
         audio: false
-        // falls Promise erfolgreich: Kamera-Stream mit Feed verknüpfen	
+        // falls Promise erfolgreich: Kamera-Stream mit Feed verknüpfen
     }).then(stream => {
         camStream = stream;
         streamTrack = camStream.getVideoTracks()[0];
@@ -108,7 +115,7 @@ function takepicture() {
             //ImageCapture-API aufrufen (Chrome 60+, Firefox hinter flag), liefert blob
             const imageCapture = new ImageCapture(streamTrack);
             imageCapture.takePhoto()
-                //Promise erfolgreich: blob zu Bild, speichern, vorschauen 
+                //Promise erfolgreich: blob zu Bild, speichern, vorschauen
                 .then(img => {
                     const reader = new FileReader(img);
                     reader.addEventListener('load', () => {
