@@ -9,18 +9,17 @@ function buttonPush(n) {
 }
 // Änderung des Bildes entsprechend dem Index
 function slideBild(n) {
-    let i;
-    let x = $('.bilder');
-    if (n > x.length) {
+    let bilder = $('.bilder');
+    if (n > bilder.length) {
         bildIndex = 1;
     }
     if (n < 1) {
-        bildIndex = x.length;
+        bildIndex = bilder.length;
     }
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = 'none';
+    for (let i in bilder) {
+        bilder[i].style.display = 'none';
     }
-    x[bildIndex - 1].style.display = 'block';
+    bilder[bildIndex - 1].style.display = 'block';
 }
 //Erstmalige Ausführung der Funktion
 $('window').load(() => {

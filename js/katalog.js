@@ -1,7 +1,6 @@
 /* global currentDetail, detailRef:true */
 /* exported openPopup */
 'use strict';
-var selection;
 var configured;
 //Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
 $(document).on('click', '.fontPopup', evt => {
@@ -14,7 +13,7 @@ $(document).on('click', '.fontPopup', evt => {
             success: xml => {
                 let name, designer, jahr;
                 let images = [];
-                $(xml).find(selection).each((a, font) => {
+                $(xml).find(evt.target.id).each((a, font) => {
                     $(font).find('name').each((b, N) => {
                         name = $(N).text();
                     });
@@ -35,13 +34,13 @@ $(document).on('click', '.fontPopup', evt => {
                 $('#designer').html(designer);
                 $('#jahr').html(jahr);
                 if (images.length === 1) { $('.sliderButton').addClass('disabled'); } else { $('.sliderButton').removeClass('disabled'); }
-                for (let i = 0; i < images.length; i++) {
+                images.forEach((image, index) => {
                     let displayType;
-                    if (i === 0) { displayType = 'block'; } else { displayType = 'none'; }
-                    $('#banner_popup').prepend('<img src="' + images[i] + '" class="bilder" style="display: ' + displayType + '"/>');
-                }
+                    index === 0 ? displayType = 'block' : displayType = 'none';
+                    $('#banner_popup').prepend(`<img src="${image}" class="bilder" style="display: ${displayType}"/>`);
+                });
                 configured = true;
-                $('#' + selection).click();
+                $(`#${evt.target.id}`).click();
             },
             error: err => {
                 console.warn('Ajax/XML Error:' + err);
@@ -54,8 +53,8 @@ $(document).on('click', '.fontPopup', evt => {
 // Prüfen, ob Verlinkung von Scan-Detailseite, falls ja entsprechende Schrift anzeigen
 function checkRef() {
     if (detailRef) {
-        $('#' + currentDetail.id)[0].scrollIntoView();
-        $('#' + currentDetail.id).click();
+        $(`#${currentDetail.id}`)[0].scrollIntoView();
+        $(`#${currentDetail.id}`).click();
         detailRef = false;
     }
 }

@@ -95,7 +95,7 @@ function legacyCam() {
     imgCtx.drawImage(video.get(0), 0, 0, vidW, vidH);
     newImg = imgCache.get(0).toDataURL('image/png');
     saveImg();
-    photo.css('background-image', 'url(' + newImg + ')');
+    photo.css('background-image', `url(${newImg})`);
     photo.css('background-size', 'cover');
 }
 //Foto-Funktion, die durch User getriggert werden kann
@@ -114,7 +114,7 @@ function takepicture() {
                     reader.addEventListener('load', () => {
                         newImg = reader.result;
                         saveImg();
-                        photo.css('background-image', 'url(' + newImg + ')');
+                        photo.css('background-image', `url(${newImg})`);
                         photo.css('background-size', 'cover');
                     }, false);
                     if (img) {
@@ -127,7 +127,7 @@ function takepicture() {
                     startup();
                     disableAPI = true;
                     localStorage.setItem('disableAPI', 'true');
-                    console.warn('Verwendung von ImageCapture API fehlgeschlagen (' + err + '): ab jetzt Fallback zu Canvas-Methode.');
+                    console.warn(`Verwendung von ImageCapture API fehlgeschlagen (${err}): ab jetzt Fallback zu Canvas-Methode.`);
                     console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in offiziellen API-Demos auf.');
                 });
         }
@@ -194,12 +194,12 @@ function saveImg() {
 }
 //Foto-Import
 function imgImport(files) {
-    for (let i = 0; i < files.length; i++) {
+    for (let i in files) {
         let file = files[i];
         const reader = new FileReader();
         reader.addEventListener('load', e => {
             newImg = e.target.result;
-            photo.css('background-image', 'url(' + newImg + ')');
+            photo.css('background-image', `url(${newImg})`);
             photo.css('background-size', 'cover');
             saveImg();
         });

@@ -3,7 +3,6 @@
 /* exported imgDelete, imgDownload */
 'use strict';
 var picArray = [];
-var currentEntry;
 var currentDetail;
 var detailRef = false;
 //VERLAUFSEITE
@@ -29,29 +28,33 @@ $(document).on('pagebeforeshow', '#verlauf', () => {
         }
     };
     transaction.oncomplete = () => {
-        for (let i = 0; i < picArray.length; i++) {
+        picArray.forEach(pic => {
             // Einträge im Array darstellen (samt Link und onclick-Funktion zur Referenz für die Detailseite)
-            $('#previewCollection').append('<a href="#detail" onclick="currentEntry=' + picArray[i].entry + ';"><div class="verlaufBox"><div class="verlaufPic" style="background-image: url(' + picArray[i].photo + ');"></div></div></a>');
-        }
+            $('#previewCollection').append(`<div class="verlaufBox" id="${pic.entry}"><div class="verlaufPic" style="background-image: url(${pic.photo});"></div></div>`);
+        });
         picArray = [];
     };
 });
 // DETAILSEITE
-// Bei Anzeigen der Seite alle Infos des im Verlauf ausgewählten Bildes aus IndexedDB abrufen
-$(document).on('pagebeforeshow', '#detail', () => {
-    const transaction = typroDB.transaction('photos');
-    transaction.objectStore('photos')
-        .get(currentEntry)
-        .onsuccess = event => {
-            currentDetail = event.target.result;
+// Bei Anklicken eines Bilds im Verlauf alle Infos des ausgewählten Bildes aus IndexedDB abrufen, Detailseite konfigurieren und anzeigen
+$(() => {
+    $(document).on('click', '.verlaufBox', evt => {
+        let key = parseInt(evt.currentTarget.id);
+        const transaction = typroDB.transaction('photos');
+        transaction.objectStore('photos')
+            .get(key)
+            .onsuccess = event => {
+                currentDetail = event.target.result;
+            };
+        transaction.oncomplete = () => {
+            // Config der Detailseite basierend auf abgerufenen Bild-Infos
+            let time = currentDetail.created;
+            $('#detailImg').css('background-image', `url(${currentDetail.photo})`);
+            $('#detailFont').text(currentDetail.font);
+            $('#detailDate').text(`Gescannt: ${time.getDate()}.${(time.getMonth() + 1)}.${time.getFullYear()}, ${time.toLocaleTimeString('de-DE')}`);
+            $(':mobile-pagecontainer').pagecontainer('change', $('#detail'));
         };
-    transaction.oncomplete = () => {
-        // Config der Detailseite basierend auf abgerufenen Bild-Infos
-        let time = currentDetail.created;
-        $('#detailImg').css('background-image', 'url(' + currentDetail.photo + ')');
-        $('#detailFont').text(currentDetail.font);
-        $('#detailDate').text('Gescannt: ' + time.getDate() + '.' + (time.getMonth() + 1) + '.' + time.getFullYear() + ', ' + time.toLocaleTimeString('de-DE'));
-    };
+    });
 });
 // Löschen des Bildes mittels IndexedDB readwrite-Transaktion, Reset der Detailseite, zurück zum Verlauf
 function imgDelete() {

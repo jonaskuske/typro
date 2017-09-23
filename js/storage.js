@@ -33,7 +33,7 @@ function logCheck(mode) {
     }
     // iteriert über Nutzer-Array und prüft, ob eingegebene Daten zu einem Nutzer passen
     let loginSuccess = () => {
-        for (let i = 0; i < allUsers.length; i++) {
+        for (let i in allUsers) {
             if ((userEntry === allUsers[i].username && passwortEntry === allUsers[i].passwort) && storeUser(userEntry, passwortEntry)) {
                 login(i, mode);
                 return true;
@@ -44,8 +44,8 @@ function logCheck(mode) {
 }
 function login(user, mode) {
     currentUser = allUsers[user].username;
-    $('#pUser').text('Hallo, ' + currentUser);
-    $('#user').css('background-image', 'url(' + allUsers[user].img + ')');
+    $('#pUser').text(`Hallo, ${currentUser}`);
+    $('#user').css('background-image', `url(${allUsers[user].img})`);
     if (allUsers[user].hasOwnProperty('css')) { $('#pUser').css(allUsers[user].css); } else {
         $('#pUser').css('background-color', '').css('border-radius', '');
     }
@@ -56,7 +56,7 @@ function logout() {
     localStorage.removeItem('passwort');
     currentUser = 'noLogin';
     $('#pUser').text('Einloggen');
-    $('#user').css('background-image', 'url(' + '/img/placeholder.png' + ')');
+    $('#user').css('background-image', 'url(/img/placeholder.png)');
     $('#pUser').css('background-color', '').css('border-radius', '');
 }
 // Login-Daten in Local Storage speichern
