@@ -5,10 +5,10 @@
 var typroDB; //Zugriff auf Datenbank
 var currentUser;
 const allUsers = [
-    { 'username': 'admin', 'passwort': 'futura', 'img': '/img/admin.png' },
-    { 'username': 'test', 'passwort': 'comicsans', 'img': '/img/test.png' },
-    { 'username': 'darth vader', 'passwort': 'darkside', 'img': '/img/darth.png', 'css': { 'background-color': 'black', 'border-radius': '30%' } },
-    { 'username': 'Jonas', 'passwort': 'Serifen', 'img': '/img/jonas.jpg', 'css': { 'background-color': 'rgba(20,20,20,0.7)', 'border-radius': '4%' } }
+    { 'username': 'admin', 'passwort': 'futura', 'img': '/img/admin.png', 'bg': 'bright' },
+    { 'username': 'test', 'passwort': 'comicsans', 'img': '/img/test.png', 'bg': 'bright' },
+    { 'username': 'darth vader', 'passwort': 'darkside', 'img': '/img/darth.png', 'bg': 'dark' },
+    { 'username': 'Jonas', 'passwort': 'Serifen', 'img': '/img/jonas.jpg', 'bg': 'dark' }
 ];
 //Automatisches Löschen von Speicher verhindern, falls möglich
 if (navigator.storage && navigator.storage.persist) {
@@ -46,9 +46,7 @@ function login(user, mode) {
     currentUser = allUsers[user].username;
     $('#pUser').text(`Hallo, ${currentUser}`);
     $('#user').css('background-image', `url(${allUsers[user].img})`);
-    if (allUsers[user].hasOwnProperty('css')) { $('#pUser').css(allUsers[user].css); } else {
-        $('#pUser').css('background-color', '').css('border-radius', '');
-    }
+    (allUsers[user].bg === 'dark') ? $('#pUser').addClass('darkUser') : $('#pUser').removeClass('darkUser');
     if (mode !== 'auto') { loginFeedback('success'); }
 }
 function logout() {
@@ -57,7 +55,7 @@ function logout() {
     currentUser = 'noLogin';
     $('#pUser').text('Einloggen');
     $('#user').css('background-image', 'url(/img/placeholder.png)');
-    $('#pUser').css('background-color', '').css('border-radius', '');
+    $('#pUser').removeClass('darkUser');
 }
 // Login-Daten in Local Storage speichern
 function storeUser(user, passwort) {

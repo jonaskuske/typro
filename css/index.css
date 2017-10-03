@@ -60,3 +60,7 @@
 #legal_content {
     margin: 0 30px 0 30px;
 }
+.darkUser {
+    background-color: rgba(20,20,20,0.7);
+    border-radius: 4%;
+}
