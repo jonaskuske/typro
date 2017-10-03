@@ -1,11 +1,12 @@
-//Service Worker (sw) für Offline-Funktionalität (Chrome, Firefox, Opera und Edge mit flag)
+//Service Worker for offline functionality (Chrome, Firefox and Opera + Edge behind flag)
 'use strict';
-const appcache = 'typro'; //Cache-Name
-// Liste mit Objekten, die vor aktiv werden des sw zwingend gechached sein müssen
+const appcache = 'typro';
+// array with elements to cache
 const cacheRequired = [
     '/',
     '/#home',
     '/#home?utm_source=homescreen',
+    '/manifest.json',
     '/jquery/jquery-1.11.1.min.js',
     '/jquery/jquery.mobile-1.4.5.min.js',
     '/jquery/jquery.mobile-1.4.5.min.map',
@@ -21,32 +22,20 @@ const cacheRequired = [
     '/css/themes/images/icons-png/einstellungen.png',
     '/css/themes/images/icons-png/carat-l-black.png',
     '/css/index.css',
-    '/css/einstellungen.css',
-    '/css/icons.css',
-    '/css/katalog.css',
-    '/css/logIn.css',
-    '/css/panel.css',
-    '/css/scan.css',
-    '/css/splash.css',
-    '/css/verlauf.css',
-    '/css/detail.css',
-    '/js/einstellungen.js',
-    '/js/katalog.js',
-    '/js/storage.js',
-    '/js/panel.js',
-    '/js/scan.js',
-    '/js/slider.js',
-    '/js/splash.js',
-    '/js/verlauf.js',
+    '/css/catalogue.css',
+    '/css/camera.css',
+    '/css/images.css',
+    '/js/catalogue.js',
+    '/js/camera.js',
+    '/js/index.js',
+    '/js/images.js',
     '/img/TP_Logo.png',
     '/img/placeholder.png',
     '/img/darth.png',
     '/img/admin.png',
     '/img/test.png',
-    '/img/scan.png',
-    '/manifest.json'
+    '/img/scan.png'
 ];
-// Liste mit Objekten, die auch noch nach Installation gecached werden können
 const cacheOptional = [
     '/xml/fonts.xml',
     '/img/camBG.png',
@@ -111,8 +100,7 @@ const cacheOptional = [
     '/img/Verdana2.jpg',
     '/img/Verdana3.jpg'
 ];
-// Bei Installieren des sw warten bis Cache angelegt(geöffnet) und cacheRequired returned, sodass das .then promise aufgelöst wird
-// Falls cacheRequired nicht vollständig gechached wurde, schlägt das promise fehl, sw wird dann NICHT installiert
+// open cache upon installing
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(appcache)
@@ -122,12 +110,11 @@ self.addEventListener('install', event => {
             })
     );
 });
-// Bei Netzwerkanfrage der Seite (fetch): Anfrage beantworten
+// handle fetch requests with respond()
 self.addEventListener('fetch', event => {
     event.respondWith(respond(event));
 });
-// Cache öffnen, falls passendes Objekt im Cache vorhanden damit die Anfrage beantworten und Cache aktualisieren (-> bei nächstem Pageload/Fetch wird neue Version ausgespielt),
-// anderenfalls auf Netzwerk zurückgreifen
+// open cache, respond with requested item if available then update it, otherwise fetch it from the server
 function respond(event) {
     return caches.open(appcache).then(cache => {
         return cache.match(event.request).then(response => {

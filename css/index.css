@@ -1,10 +1,31 @@
 @charset "utf-8";
-/* CSS Document */
-/* Einbindung Schrift */
+/* Font and Icons */
 * {
 	font-family: "Lato";
 }
-/* Header Styling */
+.ui-icon-start:after{
+    background-image: url("themes/images/icons-png/start.png");
+}
+.ui-icon-scan:after {
+    background-image: url("themes/images/icons-png/camera-white.png");
+}
+
+.ui-icon-katalog:after {
+    background-image: url("themes/images/icons-png/katalog.png");
+}
+
+.ui-icon-verlauf:after {
+    background-image: url("themes/images/icons-png/verlauf.png");
+}
+
+.ui-icon-einstellungen:after {
+    background-image: url("themes/images/icons-png/einstellungen.png");
+}
+/*
+/
+/
+/
+Styling Home */
 #header h3 {
 	font-size: 25px;
     cursor: default;
@@ -63,4 +84,127 @@
 .darkUser {
     background-color: rgba(20,20,20,0.7);
     border-radius: 4%;
+}
+/*
+/
+/
+/
+Styling Settings*/
+/* Schrift Einstellungen */
+#einstellungen ul li a {
+    font-family: "Lato";
+}
+/* Styling Map */
+#map-page, #map-canvas {
+    height: 50%;
+    padding: 0;
+}
+/* Styling Buttons */
+#logout a, #reset a {
+    background-color: #332112;
+    color: #FFFFFF;
+}
+/*
+/
+/
+/
+Styling Splash Page */
+#splash {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+#logo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo img {
+    width: 20vw;
+    height: 20vw;
+}
+
+#logo h1 {
+    color: #332112;
+    font-family: "Lato";
+    font-weight: 600;
+    font-size: 6vw;
+}
+
+#loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #332112;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+/* Animation "Loader" */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/*
+/
+/
+Styling Panel */
+#menu ul li a {
+    font-family: "Lato";
+    font-weight: 400;
+}
+/* Styling Account-Switcher im Panel */
+#user {
+    display: flex;
+    background-color: #fff;
+    background-image: url("../img/placeholder.png");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    justify-content: center;
+    align-items: flex-end;
+    margin:0;
+    padding: 0;
+}
+
+#userDiv {
+    display: block;
+    font-weight: 500;
+    font-size: 30px;
+    color: #fff;
+}
+#pUser {
+	color: white;
+}
+#user:after{
+    display: none;
+}
+/* Styling Logo im Panel */
+#logoLi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+}
+
+#logoDiv img {
+    height: 100px;
+}
+/*
+/
+/
+/
+Styling Login */
+.logWrapper {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+.logFeed {
+    text-align: center;
 }

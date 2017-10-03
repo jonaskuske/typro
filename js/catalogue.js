@@ -1,4 +1,4 @@
-/* exported openPopup */
+/* exported openPopup, buttonPush */
 'use strict';
 //Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
 $(() => {
@@ -39,3 +39,26 @@ function configurePopup(n, d, j, b) {
         $('#slideshow').prepend(`<img src="${bild}" class="bilder" style="display: ${display}"/>`);
     });
 }
+//
+// cycle through imgs in slideshow
+var bildIndex = 1; // default index
+// change index on button push
+function buttonPush(n) {
+    slideBild(bildIndex += n);
+}
+// display new image according to index
+function slideBild(n) {
+    let bilder = $('.bilder');
+    if (n > bilder.length) {
+        bildIndex = 1;
+    }
+    if (n < 1) {
+        bildIndex = bilder.length;
+    }
+    for (let i = 0; i < bilder.length; i++) {
+        bilder[i].style.display = 'none';
+    }
+    bilder[bildIndex - 1].style.display = 'block';
+}
+// run function on pageload
+$('window').load(() => { (slideBild(bildIndex)); });

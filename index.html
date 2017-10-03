@@ -2,62 +2,48 @@
 <html lang="de">
 
 <head>
+    <title>typro</title>
     <meta charset="UTF-8">
     <meta lang="DE">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta name="theme-color" content="#332112">
-    <meta name="viewport" content="minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="no">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="application-name" content="typro">
     <meta name="msapplication-TileImage" content="/icons/typro_icon_144px.png">
     <meta name="msapplication-TileColor" content="#332112">
-    <title>typro</title>
-    <!-- Einbindung APIs -->
-    <link rel="stylesheet" href="css/themes/typro.min.css">
-    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css">
-    <link rel="stylesheet" href="jquery/jquery.mobile.structure-1.4.5.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <!-- Einbindung Manifest & Favicon -->
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" type="image/x-icon" href="/icons/favicon.ico">
     <link rel="apple-touch-icon" href="/icons/typro_icon_2x.png">
     <!-- Einbindung CSS -->
-    <link rel="stylesheet" href="css/splash.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/panel.css">
-    <link rel="stylesheet" href="css/logIn.css">
-    <link rel="stylesheet" href="css/katalog.css">
-    <link rel="stylesheet" href="css/scan.css">
-    <link rel="stylesheet" href="css/einstellungen.css">
-    <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/verlauf.css">
-    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="css/catalogue.css">
+    <link rel="stylesheet" href="css/camera.css">
+    <link rel="stylesheet" href="css/images.css">
+    <!-- Einbindung ext Quellen -->
+    <link rel="stylesheet" href="css/themes/typro.min.css">
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="jquery/jquery.mobile.structure-1.4.5.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <!-- Einbindung JavaScripts -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
-    <script src="js/splash.js"></script>
+    <script src="js/index.js"></script>
     <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBkpYG7CNKFyLhQ2-ABY32Vab_qEX3UZdY"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/panel.js"></script>
-    <script src="js/slider.js"></script>
-    <script src="js/einstellungen.js"></script>
-    <script src="js/verlauf.js"></script>
-    <script src="js/katalog.js"></script>
-    <script src="js/scan.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyBkpYG7CNKFyLhQ2-ABY32Vab_qEX3UZdY"></script>
+    <script src="js/images.js"></script>
+    <script src="js/catalogue.js"></script>
+    <script src="js/camera.js"></script>
 </head>
 
 <body>
-    <!--SPLASH-->
     <div data-role="page" id="splash">
         <div id="logo"> <img src="img/TP_Logo.png">
             <h1>typro</h1>
             <div id="loader"></div>
         </div>
     </div>
-    <!--START-->
+    <!--HOME-->
     <div data-role="page" id="home" data-theme="a">
-        <!--Header-->
         <div data-role="header" data-id="header" data-position="fixed" id="header">
             <!--Menü-Button-->
             <a href="#menu" aria-label="Menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
@@ -68,7 +54,6 @@
         </div>
         <!--Main-->
         <div data-role="main" id="content_index" class="ui-content">
-            <!--Scan Button-->
             <a href="#scanpage"> <img src="img/scan.png" alt="Scan"> </a>
         </div>
     </div>
@@ -79,24 +64,21 @@
             <h3>typro</h3>
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
-        <!--Content-->
+        <!--Main-->
         <div id="content_scan">
-            <!-- Kamera Feed-->
             <canvas id="feed"></canvas>
             <div id="errorContainer">
                 <p id="errorText"></p>
             </div>
-            <!-- Bedienelemente-->
             <div id="camFooter">
                 <div id="uploadDiv"></div>
-                <button id="shutter" onclick="takepicture()"></button>
+                <button id="shutter"></button>
                 <a href="#verlauf">
                     <div id="photo"></div>
                 </a>
             </div>
-            <!-- versteckte Elemente: Input-Button für Foto-Upload, Video für Kamera-Feed, Canvas für Fotofunktion-->
+            <!-- hidden elements: input-button for photo import, video for camera feed, canvas for taking pictures -->
             <input data-role="none" id="imgInput" type="file" accept="image/*" multiple class="hidden">
-            <!--onchange="imgImport(this.files)"-->
             <video muted autoplay playsinline class="hidden"></video>
             <canvas id="imgCache" class="hidden"></canvas>
         </div>
@@ -105,11 +87,10 @@
     <div data-role="page" data-theme="a" id="verlauf">
         <div data-role="header" data-id="header" data-position="fixed" id="header">
             <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-            <!--Title d. App-->
             <h3>typro</h3>
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
-        <!-- Content-->
+        <!-- Main-->
         <div data-role="content" id="content_verlauf">
             <h2>Scanverlauf<span id="scanUser"></span></h2>
             <div id="previewContainer">
@@ -124,7 +105,7 @@
             <h3>typro</h3>
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
-        <!--Content-->
+        <!--Main-->
         <div data-role="content" id="detailcontent">
             <div id="detailHeader">
                 <a class="detailNavBtn" id="detailBack" href="#verlauf">
@@ -142,10 +123,10 @@
                 </div>
                 <p id="detailDate"></p>
                 <div id="detailImgInteraction">
-                    <div id="downloadBtn" class="detailBtn" onclick="imgDownload(currentDetail.photo);">
+                    <div id="downloadBtn" class="detailBtn">
                         <p>Bild speichern</p>
                     </div>
-                    <div id="deleteBtn" class="detailBtn" onclick="imgDelete();">
+                    <div id="deleteBtn" class="detailBtn">
                         <p>Bild l&ouml;schen</p>
                     </div>
                 </div>
@@ -155,18 +136,13 @@
     </div>
     <!--KATALOG-->
     <div data-role="page" id="katalog" data-theme="a">
-        <!--Header-->
         <div data-role="header" data-id="header" data-position="fixed" id="header">
-            <!--Menü-Button-->
             <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-            <!--Titel d. App-->
             <h3>typro</h3>
-            <!--Einstellungs-Button-->
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
         <!--Main-->
         <div data-role="main" id="content_katalog">
-            <!--Liste der Schriften -->
             <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
                 <li><a href="#font_popup" data-rel="popup" id="font1">Avenir</a></li>
                 <li><a href="#font_popup" data-rel="popup" id="font2">Calibri</a></li>
@@ -192,34 +168,26 @@
         </div>
         <div data-role="popup" id="font_popup">
             <h1 id="fontName">Font</h1>
-            <!-- Banner = Bildergalerie mit Buttons -->
             <div class="banner" id="slideshow">
                 <a class="ui-btn ui-icon-carat-l ui-btn-icon-notext sliderButton" onclick="buttonPush(-1)"></a>
                 <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush(+1)"></a>
             </div>
-            <!-- Eingelesene Infos -->
             <div>
                 <p><b>Designer:</b> <span id="designer">Designer</span></p>
                 <p><b>Jahr: </b><span id="jahr">Jahr</span></p>
             </div>
-            <!-- Pop-Up schließen Button -->
             <a href="#" data-role="button" data-rel="back">Schließen</a>
         </div>
     </div>
     <!--LOGIN-->
     <div data-role="page" id="log-in" data-theme="a">
-        <!--Header-->
         <div data-role="header" data-id="header" data-position="fixed" id="header">
-            <!--Menü-Button-->
             <a href="#menu" id="menu_log-in" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-            <!--Titel d. App-->
             <h3>typro</h3>
-            <!--Einstellungs-Button-->
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
         <!--Main-->
         <div data-role="main" id="main_log-in">
-            <!--Log In Form-->
             <div class="logWrapper">
                 <form class="ui-content" name="myForm">
                     <div>
@@ -227,7 +195,6 @@
                         <input type="text" name="username" id="username" placeholder="Username"> Passwort:
                         <input type="password" name="passwort" id="passwort" placeholder="Passwort">
                     </div>
-                    <!-- Submit Button -->
                     <input type="button" data-inline="true" value="Log In" onclick="logCheck();">
                 </form>
             </div>
@@ -238,17 +205,12 @@
     </div>
     <!--EINSTELLUNGEN-->
     <div data-role="page" id="einstellungen" data-theme="a">
-        <!--Header-->
         <div data-role="header" data-id="header" data-position="fixed" id="header">
-            <!--Menü-Button-->
             <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-            <!--Titel d. App-->
             <h3>typro</h3>
-            <!--Einstellungs-Button-->
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
         <!--Main-->
         <div data-role="main" id="content_einstellungen">
-            <!-- Untermenü -->
             <ul data-role="listview">
                 <li><a href="#logout" data-rel="popup">Log-out</a></li>
                 <li><a href="#reset" data-rel="popup">Zurücksetzen</a></li>
@@ -256,14 +218,12 @@
                 <li><a href="#legal">Wichtige Informationen</a></li>
             </ul>
         </div>
-        <!-- Pop Up: Log-out -->
         <div data-role="popup" id="logout">
             <h2>Log-out</h2>
             <p>Wirklich ausloggen?</p>
             <a href="#" data-role="button" id="l_ja" data-rel="back">Ja</a>
             <a href="#" data-role="button" data-rel="back">Nein</a>
         </div>
-        <!-- Pop Up: Zurücksetzen -->
         <div data-role="popup" id="reset">
             <h2>Zurücksetzen</h2>
             <p>Die App wirklich zurücksetzen?</p>
@@ -274,16 +234,12 @@
     </div>
     <!--KONTAKT-->
     <div data-role="page" id="map-page">
-        <!--Header-->
         <div data-role="header" data-id="header" data-position="fixed" id="header">
-            <!--Menü-Button-->
             <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-            <!--Titel d. App-->
             <h3>typro</h3>
-            <!--Einstellungs-Button-->
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
-        <!-- Infotext -->
+        <!-- Main -->
         <div data-role="main" id="kontakt_text">
             <h3>Das Team</h3>
             <p>Max M. Schneider (34507)</p>
@@ -294,7 +250,6 @@
             <br>
             <p>Semesterarbeit Programmieren</p>
             <p>Hochschule Bremerhaven</p>
-            <!-- Einbindung Google Map -->
             <div id="map_canvas"></div>
         </div>
         <div role="main" class="ui-content" id="map-canvas">
@@ -302,17 +257,13 @@
     </div>
     <!--LEGAL-->
     <div data-role="page" id="legal">
-        <!--Header-->
         <div data-role="header" data-id="header" data-position="fixed" id="header">
-            <!--Menü-Button-->
             <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
-            <!--Titel d. App-->
             <h3>typro</h3>
-            <!--Einstellungs-Button-->
             <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
         </div>
+        <!-- Main -->
         <div data-role="main" id="legal_content">
-            <!-- Info-Text -->
             <h3>Wichtige Informationen</h3>
             <p>Diese Anwendung wurde, im Rahmen einer Semesterarbeit, von folgenden Studenten der Hochschule Bremerhaven (Studiengang
                 Digitale Medienproduktion) erstellt:</p>
@@ -325,9 +276,7 @@
             <p>27568 Bremerhaven</p>
             <p>Fach: Grundlagen der Medieninformatik 1 - Programmieren</p>
             <p>Dozent: Alfred Schmidt, Tutor: Julian Timo Verbarg</p>
-            <!-- Logo der HS -->
             <img src="/img/HS_logo.png" />
-            <!-- Infos zu Bildern -->
             <p><i>Das Logo der HS Bremerhaven stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
                 href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg" target="_blank" rel="noopener">Wikipedia</a>.</i></p>
             <p><i>Das "Darth Vader Profilbild" stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
@@ -338,7 +287,6 @@
     <!--PANEL-->
     <div data-role="panel" id="menu" data-display="overlay" data-position="left" data-theme="a">
         <ul data-role="listview">
-            <!-- Account-Switcher-->
             <li data-icon="none">
                 <a href="#log-in" id="user">
                     <div id="userDiv">
@@ -346,7 +294,6 @@
                     </div>
                 </a>
             </li>
-            <!--Menü-Punkte-->
             <li data-icon="start"><a href="#home">Start</a></li>
             <li data-icon="scan"><a href="#scanpage">Scan</a></li>
             <li data-icon="katalog"><a href="#katalog">Katalog</a></li>
