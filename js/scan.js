@@ -2,7 +2,6 @@
 /* global typroDB, currentUser, ImageCapture */
 /* exported imgImport, takepicture */
 'use strict';
-
 var video, feed, photo, imgCache; // für Zugriff auf HTML ELemente
 var streamTrack = null; //(globaler) Zugriff auf Kamera-Feed
 var vidW, vidH, feedW, feedH, renderW, renderH, offsetX = 0,
