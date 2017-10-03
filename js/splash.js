@@ -1,14 +1,17 @@
 'use strict';
-var rClick;
-//Rechtsklick deaktivieren
-$(() => {
-    $(this).bind('contextmenu', e => {
-        if (!rClick) { e.preventDefault(); }
-    });
+$(document).bind('mobileinit', () => {
+    $.mobile.defaultPageTransition = 'none';
 });
 // Dauer Anzeige Splash Page
 setTimeout(() => {
     if ($.mobile.activePage[0].id === 'splash') {
         $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
     }
-}, 2000);
+}, 1500);
+//Rechtsklick deaktivieren
+var rClick;
+$(() => {
+    $(this).bind('contextmenu', e => {
+        if (!rClick) { e.preventDefault(); }
+    });
+});
