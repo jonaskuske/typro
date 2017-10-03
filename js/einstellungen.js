@@ -1,11 +1,10 @@
 /* global typroDB, google, logout */
-// JS der Einstellungsseite+Unterseiten
 'use strict';
-// Löschen der Username und Passwort-Informationen aus dem Localstorage
+// Nach Bestätigung des Dialogs Auslog-Funktion ausführen
 $(document).on('click touchstart', '#l_ja', () => {
     logout();
 });
-// Kompletten Speicher löschen
+// Ausloggen + Bilder löschen (reset)
 $(document).on('click touchstart', '#b_ja', () => {
     var transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').clear();

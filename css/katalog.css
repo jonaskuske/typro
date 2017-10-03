@@ -16,12 +16,12 @@
     color: #FFFFFF;
 }
 
-#banner_popup img {
+#slideshow img {
     width: 70vw;
     order: 2;
 }
 
-#banner_popup a {
+#slideshow a {
     height: 20vw;
     width: 8vw;
 }

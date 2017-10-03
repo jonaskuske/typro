@@ -1,63 +1,41 @@
-/* global currentDetail, detailRef:true */
 /* exported openPopup */
 'use strict';
-var configured;
 //Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
-$(document).on('click', '.fontPopup', evt => {
-    if (!configured) {
-        evt.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: '../xml/fonts.xml',
-            dataType: 'xml',
-            success: xml => {
-                let name, designer, jahr;
-                let images = [];
-                $(xml).find(evt.target.id).each((a, font) => {
-                    $(font).find('name').each((b, N) => {
-                        name = $(N).text();
+$(() => {
+    let configured;
+    $('#content_katalog ul li a').click(evt => {
+        if (!configured) {
+            evt.preventDefault();
+            $.ajax({
+                url: '../xml/fonts.xml',
+                success: xml => {
+                    let font = $(xml).find(evt.target.id);
+                    let name, designer, jahr, bilder = [];
+                    name = font.find('name').text();
+                    designer = font.find('designer').text();
+                    jahr = font.find('jahr').text();
+                    font.find('images').find('img').each((_, img) => {
+                        bilder.push($(img).text());
                     });
-                    $(font).find('designer').each((c, D) => {
-                        designer = $(D).text();
-                    });
-                    $(font).find('jahr').each((d, J) => {
-                        jahr = $(J).text();
-                    });
-                    $(font).find('images').each((e, I) => {
-                        $(I).find('img').each((f, img) => {
-                            images.push($(img).text());
-                        });
-                    });
-                });
-                $('.bilder').remove();
-                $('.h1_popup').html(name);
-                $('#designer').html(designer);
-                $('#jahr').html(jahr);
-                if (images.length === 1) { $('.sliderButton').addClass('disabled'); } else { $('.sliderButton').removeClass('disabled'); }
-                images.forEach((image, index) => {
-                    let displayType;
-                    index === 0 ? displayType = 'block' : displayType = 'none';
-                    $('#banner_popup').prepend(`<img src="${image}" class="bilder" style="display: ${displayType}"/>`);
-                });
-                configured = true;
-                $(`#${evt.target.id}`).click();
-            },
-            error: err => {
-                console.warn('Ajax/XML Error:' + err);
-            }
-        });
-    } else {
-        configured = false;
-    }
+                    configurePopup(name, designer, jahr, bilder);
+                    configured = true;
+                    $(`#${evt.target.id}`).click();
+                }
+            });
+        } else {
+            configured = false;
+        }
+    });
 });
-// Prüfen, ob Verlinkung von Scan-Detailseite, falls ja entsprechende Schrift anzeigen
-function checkRef() {
-    if (detailRef) {
-        $(`#${currentDetail.id}`)[0].scrollIntoView();
-        $(`#${currentDetail.id}`).click();
-        detailRef = false;
-    }
+function configurePopup(n, d, j, b) {
+    $('#fontName').html(n);
+    $('#designer').html(d);
+    $('#jahr').html(j);
+    $('.bilder').remove();
+    (b.length === 1) ? $('.sliderButton').addClass('disabled') : $('.sliderButton').removeClass('disabled');
+    b.forEach((bild, index) => {
+        let display;
+        index === 0 ? display = 'block' : display = 'none';
+        $('#slideshow').prepend(`<img src="${bild}" class="bilder" style="display: ${display}"/>`);
+    });
 }
-$(document).on('pageshow', '#katalog', () => {
-    checkRef();
-});

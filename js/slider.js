@@ -16,7 +16,7 @@ function slideBild(n) {
     if (n < 1) {
         bildIndex = bilder.length;
     }
-    for (let i in bilder) {
+    for (let i = 0; i < bilder.length; i++) {
         bilder[i].style.display = 'none';
     }
     bilder[bildIndex - 1].style.display = 'block';
