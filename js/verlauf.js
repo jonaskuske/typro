@@ -2,9 +2,7 @@
 /* global typroDB, currentUser */
 /* exported imgDelete, imgDownload */
 'use strict';
-var picArray = [];
 var currentDetail;
-var detailRef = false;
 //VERLAUFSEITE
 // Falls eingeloggter User: Angabe im Titel
 $(document).on('pagebeforeshow', '#verlauf', () => {
@@ -15,6 +13,7 @@ $(document).on('pagebeforeshow', '#verlauf', () => {
         $('#scanUser').text('');
     }
     // Zugriff auf IndexedDB: Abruf der Bilder des aktuellen Users (mit Index+Cursor) und speichern von Bild und Key in Array
+    let picArray = [];
     const transaction = typroDB.transaction('photos');
     const index = transaction.objectStore('photos').index('user');
     index.openCursor(IDBKeyRange.only(currentUser)).onsuccess = event => {
@@ -48,10 +47,11 @@ $(() => {
             };
         transaction.oncomplete = () => {
             // Config der Detailseite basierend auf abgerufenen Bild-Infos
-            let time = currentDetail.created;
+            let date = currentDetail.created;
+            let toGermanDate = new Intl.DateTimeFormat('de-DE');
             $('#detailImg').css('background-image', `url(${currentDetail.photo})`);
             $('#detailFont').text(currentDetail.font);
-            $('#detailDate').text(`Gescannt: ${time.getDate()}.${(time.getMonth() + 1)}.${time.getFullYear()}, ${time.toLocaleTimeString('de-DE')}`);
+            $('#detailDate').text(`Gescannt: ${toGermanDate.format(date)}, ${date.toLocaleTimeString('de-DE')}`);
             $(':mobile-pagecontainer').pagecontainer('change', $('#detail'));
         };
     });
@@ -74,12 +74,12 @@ function imgDownload(pic) {
     dl.remove();
 }
 // Falls User auf Link zum Katalog klickt, vor pagechange die Verknüpfung aktivieren (vgl. checkRef in katalog.js)
-$(document).on('pageinit', '#detail', () => {
+
+$(() => {
     $('#detailKatalog').on('click', e => {
-        if (!detailRef) {
-            e.preventDefault();
-            detailRef = true;
-            $('#detailKatalog').click();
-        }
+        e.preventDefault();
+        $(':mobile-pagecontainer').pagecontainer('change', $('#katalog'));
+        $(`#${currentDetail.id}`)[0].scrollIntoView();
+        $(`#${currentDetail.id}`).click();
     });
 });
