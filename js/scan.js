@@ -1,23 +1,62 @@
 //Für eslint:
-/* global typroDB, currentUser, ImageCapture, disableAPI:true */
+/* global typroDB, currentUser, ImageCapture */
 /* exported imgImport, takepicture */
 'use strict';
 var video, feed, photo, imgCache; // für Zugriff auf HTML ELemente
-var camStream = null,
-    streamTrack; //(globaler) Zugriff auf Kamera-Feed
+var streamTrack = null; //(globaler) Zugriff auf Kamera-Feed
 var vidW, vidH, feedW, feedH, renderW, renderH, offsetX = 0,
     offsetY = 0; // zur Berechnung der Feed-Größe
-var feedCtx; //context für gecroppten Canvas des Kamera-Feeds
-var imgCtx; //context für Full-Frame-Canvas der Fotofunktion
-var newImg; //Zwischenspeicher für neues Bild
+var imgCtx, feedCtx; //context für Full-Frame-Canvas der Fotofunktion
 var disableAPI = false; // Steuert, ob ImageCapture oder Canvas für Fotos verwendet wird
+//Funktion zum Bereitstellen des Kamera-Feeds
+function startCamera() {
+    // Kamera-Feed abfragen
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment' },
+        audio: false
+        // falls Promise erfolgreich: Kamera-Stream mit Feed verknüpfen
+    }).then(stream => {
+        $('#errorText').html('');
+        streamTrack = stream.getVideoTracks()[0];
+        video.get(0).srcObject = stream;
+        video.get(0).play();
+    })
+        // Promise fehlgeschlagen: Fehlermeldung ausspielen
+        .catch(err => {
+            feedCtx.clearRect(0, 0, feed.attr('width'), feed.attr('height'));
+            $('#errorText').html('Kein Zugriff auf Kamera m&ouml;glich.<br>' + err);
+        });
+}
+// video configuration + initial setup
+$(() => {
+    // link variables
+    video = $('video');
+    photo = $('#photo');
+    feed = $('#feed');
+    imgCache = $('#imgCache');
+    feedCtx = feed.get(0).getContext('2d');
+    imgCtx = imgCache.get(0).getContext('2d');
+    // configure vid and start playback
+    video.on('loadedmetadata', () => {
+        vidW = video.get(0).videoWidth;
+        vidH = video.get(0).videoHeight;
+        video.attr('width', vidW);
+        video.attr('height', vidH);
+        imgCache.attr('width', vidW);
+        imgCache.attr('height', vidH);
+    }).on('canplay', () => {
+        adjustFeedScale();
+        playback(feedCtx);
+    });
+
+});
 //Erst Seitengröße anpassen, nach geladener Seite Hauptfunktion starten
 $(document).on('pagebeforeshow', '#scanpage', () => {
     scaleContent();
     $(window).on('resize', scaleContent);
-});
-$(document).on('pageshow', '#scanpage', () => {
-    startup();
+    $(window).on('resize', adjustFeedScale);
+    startCamera();
 });
 //Zugriff auf Kamera steuern
 $(document).on('pagehide', '#scanpage', () => {
@@ -27,7 +66,7 @@ $(document).on('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
         camRelease();
     } else if ($.mobile.activePage[0].id === 'scanpage') {
-        startup();
+        startCamera();
     }
 });
 // Zustand von disableAPI abfragen
@@ -36,102 +75,9 @@ $(() => {
         disableAPI = true;
     }
 });
-//HAUPTFUNKTION
-//Startup Funktion zum Bereitstellen des Kamera-Feeds und der Import-Funktion
-function startup() {
-    // Variablen mit korrespondierenden HTML-Elementen verknüpfen
-    video = $('video');
-    photo = $('#photo');
-    feed = $('#feed');
-    feedCtx = feed.get(0).getContext('2d');
-    imgCache = $('#imgCache');
-    imgCtx = imgCache.get(0).getContext('2d');
-    //Foto-Import bereitstellen
-    $('#uploadA').click(e => {
-        e.preventDefault();
-        $('#imgInput:hidden').trigger('click');
-    });
-    // Kamera-Feed abfragen
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' },
-        audio: false
-        // falls Promise erfolgreich: Kamera-Stream mit Feed verknüpfen	
-    }).then(stream => {
-        camStream = stream;
-        streamTrack = camStream.getVideoTracks()[0];
-        $('#errorText').html('');
-        video.get(0).srcObject = camStream;
-        video.get(0).play();
-    })
-        // Promise fehlgeschlagen: Fehlermeldung ausspielen
-        .catch(err => {
-            feedCtx.clearRect(0, 0, feed.attr('width'), feed.attr('height'));
-            $('#errorText').html('Kein Zugriff auf Kamera m&ouml;glich.<br>' + err);
-        });
-    // Vor Videostart (HTML-)Videogröße anpassen
-    video.on('loadedmetadata', () => {
-        vidW = video.get(0).videoWidth;
-        vidH = video.get(0).videoHeight;
-        video.attr('width', vidW);
-        video.attr('height', vidH);
-        imgCache.attr('width', vidW);
-        imgCache.attr('height', vidH);
-        //Video bereit: abspielen und responsive machen
-    }).on('canplay', () => {
-        adjustFeedScale();
-        refreshFrame();
-        $(window).on('resize', adjustFeedScale);
-    });
-}
-//ENDE HAUPTFUNKTION
 // Größe des Content-Bereichs (viewport - header) anpassen
 function scaleContent() {
     $('#content_scan').attr('style', '--contentH: ' + ($(window).height() - 69));
-}
-// Bild machen, entweder mittels Foto-API oder durch speichern des aktuellen Canvas
-function legacyCam() {
-    //Frame in Canvas zeichnen, als Bild speichern, in den Offline-Speicher laden und in der Vorschau zeigen
-    imgCtx.drawImage(video.get(0), 0, 0, vidW, vidH);
-    newImg = imgCache.get(0).toDataURL('image/png');
-    saveImg();
-    photo.css('background-image', `url(${newImg})`);
-    photo.css('background-size', 'cover');
-}
-//Foto-Funktion, die durch User getriggert werden kann
-function takepicture() {
-    //API nicht verfügbar: Canvas speichern
-    if (camStream !== null) {
-        if ((!window.ImageCapture) || (disableAPI)) {
-            legacyCam();
-        } else {
-            //ImageCapture-API aufrufen (Chrome 60+, Firefox hinter flag), liefert blob
-            const imageCapture = new ImageCapture(streamTrack);
-            imageCapture.takePhoto()
-                //Promise erfolgreich: blob zu Bild, speichern, vorschauen 
-                .then(img => {
-                    const reader = new FileReader(img);
-                    reader.addEventListener('load', () => {
-                        newImg = reader.result;
-                        saveImg();
-                        photo.css('background-image', `url(${newImg})`);
-                        photo.css('background-size', 'cover');
-                    }, false);
-                    if (img) {
-                        reader.readAsDataURL(img);
-                    }
-                })
-                //Promise fehlgeschlagen: ab jetzt immer auf andere Methode zurückfallen, Kamera-Verbindung neu herstellen
-                .catch(err => {
-                    legacyCam();
-                    startup();
-                    disableAPI = true;
-                    localStorage.setItem('disableAPI', 'true');
-                    console.warn(`Verwendung von ImageCapture API fehlgeschlagen (${err}): ab jetzt Fallback zu Canvas-Methode.`);
-                    console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in offiziellen API-Demos auf.');
-                });
-        }
-    }
 }
 //Kamera-Feed in Content-Bereich einpassen
 function adjustFeedScale() {
@@ -158,21 +104,85 @@ function adjustFeedScale() {
     }
 }
 //Kamera-Feed abspielen
-function refreshFrame() {
-    if (camStream !== null) {
-        feedCtx.drawImage(video.get(0), offsetX, offsetY, renderW, renderH, 0, 0, feedW, feedH);
-        setTimeout(refreshFrame, 1000 / 30);
+function playback(feedCtx) {
+    let frameTarget = feedCtx;
+    let playback;
+    function refreshFrame() {
+        if (streamTrack !== null) {
+            frameTarget.drawImage(video.get(0), offsetX, offsetY, renderW, renderH, 0, 0, feedW, feedH);
+            playback = requestAnimationFrame(refreshFrame);
+        } else {
+            cancelAnimationFrame(playback);
+        }
     }
+    refreshFrame();
 }
-//Kamera-Zugriff beenden
+// stop camera access
 function camRelease() {
-    if (camStream !== null) {
+    if (streamTrack !== null) {
         streamTrack.stop();
-        camStream = null;
+        streamTrack = null;
     }
 }
-//Bild in IndexedDB speichern:
-function saveImg() {
+// Bild machen, entweder mittels Foto-API oder durch speichern des aktuellen Canvas
+function takepicture() {
+    if (streamTrack !== null) {
+        if ((!window.ImageCapture) || (disableAPI)) {
+            // Legacy method: draw frame to canvas, save frame as png
+            imgCtx.drawImage(video.get(0), 0, 0, vidW, vidH);
+            let img = imgCache.get(0).toDataURL('image/png');
+            saveImg(img);
+            return;
+        }
+        // use ImageCapture API (Chrome 60+, Firefox behind flag)
+        const imageCapture = new ImageCapture(streamTrack);
+        imageCapture.takePhoto()
+            //Promise successful: blob to png, save 
+            .then(img => {
+                const reader = new FileReader(img);
+                reader.addEventListener('load', () => {
+                    saveImg(reader.result);
+                }, false);
+                if (img) {
+                    reader.readAsDataURL(img);
+                }
+            })
+            //Promise failed: legacy method from now on, reconnect camera
+            .catch(err => {
+                startCamera();
+                disableAPI = true;
+                localStorage.setItem('disableAPI', 'true');
+                console.warn(`Verwendung von ImageCapture API fehlgeschlagen (${err}): ab jetzt Fallback zu Canvas-Methode.`);
+                console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in offiziellen API-Demos auf.');
+            });
+    }
+
+}
+//Foto-Import
+$(() => {
+    // connect import-button with input-element
+    $('#uploadDiv').click(() => {
+        $('#imgInput').click();
+    });
+    // Convert all img files to png and save them
+    $('#imgInput').on('change', (evt) => {
+        let files = evt.target.files;
+        let imageFile = /^image\//;
+        for (let i in files) {
+            let file = files[i];
+            const reader = new FileReader();
+            if (!imageFile.test(file.type)) {
+                continue;
+            }
+            reader.addEventListener('load', read => {
+                saveImg(read.target.result);
+            });
+            reader.readAsDataURL(file);
+        }
+    });
+});
+// save img to IndexedDB:
+function saveImg(img) {
     const fonts = [
         'Avenir', 'Calibri', 'Comic Sans', 'Corbel', 'Didot', 'Franklin Gothic',
         'Frutiger', 'Futura', 'Garamond Pro', 'Gill Sans', 'Helvetica', 'Insignia', 'Josefin',
@@ -181,7 +191,7 @@ function saveImg() {
     let fontPicker = getRandomInt();
     let store = {
         'user': currentUser,
-        'photo': newImg,
+        'photo': img,
         'font': fonts[fontPicker],
         'id': 'font' + (fontPicker + 1),
         'created': new Date()
@@ -189,23 +199,9 @@ function saveImg() {
     let transaction = typroDB.transaction('photos', 'readwrite');
     transaction.objectStore('photos').add(store);
     transaction.oncomplete = () => {
-        // Bild gespeichert.
+        photo.css('background-image', `url(${img})`);
+        photo.css('background-size', 'cover');
     };
-}
-//Foto-Import
-function imgImport(files) {
-    for (let i in files) {
-        let file = files[i];
-        const reader = new FileReader();
-        reader.addEventListener('load', e => {
-            newImg = e.target.result;
-            photo.css('background-image', `url(${newImg})`);
-            photo.css('background-size', 'cover');
-            saveImg();
-        });
-        reader.readAsDataURL(file);
-    }
-    $('#imgInput').val('');
 }
 // Zufalls-Integer um in saveImg() zufälligen Font zu speichern
 function getRandomInt() {
