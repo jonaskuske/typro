@@ -6,9 +6,9 @@
         <designer>Adrian Frutiger</designer>
         <jahr>1988</jahr>
         <images>
-            <img>../img/Avenir1.png</img>
-            <img>../img/Avenir2.png</img>
-            <img>../img/Avenir3.png</img>
+            <img>Avenir1.png</img>
+            <img>Avenir2.png</img>
+            <img>Avenir3.png</img>
         </images>
     </font1>
     <font2>
@@ -16,9 +16,9 @@
         <designer>Lucas De Groot</designer>
         <jahr>2007</jahr>
         <images>
-            <img>../img/Calibri1.jpg</img>
-            <img>../img/Calibri2.jpg</img>
-            <img>../img/Calibri3.jpg</img>
+            <img>Calibri1.jpg</img>
+            <img>Calibri2.jpg</img>
+            <img>Calibri3.jpg</img>
         </images>
     </font2>
     <font3>
@@ -26,7 +26,7 @@
         <designer>Vincent Connare</designer>
         <jahr>1994</jahr>
         <images>
-            <img>../img/ComicSans1.png</img>
+            <img>ComicSans1.png</img>
         </images>
     </font3>
     <font4>
@@ -34,9 +34,9 @@
         <designer>Jeremy Tankard</designer>
         <jahr>2007</jahr>
         <images>
-            <img>../img/Corbel1.jpg</img>
-            <img>../img/Corbel2.jpg</img>
-            <img>../img/Corbel3.jpg</img>
+            <img>Corbel1.jpg</img>
+            <img>Corbel2.jpg</img>
+            <img>Corbel3.jpg</img>
         </images>
     </font4>
     <font5>
@@ -44,9 +44,9 @@
         <designer>François Didot</designer>
         <jahr>1788</jahr>
         <images>
-            <img>../img/Didot1.jpg</img>
-            <img>../img/Didot2.jpg</img>
-            <img>../img/Didot3.jpg</img>
+            <img>Didot1.jpg</img>
+            <img>Didot2.jpg</img>
+            <img>Didot3.jpg</img>
         </images>
     </font5>
     <font6>
@@ -54,9 +54,9 @@
         <designer>Morris Fuller Benton</designer>
         <jahr>1979</jahr>
         <images>
-            <img>../img/Franklin1.jpg</img>
-            <img>../img/Franklin2.jpg</img>
-            <img>../img/Franklin3.jpg</img>
+            <img>Franklin1.jpg</img>
+            <img>Franklin2.jpg</img>
+            <img>Franklin3.jpg</img>
         </images>
     </font6>
     <font7>
@@ -64,9 +64,9 @@
         <designer>Adrian Frutiger</designer>
         <jahr>1975</jahr>
         <images>
-            <img>../img/Frutiger1.jpg</img>
-            <img>../img/Frutiger2.jpg</img>
-            <img>../img/Frutiger3.jpg</img>
+            <img>Frutiger1.jpg</img>
+            <img>Frutiger2.jpg</img>
+            <img>Frutiger3.jpg</img>
         </images>
     </font7>
     <font8>
@@ -74,9 +74,9 @@
         <designer>Paul Renner</designer>
         <jahr>1927</jahr>
         <images>
-            <img>../img/Futura1.jpg</img>
-            <img>../img/Futura2.jpg</img>
-            <img>../img/Futura3.jpg</img>
+            <img>Futura1.jpg</img>
+            <img>Futura2.jpg</img>
+            <img>Futura3.jpg</img>
         </images>
     </font8>
     <font9>
@@ -84,9 +84,9 @@
         <designer>Robert Slimbach</designer>
         <jahr>1989</jahr>
         <images>
-            <img>../img/Garamond1.jpg</img>
-            <img>../img/Garamond2.jpg</img>
-            <img>../img/Garamond3.jpg</img>
+            <img>Garamond1.jpg</img>
+            <img>Garamond2.jpg</img>
+            <img>Garamond3.jpg</img>
         </images>
     </font9>
     <font10>
@@ -94,9 +94,9 @@
         <designer>Eric Gill</designer>
         <jahr>1930</jahr>
         <images>
-            <img>../img/GillSans1.jpg</img>
-            <img>../img/GillSans2.jpg</img>
-            <img>../img/GillSans3.jpg</img>
+            <img>GillSans1.jpg</img>
+            <img>GillSans2.jpg</img>
+            <img>GillSans3.jpg</img>
         </images>
     </font10>
     <font11>
@@ -104,9 +104,9 @@
         <designer>Max Miedinger</designer>
         <jahr>1957</jahr>
         <images>
-            <img>../img/Helvetica1.jpg</img>
-            <img>../img/Helvetica2.jpg</img>
-            <img>../img/Helvetica3.jpg</img>
+            <img>Helvetica1.jpg</img>
+            <img>Helvetica2.jpg</img>
+            <img>Helvetica3.jpg</img>
         </images>
     </font11>
     <font12>
@@ -114,7 +114,7 @@
         <designer>Neville Brody</designer>
         <jahr>1986</jahr>
         <images>
-            <img>../img/Insignia1.jpg</img>
+            <img>Insignia1.jpg</img>
         </images>
     </font12>
     <font13>
@@ -122,9 +122,9 @@
         <designer>Santiago Orozco</designer>
         <jahr>2010</jahr>
         <images>
-            <img>../img/Josefin1.jpg</img>
-            <img>../img/Josefin2.jpg</img>
-            <img>../img/Josefin3.jpg</img>
+            <img>Josefin1.jpg</img>
+            <img>Josefin2.jpg</img>
+            <img>Josefin3.jpg</img>
         </images>
     </font13>
     <font14>
@@ -132,8 +132,8 @@
         <designer>Rudolf Koch</designer>
         <jahr>1927</jahr>
         <images>
-            <img>../img/Kabel1.jpg</img>
-            <img>../img/Kabel2.jpg</img>
+            <img>Kabel1.jpg</img>
+            <img>Kabel2.jpg</img>
         </images>
     </font14>
     <font15>
@@ -141,9 +141,9 @@
         <designer>Lukasz Dziedzic</designer>
         <jahr>2010</jahr>
         <images>
-            <img>../img/Lato1.jpg</img>
-            <img>../img/Lato2.jpg</img>
-            <img>../img/Lato3.jpg</img>
+            <img>Lato1.jpg</img>
+            <img>Lato2.jpg</img>
+            <img>Lato3.jpg</img>
         </images>
     </font15>
     <font16>
@@ -151,9 +151,9 @@
         <designer>Christian Robertson</designer>
         <jahr>2012</jahr>
         <images>
-            <img>../img/Roboto1.jpg</img>
-            <img>../img/Roboto2.jpg</img>
-            <img>../img/Roboto3.jpg</img>
+            <img>Roboto1.jpg</img>
+            <img>Roboto2.jpg</img>
+            <img>Roboto3.jpg</img>
         </images>
     </font16>
     <font17>
@@ -161,9 +161,9 @@
         <designer>Lucas De Groot</designer>
         <jahr>1994</jahr>
         <images>
-            <img>../img/TheSans1.jpg</img>
-            <img>../img/TheSans2.jpg</img>
-            <img>../img/TheSans3.jpg</img>
+            <img>TheSans1.jpg</img>
+            <img>TheSans2.jpg</img>
+            <img>TheSans3.jpg</img>
         </images>
     </font17>
     <font18>
@@ -171,9 +171,9 @@
         <designer>Stanley Morrison</designer>
         <jahr>1931</jahr>
         <images>
-            <img>../img/TimesNewRoman1.jpg</img>
-            <img>../img/TimesNewRoman2.jpg</img>
-            <img>../img/TimesNewRoman3.jpg</img>
+            <img>TimesNewRoman1.jpg</img>
+            <img>TimesNewRoman2.jpg</img>
+            <img>TimesNewRoman3.jpg</img>
         </images>
     </font18>
     <font19>
@@ -181,9 +181,9 @@
         <designer>Adrian Frutiger</designer>
         <jahr>1957</jahr>
         <images>
-            <img>../img/Univers1.jpg</img>
-            <img>../img/Univers2.jpg</img>
-            <img>../img/Univers3.jpg</img>
+            <img>Univers1.jpg</img>
+            <img>Univers2.jpg</img>
+            <img>Univers3.jpg</img>
         </images>
     </font19>
     <font20>
@@ -191,9 +191,9 @@
         <designer>Matthew Carter</designer>
         <jahr>1994</jahr>
         <images>
-            <img>../img/Verdana1.jpg</img>
-            <img>../img/Verdana2.jpg</img>
-            <img>../img/Verdana3.jpg</img>
+            <img>Verdana1.jpg</img>
+            <img>Verdana2.jpg</img>
+            <img>Verdana3.jpg</img>
         </images>
     </font20>
 </fonts>

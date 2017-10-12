@@ -37,7 +37,8 @@
 
 <body>
     <div data-role="page" id="splash">
-        <div id="logo"> <img src="img/TP_Logo.png">
+        <div id="logo">
+            <img src="img/TP_Logo.png">
             <h1>typro</h1>
             <div id="loader"></div>
         </div>
@@ -54,7 +55,8 @@
         </div>
         <!--Main-->
         <div data-role="main" id="content_index" class="ui-content">
-            <a href="#scanpage"> <img src="img/scan.png" alt="Scan"> </a>
+            <a href="#scanpage">
+                <img src="img/ui/scan.png" alt="Scan"> </a>
         </div>
     </div>
     <!--SCAN-->
@@ -92,7 +94,9 @@
         </div>
         <!-- Main-->
         <div data-role="content" id="content_verlauf">
-            <h2>Scanverlauf<span id="scanUser"></span></h2>
+            <h2>Scanverlauf
+                <span id="scanUser"></span>
+            </h2>
             <div id="previewContainer">
                 <div id="previewCollection"></div>
             </div>
@@ -144,26 +148,66 @@
         <!--Main-->
         <div data-role="main" id="content_katalog">
             <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
-                <li><a href="#font_popup" data-rel="popup" id="font1">Avenir</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font2">Calibri</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font3">Comic Sans</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font4">Corbel</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font5">Didot</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font6">Franklin Gothic</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font7">Frutiger</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font8">Futura</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font9">Garamond Pro</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font10">Gill Sans</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font11">Helvetica</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font12">Insignia</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font13">Josefin</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font14">Kabel</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font15">Lato</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font16">Roboto</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font17">TheSans</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font18">Times New Roman</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font19">Univers</a></li>
-                <li><a href="#font_popup" data-rel="popup" id="font20">Verdana</a></li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font1">Avenir</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font2">Calibri</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font3">Comic Sans</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font4">Corbel</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font5">Didot</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font6">Franklin Gothic</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font7">Frutiger</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font8">Futura</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font9">Garamond Pro</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font10">Gill Sans</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font11">Helvetica</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font12">Insignia</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font13">Josefin</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font14">Kabel</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font15">Lato</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font16">Roboto</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font17">TheSans</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font18">Times New Roman</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font19">Univers</a>
+                </li>
+                <li>
+                    <a href="#font_popup" data-rel="popup" id="font20">Verdana</a>
+                </li>
             </ul>
         </div>
         <div data-role="popup" id="font_popup">
@@ -173,8 +217,14 @@
                 <a class="ui-btn ui-icon-carat-r ui-btn-icon-notext sliderButton" onclick="buttonPush(+1)"></a>
             </div>
             <div>
-                <p><b>Designer:</b> <span id="designer">Designer</span></p>
-                <p><b>Jahr: </b><span id="jahr">Jahr</span></p>
+                <p>
+                    <b>Designer:</b>
+                    <span id="designer">Designer</span>
+                </p>
+                <p>
+                    <b>Jahr: </b>
+                    <span id="jahr">Jahr</span>
+                </p>
             </div>
             <a href="#" data-role="button" data-rel="back">Schließen</a>
         </div>
@@ -208,14 +258,23 @@
         <div data-role="header" data-id="header" data-position="fixed" id="header">
             <a href="#menu" class="ui-btn ui-btn-inline ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
             <h3>typro</h3>
-            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a> </div>
+            <a href="#einstellungen" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-notext ui-corner-all"></a>
+        </div>
         <!--Main-->
         <div data-role="main" id="content_einstellungen">
             <ul data-role="listview">
-                <li><a href="#logout" data-rel="popup">Log-out</a></li>
-                <li><a href="#reset" data-rel="popup">Zurücksetzen</a></li>
-                <li><a href="#map-page">Kontakt / Über uns</a></li>
-                <li><a href="#legal">Wichtige Informationen</a></li>
+                <li>
+                    <a href="#logout" data-rel="popup">Log-out</a>
+                </li>
+                <li>
+                    <a href="#reset" data-rel="popup">Zurücksetzen</a>
+                </li>
+                <li>
+                    <a href="#map-page">Kontakt / Über uns</a>
+                </li>
+                <li>
+                    <a href="#legal">Wichtige Informationen</a>
+                </li>
             </ul>
         </div>
         <div data-role="popup" id="logout">
@@ -271,16 +330,24 @@
             <p>Jonas Kuske</p>
             <p>Rieke Helmers</p>
             <br>
-            <p><b>Hochschule Bremerhaven</b></p>
+            <p>
+                <b>Hochschule Bremerhaven</b>
+            </p>
             <p>An der Karlstadt 8</p>
             <p>27568 Bremerhaven</p>
             <p>Fach: Grundlagen der Medieninformatik 1 - Programmieren</p>
             <p>Dozent: Alfred Schmidt, Tutor: Julian Timo Verbarg</p>
             <img src="/img/HS_logo.png" />
-            <p><i>Das Logo der HS Bremerhaven stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
-                href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg" target="_blank" rel="noopener">Wikipedia</a>.</i></p>
-            <p><i>Das "Darth Vader Profilbild" stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz: <a
-                href="https://thenounproject.com/term/darth-vader/65913/" target="_blank" rel="noopener">The Noun Project</a>.</i></p>
+            <p>
+                <i>Das Logo der HS Bremerhaven stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz:
+                    <a href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg"
+                        target="_blank" rel="noopener">Wikipedia</a>.</i>
+            </p>
+            <p>
+                <i>Das "Darth Vader Profilbild" stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz:
+                    <a href="https://thenounproject.com/term/darth-vader/65913/"
+                        target="_blank" rel="noopener">The Noun Project</a>.</i>
+            </p>
         </div>
 
     </div>
@@ -294,13 +361,25 @@
                     </div>
                 </a>
             </li>
-            <li data-icon="start"><a href="#home">Start</a></li>
-            <li data-icon="scan"><a href="#scanpage">Scan</a></li>
-            <li data-icon="katalog"><a href="#katalog">Katalog</a></li>
-            <li data-icon="verlauf"><a href="#verlauf">Verlauf</a></li>
-            <li data-icon="einstellungen"><a href="#einstellungen">Einstellungen</a></li>
+            <li data-icon="start">
+                <a href="#home">Start</a>
+            </li>
+            <li data-icon="scan">
+                <a href="#scanpage">Scan</a>
+            </li>
+            <li data-icon="katalog">
+                <a href="#katalog">Katalog</a>
+            </li>
+            <li data-icon="verlauf">
+                <a href="#verlauf">Verlauf</a>
+            </li>
+            <li data-icon="einstellungen">
+                <a href="#einstellungen">Einstellungen</a>
+            </li>
             <li data-icon="none" id="logoLi">
-                <div id="logoDiv"><img src="/img/TP_Logo.png"></div>
+                <div id="logoDiv">
+                    <img src="/img/TP_Logo.png">
+                </div>
             </li>
         </ul>
     </div>

@@ -73,10 +73,10 @@ $(document).on('pageinit', '#map-page', () => {
 //
 // multiple user functionality (login/out)
 const allUsers = [
-    { 'username': 'admin', 'passwort': 'futura', 'img': '/img/admin.png', 'bg': 'bright' },
-    { 'username': 'test', 'passwort': 'comicsans', 'img': '/img/test.png', 'bg': 'bright' },
-    { 'username': 'darth vader', 'passwort': 'darkside', 'img': '/img/darth.png', 'bg': 'dark' },
-    { 'username': 'Jonas', 'passwort': 'Serifen', 'img': '/img/jonas.jpg', 'bg': 'dark' }
+    { 'username': 'admin', 'passwort': 'futura', 'img': 'admin.png', 'bg': 'bright' },
+    { 'username': 'test', 'passwort': 'comicsans', 'img': 'test.png', 'bg': 'bright' },
+    { 'username': 'darth vader', 'passwort': 'darkside', 'img': 'darth.png', 'bg': 'dark' },
+    { 'username': 'Jonas', 'passwort': 'Serifen', 'img': 'jonas.jpg', 'bg': 'dark' }
 ];
 // check login state when loading page
 $(() => { logCheck('auto'); });
@@ -119,7 +119,7 @@ function storeUser(user, passwort) {
 function login(user) {
     currentUser = allUsers[user].username;
     $('#pUser').text(`Hallo, ${currentUser}`);
-    $('#user').css('background-image', `url(${allUsers[user].img})`);
+    $('#user').css('background-image', `url(/img/user/${allUsers[user].img})`);
     (allUsers[user].bg === 'dark') ? $('#pUser').addClass('darkUser') : $('#pUser').removeClass('darkUser');
 }
 // log out user: configure welcome msg, set currentUser var, delete data from local storage
@@ -135,9 +135,8 @@ function logout() {
 function loginFeedback(state) {
     if (state === 'success') {
         $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
-        setTimeout(() => { $('#loginFeedback').empty(); }, 1500);
     } else {
         $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
-        setTimeout(() => { $('#loginFeedback').empty(); }, 1500);
     }
+    setTimeout(() => { $('#loginFeedback').empty(); }, 1500);
 }

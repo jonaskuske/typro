@@ -1,4 +1,3 @@
-/* exported openPopup, buttonPush */
 'use strict';
 //Beim öffnen von Popup: Daten aus XML abrufen und in Popup schreiben
 $(() => {
@@ -36,14 +35,14 @@ function configurePopup(n, d, j, b) {
     b.forEach((bild, index) => {
         let display;
         index === 0 ? display = 'block' : display = 'none';
-        $('#slideshow').prepend(`<img src="${bild}" class="bilder" style="display: ${display}"/>`);
+        $('#slideshow').prepend(`<img src="..img/fonts/${bild}" class="bilder" style="display: ${display}"/>`);
     });
 }
 //
 // cycle through imgs in slideshow
 var bildIndex = 1; // default index
-// change index on button push
-function buttonPush(n) {
+// change index on button push (from HTML)
+function buttonPush(n) { // eslint-disable-line no-unused-vars
     slideBild(bildIndex += n);
 }
 // display new image according to index
