@@ -144,14 +144,11 @@ function logout() {
 function loginFeedback(state) {
     if (state === 'success') {
         $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
-        setTimeout(() => {
-            $('#loginFeedback').empty();
-            $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
-        }, 1500);
+        $('#menu').panel('open');
     } else {
         $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
-        setTimeout(() => {
-            $('#loginFeedback').empty();
-        }, 1800);
     }
+    setTimeout(() => {
+        $('#loginFeedback').empty();
+    }, 1700);
 }
