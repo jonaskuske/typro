@@ -23,11 +23,16 @@ $(() => {
         playback();
     });
 });
-// adjust size and start camera playback on pageshow
+// adjust size and start camera playback on pageshow and window resize
 $(document).on('pagebeforeshow', '#scanpage', () => {
     scaleContent();
-    $(window).on('resize', scaleContent, adjustPlaybackSize);
     startCamera();
+});
+$(window).on('resize', () => {
+    if ($.mobile.activePage[0].id === 'scanpage') {
+        scaleContent();
+        adjustPlaybackSize();
+    }
 });
 // adjust page size (viewport - header)
 function scaleContent() {
