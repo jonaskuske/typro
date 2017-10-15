@@ -146,7 +146,14 @@ function loginFeedback(state) {
         $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
         setTimeout(() => { $('#loginFeedback').empty(); }, 1800);
         $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
+        setTimeout(() => {
+            $('#loginFeedback').empty();
+            $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
+        }, 1500);
     } else {
         $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
+        setTimeout(() => {
+            $('#loginFeedback').empty();
+        }, 1800);
     }
 }
