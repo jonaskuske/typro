@@ -1,6 +1,11 @@
 'use strict';
 /* global typroDB, google */
 var currentUser; // reference to currently logged in user
+$(document).on('click', '.menuHref', function (evt) {
+    evt.preventDefault();
+    $('#menu').panel('close');
+    $(':mobile-pagecontainer').pagecontainer('change', $(evt.target.hash));
+});
 // no jQM transitions
 $(document).bind('mobileinit', () => {
     $.mobile.defaultPageTransition = 'none';
@@ -80,6 +85,9 @@ const allUsers = [
 ];
 // check login state when loading page
 $(() => { logCheck('auto'); });
+// let user press enter to continue login process
+$(document).on('keypress', '#username', key => (key.which === 13) ? $('#passwort').focus() : '');
+$(document).on('keypress', '#passwort', key => (key.which === 13) ? $('#loginBtn').click() : '');
 // check and validate login data
 function logCheck(mode) {
     let userEntry, passwortEntry;
@@ -128,7 +136,7 @@ function logout() {
     localStorage.removeItem('passwort');
     currentUser = 'noLogin';
     $('#pUser').text('Einloggen');
-    $('#user').css('background-image', 'url(/img/placeholder.png)');
+    $('#user').css('background-image', 'url(/img/user/placeholder.png)');
     $('#pUser').removeClass('darkUser');
 }
 // feedback msg whether login successful or not

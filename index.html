@@ -241,11 +241,10 @@
             <div class="logWrapper">
                 <form class="ui-content" name="myForm">
                     <div>
-                        Username:
-                        <input type="text" name="username" id="username" placeholder="Username"> Passwort:
+                        <input type="text" name="username" id="username" placeholder="Username">
                         <input type="password" name="passwort" id="passwort" placeholder="Passwort">
                     </div>
-                    <input type="button" data-inline="true" value="Log In" onclick="logCheck();">
+                    <input type="button" data-inline="true" id="loginBtn" value="Einloggen" onclick="logCheck();">
                 </form>
             </div>
             <div class="logWrapper">
@@ -340,13 +339,11 @@
             <img src="/img/HS_logo.png" />
             <p>
                 <i>Das Logo der HS Bremerhaven stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz:
-                    <a href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg"
-                        target="_blank" rel="noopener">Wikipedia</a>.</i>
+                    <a href="https://de.wikipedia.org/wiki/Datei:Hs_bremerhaven_logo.svg" target="_blank" rel="noopener">Wikipedia</a>.</i>
             </p>
             <p>
                 <i>Das "Darth Vader Profilbild" stammt von folgender Website unter Berücksichtigung der CC 3.0 Lizenz:
-                    <a href="https://thenounproject.com/term/darth-vader/65913/"
-                        target="_blank" rel="noopener">The Noun Project</a>.</i>
+                    <a href="https://thenounproject.com/term/darth-vader/65913/" target="_blank" rel="noopener">The Noun Project</a>.</i>
             </p>
         </div>
 
@@ -362,19 +359,19 @@
                 </a>
             </li>
             <li data-icon="start">
-                <a href="#home">Start</a>
+                <a class="menuHref" href="#home">Start</a>
             </li>
             <li data-icon="scan">
-                <a href="#scanpage">Scan</a>
+                <a class="menuHref" href="#scanpage">Scan</a>
             </li>
             <li data-icon="katalog">
-                <a href="#katalog">Katalog</a>
+                <a class="menuHref" href="#katalog">Katalog</a>
             </li>
             <li data-icon="verlauf">
-                <a href="#verlauf">Verlauf</a>
+                <a class="menuHref" href="#verlauf">Verlauf</a>
             </li>
             <li data-icon="einstellungen">
-                <a href="#einstellungen">Einstellungen</a>
+                <a class="menuHref" href="#einstellungen">Einstellungen</a>
             </li>
             <li data-icon="none" id="logoLi">
                 <div id="logoDiv">
