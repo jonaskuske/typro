@@ -144,8 +144,6 @@ function logout() {
 function loginFeedback(state) {
     if (state === 'success') {
         $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
-        setTimeout(() => { $('#loginFeedback').empty(); }, 1800);
-        $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
         setTimeout(() => {
             $('#loginFeedback').empty();
             $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
