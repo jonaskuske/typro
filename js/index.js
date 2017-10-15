@@ -144,8 +144,9 @@ function logout() {
 function loginFeedback(state) {
     if (state === 'success') {
         $('#loginFeedback').html('Erfolgreich eingeloggt: ' + currentUser);
+        setTimeout(() => { $('#loginFeedback').empty(); }, 1800);
+        $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
     } else {
         $('#loginFeedback').html('Falsche Nutzer-Passwort-Kombination!');
     }
-    setTimeout(() => { $('#loginFeedback').empty(); }, 1500);
 }
