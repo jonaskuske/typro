@@ -35,7 +35,7 @@ function configurePopup(n, d, j, b) {
     b.forEach((bild, index) => {
         let display;
         index === 0 ? display = 'block' : display = 'none';
-        $('#slideshow').prepend(`<img src="..img/fonts/${bild}" class="bilder" style="display: ${display}"/>`);
+        $('#slideshow').prepend(`<img src="../img/fonts/${bild}" class="bilder" style="display: ${display}"/>`);
     });
 }
 //

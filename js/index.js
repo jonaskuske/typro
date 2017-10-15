@@ -1,11 +1,6 @@
 'use strict';
 /* global typroDB, google */
 var currentUser; // reference to currently logged in user
-$(document).on('click', '.menuHref', function (evt) {
-    evt.preventDefault();
-    $('#menu').panel('close');
-    $(':mobile-pagecontainer').pagecontainer('change', $(evt.target.hash));
-});
 // no jQM transitions
 $(document).bind('mobileinit', () => {
     $.mobile.defaultPageTransition = 'none';
@@ -31,6 +26,12 @@ $(() => {
             $('#menu').panel('open');
         }
     });
+});
+// handle navigation from panel
+$(document).on('click', '.menuHref', function (evt) {
+    evt.preventDefault();
+    $('#menu').panel('close');
+    $(':mobile-pagecontainer').pagecontainer('change', $(evt.target.hash));
 });
 // prevent automatic deletion of data if possible
 if (navigator.storage && navigator.storage.persist) {
