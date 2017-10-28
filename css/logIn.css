@@ -1,9 +1,0 @@
-@charset "utf-8";
-.logWrapper {
-	display: flex;
-	justify-content: center;
-	text-align: center;
-}
-.logFeed {
-    text-align: center;
-}
