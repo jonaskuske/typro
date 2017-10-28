@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/* Katalog CSS */
+/* Einbindung Katalog-Schrift */
+#katalog div ul li a {
+    font-family: "Lato";
+}
+/* Styling Pop-Ups im Katalog */
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#font_popup a {
+    background-color: #332112;
+    color: #FFFFFF;
+}
+
+#slideshow img {
+    width: 70vw;
+    order: 2;
+}
+
+#slideshow a {
+    height: 20vw;
+    width: 8vw;
+}
+
+.ui-icon-carat-l {
+    order: 1;
+}
+
+.ui-icon-carat-r {
+    order: 3;
+}
+
+.sliderButton.disabled {
+    background-color: white !important;
+    border-color: transparent !important;
+    cursor: default;
+}
