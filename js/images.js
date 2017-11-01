@@ -27,11 +27,9 @@ if (!('indexedDB' in window)) {
 $(() => {
     $(document).on('pagebeforeshow', '#verlauf', () => {
         $('#previewCollection').empty();
-        if (currentUser !== 'noLogin') {
-            $('#scanUser').text(' von ' + currentUser);
-        } else {
-            $('#scanUser').text('');
-        }
+        let welcomeMsg;
+        (currentUser !== 'noLogin') ? welcomeMsg = ` von ${currentUser}` : welcomeMsg = '';
+        $('#scanUser').text(welcomeMsg);
         // get all imgs of logged in user from IDB (using cursor), save them to array
         let picArray = [];
         if (typroDB !== undefined) {
