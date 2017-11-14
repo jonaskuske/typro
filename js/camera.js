@@ -114,7 +114,7 @@ $(() => {
   $('#shutter').click(
     function takepicture() {
       if (streamTrack !== null) {
-        if (!window.ImageCapture.prototype.hasOwnProperty('takePhoto') || disableAPI) {
+        if (!window.ImageCapture || disableAPI) {
           // legacy method: draw frame to canvas, save frame as png
           imgCtx.drawImage(video.get(0), 0, 0, vidW, vidH);
           let img = imgCache.get(0).toDataURL('image/png');
