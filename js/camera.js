@@ -124,7 +124,7 @@ $(() => {
         // use ImageCapture API (Chrome 60+, Firefox behind flag)
         const imageCapture = new ImageCapture(streamTrack);
         imageCapture.takePhoto()
-          // promise successful: blob to png, save 
+          // promise successful: blob to png, save
           .then(img => {
             const reader = new FileReader(img);
             reader.addEventListener('load', () => {
