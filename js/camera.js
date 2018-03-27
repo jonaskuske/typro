@@ -1,10 +1,12 @@
 /* global typroDB, currentUser, ImageCapture */
+
 'use strict';
-var disableAPI; // controls which method is to take photos
-(localStorage.getItem('disableAPI') === 'true') ? disableAPI = true : disableAPI = false;
+
+var disableAPI = localStorage.getItem('disableAPI') === 'true'; // controls which method is to take photos
 var streamTrack = null; //access to camera feed
 var video, feed, photo, imgCache, imgCtx, feedCtx; // access to HTML elements
 var vidW, vidH, feedW, feedH, renderW, renderH, offsetX = 0, offsetY = 0; // calculating feed size relative to window size
+
 // initial setup
 $(() => {
   video = $('video');
@@ -13,6 +15,7 @@ $(() => {
   imgCache = $('#imgCache');
   feedCtx = feed.get(0).getContext('2d');
   imgCtx = imgCache.get(0).getContext('2d');
+  
   // configure video and start playback when video is ready
   video.on('loadedmetadata', () => {
     vidW = video.get(0).videoWidth;
@@ -23,21 +26,23 @@ $(() => {
     playback();
   });
 });
+
 // adjust size and start camera playback on pageshow and window resize
 $(document).on('pagebeforeshow', '#scanpage', () => {
   scaleContent();
   startCamera();
 });
 $(window).on('resize', () => {
-  if ($.mobile.activePage[0].id === 'scanpage') {
-    scaleContent();
-    adjustPlaybackSize();
-  }
+  if ($.mobile.activePage[0].id !== 'scanpage') return;
+  
+  scaleContent();
+  adjustPlaybackSize();
 });
 // adjust page size (viewport - header)
 function scaleContent() {
   $('#content_scan').attr('style', '--contentH: ' + ($(window).height() - 69));
 }
+
 // retrieve camera stream and start playback in hidden video element
 function startCamera() {
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -67,6 +72,7 @@ function playback() {
   }
   refreshFrame();
 }
+
 // crop camera stream to cover entire viewport
 function adjustPlaybackSize() {
   feedW = parseInt(feed.css('width'), 10);
@@ -91,6 +97,7 @@ function adjustPlaybackSize() {
     renderH = vidH;
   }
 }
+
 // stop camera access
 function camRelease() {
   if (streamTrack !== null) {
@@ -109,6 +116,7 @@ $(document).on('visibilitychange', () => {
     startCamera();
   }
 });
+
 // take picture, either using the ImageCapture API or by drawing to canvas and saving
 $(() => {
   $('#shutter').click(
@@ -127,12 +135,8 @@ $(() => {
           // promise successful: blob to png, save
           .then(img => {
             const reader = new FileReader(img);
-            reader.addEventListener('load', () => {
-              saveImg(reader.result);
-            });
-            if (img) {
-              reader.readAsDataURL(img);
-            }
+            reader.addEventListener('load', () => saveImg(reader.result));
+            if (img) reader.readAsDataURL(img);
           })
           // promise failed: legacy method from now on, reconnect camera
           .catch(err => {
@@ -143,9 +147,9 @@ $(() => {
             console.warn('Webcam unterstützt evtl. ImageCapture API nicht, Fehler tritt auch in offiziellen API-Demos auf.');
           });
       }
-
     });
 });
+
 // import pictures from user device
 $(() => {
   // connect import button with input element
@@ -162,9 +166,7 @@ $(() => {
       if (!imageFile.test(file.type)) {
         continue;
       }
-      reader.addEventListener('load', read => {
-        saveImg(read.target.result);
-      });
+      reader.addEventListener('load', read => saveImg(read.target.result));
       reader.readAsDataURL(file);
     }
   });
