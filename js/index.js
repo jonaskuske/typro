@@ -7,9 +7,7 @@ $(document).bind('mobileinit', () => {
 });
 // move to home after displaying splash for 1.5s
 setTimeout(() => {
-  if ($.mobile.activePage[0].id === 'splash') {
-    $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
-  }
+  if ($.mobile.activePage[0].id === 'splash') $(':mobile-pagecontainer').pagecontainer('change', $('#home'));
 }, 1500);
 // deactivate right click
 var rClick;
@@ -21,10 +19,8 @@ $(() => {
 // open panel on swipe
 $(() => {
   $('#menu').enhanceWithin().panel();
-  $(document).on('swiperight', e => {
-    if (e.type === 'swiperight') {
-      $('#menu').panel('open');
-    }
+  $(document).on('swiperight', () => {
+    $('#menu').panel('open');
   });
 });
 // handle navigation from panel
@@ -63,7 +59,7 @@ $(document).on('pageinit', '#map-page', () => {
       center: HS,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+    var map = new google.maps.Map($('#map-canvas')[0], myOptions);
     // Marker
     var marker = new google.maps.Marker({ // eslint-disable-line no-unused-vars
       position: HS,
