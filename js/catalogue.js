@@ -6,7 +6,7 @@ $(() => {
     if (!configured) {
       evt.preventDefault();
       $.ajax({
-        url: '../xml/fonts.xml',
+        url: 'xml/fonts.xml',
         success: xml => {
           let font = $(xml).find(evt.target.id);
           let name, designer, jahr, bilder = [];
@@ -35,7 +35,7 @@ function configurePopup(n, d, j, b) {
   b.forEach((bild, index) => {
     let display;
     index === 0 ? display = 'block' : display = 'none';
-    $('#slideshow').prepend(`<img src="../img/fonts/${bild}" class="bilder" style="display: ${display}"/>`);
+    $('#slideshow').prepend(`<img src="img/fonts/${bild}" class="bilder" style="display: ${display}"/>`);
   });
 }
 //

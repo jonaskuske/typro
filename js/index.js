@@ -124,7 +124,7 @@ function storeUser(user, passwort) {
 function login(user) {
   currentUser = allUsers[user].username;
   $('#pUser').text(`Hallo, ${currentUser}`);
-  $('#user').css('background-image', `url(/img/user/${allUsers[user].img})`);
+  $('#user').css('background-image', `url(img/user/${allUsers[user].img})`);
   (allUsers[user].bg === 'dark') ? $('#pUser').addClass('darkUser') : $('#pUser').removeClass('darkUser');
 }
 // log out user: configure welcome msg, set currentUser var, delete data from local storage
@@ -133,7 +133,7 @@ function logout() {
   localStorage.removeItem('passwort');
   currentUser = 'noLogin';
   $('#pUser').text('Einloggen');
-  $('#user').css('background-image', 'url(/img/user/placeholder.png)');
+  $('#user').css('background-image', 'url(img/user/placeholder.png)');
   $('#pUser').removeClass('darkUser');
 }
 // feedback msg whether login successful or not
